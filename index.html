@@ -11,9 +11,14 @@
 <meta property="og:description" content="Every translator gives you words. Tono tells you how those words will land.">
 <meta property="og:site_name" content="Tono">
 <meta property="og:url" content="https://tonotranslate.com/">
+<meta property="og:image" content="https://tonotranslate.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tono — the tone, not just the words. Context-aware translation.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tono — The tone, not just the words">
 <meta name="twitter:description" content="Every translator gives you words. Tono tells you how those words will land.">
+<meta name="twitter:image" content="https://tonotranslate.com/og-image.png">
 <link rel="canonical" href="https://tonotranslate.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%232E4A8F'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Palatino,Georgia,serif' font-weight='600' font-size='40' fill='%23FAF7F2'%3ET%3C/text%3E%3C/svg%3E">
 </head>
@@ -159,18 +164,22 @@
   .rswitch button[aria-selected="true"][data-reg="1"]{color:#2E4A8F}
   .rswitch button[aria-selected="true"][data-reg="2"]{color:#3A4354}
 
-  .rcard{border:1px solid rgba(20,23,30,.09);border-radius:18px;padding:16px 15px;background:#fff;box-shadow:0 10px 26px -18px rgba(20,30,60,.35)}
-  .rcard .src{font-size:13px;color:#6A6E7A;margin-bottom:9px}
+  /* Fixed geometry: the card must NOT resize as the register text cycles, or
+     the whole phone visibly jumps. rel/src/ko/rom are single lines; only .why
+     varies, so it and the card both reserve space for the tallest state. */
+  .rcard{border:1px solid rgba(20,23,30,.09);border-radius:18px;padding:16px 15px;background:#fff;box-shadow:0 10px 26px -18px rgba(20,30,60,.35);min-height:300px}
+  .rcard .src{font-size:13px;color:#6A6E7A;margin-bottom:9px;min-height:19px}
   .rcard .ko{font-family:var(--serif);font-size:27px;font-weight:600;color:#14171E;line-height:1.15;min-height:34px;display:flex;align-items:center;justify-content:space-between;gap:10px}
   .rcard .badge{
     font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;white-space:nowrap;
     background:rgba(46,74,143,.10);color:#2E4A8F;
   }
   .rcard .rom{font-size:13.5px;color:#6A6E7A;margin-top:7px}
-  .rcard .why{font-size:13px;color:#3A4048;margin-top:12px;padding-top:12px;border-top:1px solid rgba(20,23,30,.08);line-height:1.5}
-  .rcard .rel{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8A8F9B;margin-bottom:4px}
-  .fade-swap{animation:swap .5s cubic-bezier(.2,.7,.3,1)}
-  @keyframes swap{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .rcard .why{font-size:13px;color:#3A4048;margin-top:12px;padding-top:12px;border-top:1px solid rgba(20,23,30,.08);line-height:1.5;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+  .rcard .rel{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8A8F9B;margin-bottom:4px;min-height:15px}
+  /* Crossfade in place — no vertical travel, so nothing appears to shift. */
+  .fade-swap{animation:swap .45s ease}
+  @keyframes swap{from{opacity:.15}to{opacity:1}}
 
   /* register accents on the badge/why by data-reg on card */
   .rcard[data-reg="0"] .badge{background:rgba(176,118,27,.13);color:#8A5A12}
@@ -264,6 +273,70 @@
     *{animation:none!important;scroll-behavior:auto!important}
     .reveal{opacity:1;transform:none;transition:none}
   }
+
+  /* ---------- Language toggle ---------- */
+  .langwrap{position:relative}
+  .langtoggle{
+    display:inline-flex;align-items:center;gap:7px;background:transparent;
+    border:1px solid var(--hair);border-radius:999px;padding:8px 13px;
+    font-family:var(--sans);font-size:14px;font-weight:600;color:var(--fg);cursor:pointer;
+    transition:border-color .2s,color .2s;
+  }
+  .langtoggle:hover{border-color:var(--jjok);color:var(--jjok)}
+  .langtoggle:focus-visible{outline:3px solid var(--jjok);outline-offset:2px}
+  .langtoggle .globe{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.7;flex:none}
+  .langtoggle .chev{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2.2;opacity:.7;transition:transform .2s}
+  .langtoggle[aria-expanded="true"] .chev{transform:rotate(180deg)}
+  .langmenu{
+    position:absolute;top:calc(100% + 10px);right:0;background:var(--card);
+    border:1px solid var(--card-hair);border-radius:16px;
+    box-shadow:0 26px 64px -26px rgba(20,30,60,.55);padding:8px;
+    display:grid;gap:1px;min-width:210px;z-index:60;max-height:72vh;overflow:auto;
+  }
+  .langmenu[hidden]{display:none}
+  .langmenu button{
+    display:flex;align-items:baseline;justify-content:space-between;gap:14px;width:100%;
+    text-align:left;background:transparent;border:0;border-radius:10px;padding:10px 12px;
+    font-family:var(--sans);font-size:15.5px;font-weight:600;color:var(--fg);cursor:pointer;transition:background .15s;
+  }
+  .langmenu button:hover{background:var(--jjok-wash)}
+  .langmenu button .lat{font-size:12px;color:var(--dim);font-weight:500}
+  .langmenu button[aria-selected="true"]{color:var(--jjok)}
+  .langmenu button[aria-selected="true"] .lat{color:var(--jjok);opacity:.8}
+
+  /* ---------- Feature showcase (phone mockups) ---------- */
+  .showcase{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:52px;align-items:start}
+  @media (max-width:860px){.showcase{grid-template-columns:1fr;max-width:360px;margin-left:auto;margin-right:auto;gap:48px}}
+  .shot{display:flex;flex-direction:column;align-items:center;text-align:center}
+  .shot .phone{width:248px;margin-bottom:22px}
+  .shot .cap-tag{font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--jjok);margin-bottom:7px}
+  .shot .cap{font-size:14.5px;color:var(--dim);max-width:28ch;line-height:1.5}
+  /* mock screen — always the app's own light palette, whatever the page theme */
+  .mini{padding:15px 13px 16px;min-height:376px;display:flex;flex-direction:column;font-family:var(--sans);color:#14171E}
+  .mini .mtop{font-family:var(--serif);font-weight:600;font-size:15px;text-align:center;margin-bottom:13px;color:#14171E}
+  .mini .mtop .dot{color:#2E4A8F}
+  .mini .mlabel{font-size:10px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#8A8F9B;margin-bottom:9px}
+  /* talk bubbles */
+  .bub{max-width:84%;padding:9px 12px;border-radius:15px;font-size:12.5px;line-height:1.38;margin-bottom:8px}
+  .bub .rom{font-size:10.5px;opacity:.62;margin-top:2px}
+  .bub.them{background:#EEF0F5;color:#20242E;border-bottom-left-radius:5px;align-self:flex-start}
+  .bub.you{background:#2E4A8F;color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:12px}
+  .chip-s{font-size:11px;font-weight:600;padding:7px 10px;border-radius:999px;background:rgba(46,74,143,.09);color:#2E4A8F;border:1px solid rgba(46,74,143,.15)}
+  /* scripts list */
+  .sline{border:1px solid rgba(20,23,30,.09);border-radius:13px;padding:11px 12px;margin-bottom:9px;background:#fff}
+  .sline .role{font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8A8F9B;margin-bottom:4px}
+  .sline .kr{font-family:var(--serif);font-size:16px;font-weight:600;color:#14171E;line-height:1.2}
+  .sline .gl{font-size:11.5px;color:#6A6E7A;margin-top:3px}
+  .sline.you-say{border-color:rgba(46,74,143,.28);background:rgba(46,74,143,.05)}
+  /* camera result */
+  .cam{border-radius:14px;overflow:hidden;border:1px solid rgba(20,23,30,.1);margin-bottom:12px;position:relative;background:linear-gradient(150deg,#3A4354,#20242E)}
+  .cam .sign{padding:26px 16px;text-align:center;color:#fff}
+  .cam .sign .kr{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:.02em}
+  .cam .scan{position:absolute;left:8px;right:8px;bottom:10px;height:2px;background:rgba(255,255,255,.55);box-shadow:0 0 10px rgba(255,255,255,.6)}
+  .cam-out .kr{font-family:var(--serif);font-size:17px;font-weight:600;color:#14171E}
+  .cam-out .gl{font-size:12px;color:#6A6E7A;margin-top:3px}
+  .cam-badge{display:inline-block;font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:999px;background:rgba(46,74,143,.1);color:#2E4A8F;margin-top:10px}
 </style>
 
 <!-- ============ NAV ============ -->
@@ -271,11 +344,29 @@
   <div class="wrap row">
     <a class="brand wordmark" href="#top">Tono<span class="dot">.</span></a>
     <div class="links">
-      <a class="navlink" href="#registers">Registers</a>
-      <a class="navlink" href="#features">Features</a>
-      <a class="navlink" href="#how">How it works</a>
-      <a class="navlink" href="#pricing">Pricing</a>
-      <a class="btn btn-primary" href="#get">Download</a>
+      <a class="navlink" href="#registers" data-i18n="nav_registers">Registers</a>
+      <a class="navlink" href="#features" data-i18n="nav_features">Features</a>
+      <a class="navlink" href="#how" data-i18n="nav_how">How it works</a>
+      <a class="navlink" href="#premium" data-i18n="nav_premium">Premium</a>
+      <div class="langwrap">
+        <button class="langtoggle" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Change language">
+          <svg class="globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>
+          <span id="langCur">English</span>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="langmenu" id="langMenu" role="listbox" aria-label="Language" hidden>
+          <button role="option" data-lang="en" lang="en">English</button>
+          <button role="option" data-lang="ko" lang="ko">한국어<span class="lat">Korean</span></button>
+          <button role="option" data-lang="ja" lang="ja">日本語<span class="lat">Japanese</span></button>
+          <button role="option" data-lang="zh" lang="zh">中文<span class="lat">Chinese</span></button>
+          <button role="option" data-lang="es" lang="es">Español<span class="lat">Spanish</span></button>
+          <button role="option" data-lang="fr" lang="fr">Français<span class="lat">French</span></button>
+          <button role="option" data-lang="de" lang="de">Deutsch<span class="lat">German</span></button>
+          <button role="option" data-lang="vi" lang="vi">Tiếng Việt<span class="lat">Vietnamese</span></button>
+          <button role="option" data-lang="id" lang="id">Bahasa Indonesia<span class="lat">Indonesian</span></button>
+        </div>
+      </div>
+      <a class="btn btn-primary" href="#get" data-i18n="nav_download">Download</a>
     </div>
   </div>
 </nav>
@@ -288,17 +379,17 @@
   </div>
   <div class="wrap grid" style="position:relative;z-index:1">
     <div>
-      <span class="eyebrow reveal">Context-aware translation</span>
-      <h1 class="reveal">The tone,<br>not just the words.</h1>
-      <p class="lead reveal">Every translator gives you words. Tono tells you how those words will land — the right level of formality for who you're talking to, and <em>why</em>.</p>
+      <span class="eyebrow reveal" data-i18n="hero_eyebrow">Context-aware translation</span>
+      <h1 class="reveal" data-i18n="hero_h1">The tone,<br>not just the words.</h1>
+      <p class="lead reveal" data-i18n="hero_lead">Every translator gives you words. Tono tells you how those words will land — the right level of formality for who you're talking to, and <em>why</em>.</p>
       <div class="cta-row reveal">
         <a class="appstore" href="https://apps.apple.com/app/id000000000" aria-label="Download Tono on the App Store">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.02-3.76-2.05-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.9-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.66 3.23 2.61 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.28-1.28 3.14-2.53.98-1.44 1.39-2.84 1.41-2.91-.03-.02-2.72-1.05-2.75-4.15zM14.54 4.6c.71-.87 1.19-2.07 1.06-3.26-1.02.05-2.26.68-3 1.54-.66.76-1.24 1.98-1.08 3.15 1.14.09 2.29-.58 3.02-1.43z"/></svg>
-          <span class="l"><small>Download on the</small><b>App Store</b></span>
+          <span class="l"><small data-i18n="appstore_small">Download on the</small><b>App Store</b></span>
         </a>
-        <a class="btn btn-ghost" href="#registers">See how it works</a>
+        <a class="btn btn-ghost" href="#registers" data-i18n="hero_cta2">See how it works</a>
       </div>
-      <p class="note reveal" style="margin-top:14px">Free to try · Korean, Japanese, Chinese &amp; 6 more</p>
+      <p class="note reveal" style="margin-top:14px" data-i18n="hero_note">Free to try · Korean, Japanese, Chinese &amp; 6 more</p>
     </div>
 
     <!-- Interactive register phone -->
@@ -309,13 +400,13 @@
           <div class="app">
             <div class="bar"><span class="mk">Tono<span class="dot">.</span></span></div>
             <div class="rswitch" id="rswitch" role="tablist" aria-label="Who are you talking to">
-              <button role="tab" data-reg="0" aria-selected="false">A close friend<span class="sub">반말</span></button>
-              <button role="tab" data-reg="1" aria-selected="true">Someone new<span class="sub">해요체</span></button>
-              <button role="tab" data-reg="2" aria-selected="false">Your boss<span class="sub">합쇼체</span></button>
+              <button role="tab" data-reg="0" aria-selected="false"><span data-i18n="ph_tab0">A close friend</span><span class="sub">반말</span></button>
+              <button role="tab" data-reg="1" aria-selected="true"><span data-i18n="ph_tab1">Someone new</span><span class="sub">해요체</span></button>
+              <button role="tab" data-reg="2" aria-selected="false"><span data-i18n="ph_tab2">Your boss</span><span class="sub">합쇼체</span></button>
             </div>
             <div class="rcard" id="rcard" data-reg="1">
               <div class="rel" id="rRel">Someone you just met</div>
-              <div class="src">“Have you eaten?”</div>
+              <div class="src" data-i18n="ph_src">“Have you eaten?”</div>
               <div class="ko"><span id="rKo">밥 먹었어요?</span><span class="badge" id="rBadge">해요체</span></div>
               <div class="rom" id="rRom">bap meogeosseoyo?</div>
               <div class="why" id="rWhy">Polite everyday speech — friendly but respectful. The safe default with most people you don't know well.</div>
@@ -331,19 +422,19 @@
 <section id="registers" class="band dark">
   <div class="ambient" aria-hidden="true"><div class="ga" style="font-size:340px;bottom:-120px;left:-60px">語</div></div>
   <div class="wrap center" style="position:relative;z-index:1;max-width:760px">
-    <span class="eyebrow reveal kicker">Same words. Different meanings.</span>
-    <h2 class="reveal">Say “it's fine” to your boss and to a friend.<br>They are not the same sentence.</h2>
-    <p class="reveal" style="margin-top:16px;max-width:52ch;margin-left:auto;margin-right:auto">A dictionary hands you one translation and wishes you luck. Tono reads the situation — who, where, how close — and picks the register a native speaker actually would.</p>
+    <span class="eyebrow reveal kicker" data-i18n="sw_eyebrow">Same words. Different meanings.</span>
+    <h2 class="reveal" data-i18n="sw_h2">Say “it's fine” to your boss and to a friend.<br>They are not the same sentence.</h2>
+    <p class="reveal" style="margin-top:16px;max-width:52ch;margin-left:auto;margin-right:auto" data-i18n="sw_body">A dictionary hands you one translation and wishes you luck. Tono reads the situation — who, where, how close — and picks the register a native speaker actually would.</p>
     <div class="compare">
       <div class="qcard reveal">
-        <div class="who">To your manager · deferential</div>
+        <div class="who" data-i18n="sw_c1_who">To your manager · deferential</div>
         <div class="ko">괜찮습니다</div>
-        <div class="en">Reassuring, respectful, safe. The formal ending keeps the distance right.</div>
+        <div class="en" data-i18n="sw_c1_en">Reassuring, respectful, safe. The formal ending keeps the distance right.</div>
       </div>
       <div class="qcard warm reveal">
-        <div class="who">To a friend, a little annoyed · casual</div>
+        <div class="who" data-i18n="sw_c2_who">To a friend, a little annoyed · casual</div>
         <div class="ko">아, 됐어</div>
-        <div class="en">“Forget it.” Same three English words — a completely different social move.</div>
+        <div class="en" data-i18n="sw_c2_en">“Forget it.” Same three English words — a completely different social move.</div>
       </div>
     </div>
   </div>
@@ -353,34 +444,116 @@
 <section id="features" class="band">
   <div class="wrap">
     <div class="center" style="max-width:640px">
-      <span class="eyebrow reveal kicker">What you get</span>
-      <h2 class="reveal">A translator that understands the room.</h2>
+      <span class="eyebrow reveal kicker" data-i18n="feat_eyebrow">What you get</span>
+      <h2 class="reveal" data-i18n="feat_h2">A translator that understands the room.</h2>
     </div>
     <div class="feat">
       <div class="fcard reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></div>
-        <h3>Register, explained</h3>
-        <p>Every answer names its formality level in the language's own terms — 해요체, 敬語, usted, Sie — and tells you in plain words why that level fits.</p>
+        <h3 data-i18n="feat1_h3">Register, explained</h3>
+        <p data-i18n="feat1_p">Every answer names its formality level in the language's own terms — 해요체, 敬語, usted, Sie — and tells you in plain words why that level fits.</p>
       </div>
       <div class="fcard reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 13h6l-1 9 9-11h-6z"/></svg></div>
-        <h3>Real speech, not textbook</h3>
-        <p>Paste a text you don't understand. Tono reads slang, internet shorthand and typos, and tells you what was actually meant — and what the tone says about where you stand.</p>
+        <h3 data-i18n="feat2_h3">Real speech, not textbook</h3>
+        <p data-i18n="feat2_p">Paste a text you don't understand. Tono reads slang, internet shorthand and typos, and tells you what was actually meant — and what the tone says about where you stand.</p>
       </div>
       <div class="fcard reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="3.5"/></svg></div>
-        <h3>Point the camera</h3>
-        <p>A sign, a menu, a label, a screenshot. Get it back item by item, with the cultural context you'd otherwise miss.</p>
+        <h3 data-i18n="feat3_h3">Point the camera</h3>
+        <p data-i18n="feat3_p">A sign, a menu, a label, a screenshot. Get it back item by item, with the cultural context you'd otherwise miss.</p>
       </div>
       <div class="fcard reveal wide">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8.5a5.5 5.5 0 0 1-5.5 5.5H10l-4 3v-3H5a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3h6.5A5.5 5.5 0 0 1 17 8.5z"/><path d="M15 5.2A3 3 0 0 1 19 6.8v4a3 3 0 0 1-3 3"/></svg></div>
-        <h3>Talk, in person</h3>
-        <p>Live back-and-forth across a table. They speak, you read what they meant, and you answer by tapping a ready reply or saying your own words. A split-screen mode shows both sides at once — one phone, two people, upright for each.</p>
+        <h3 data-i18n="feat4_h3">Talk, in person</h3>
+        <p data-i18n="feat4_p">Live back-and-forth across a table. They speak, you read what they meant, and you answer by tapping a ready reply or saying your own words. A split-screen mode shows both sides at once — one phone, two people, upright for each.</p>
       </div>
       <div class="fcard reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7"/></svg></div>
-        <h3>Scripts for what's coming</h3>
-        <p>Describe a pharmacy visit or a first meeting. Get the whole conversation — what to say, what you'll hear back, and answers ready for each.</p>
+        <h3 data-i18n="feat5_h3">Scripts for what's coming</h3>
+        <p data-i18n="feat5_p">Describe a pharmacy visit or a first meeting. Get the whole conversation — what to say, what you'll hear back, and answers ready for each.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHOWCASE (phone mockups) ============ -->
+<section class="band tight">
+  <div class="wrap">
+    <div class="center" style="max-width:640px">
+      <span class="eyebrow reveal kicker" data-i18n="show_eyebrow">See it in action</span>
+      <h2 class="reveal" data-i18n="show_h2">Made for the moment you're actually in.</h2>
+    </div>
+    <div class="showcase">
+      <!-- Talk -->
+      <div class="shot reveal">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="screen">
+            <div class="mini">
+              <div class="mtop">Tono<span class="dot">.</span></div>
+              <div class="mlabel" data-i18n="talk_lbl">They said</div>
+              <div class="bub them">뭐 드릴까요?<div class="rom" data-i18n="talk_them_gl">“What can I get you?”</div></div>
+              <div class="bub you">아메리카노 주세요<div class="rom" data-i18n="talk_you_gl">One americano, please · 해요체</div></div>
+              <div class="chips">
+                <span class="chip-s">아이스로요</span>
+                <span class="chip-s">따뜻한 걸로요</span>
+                <span class="chip-s">얼마예요?</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cap-tag" data-i18n="show_talk_tag">Talk</div>
+        <div class="cap" data-i18n="show_talk_cap">Hear what they meant — and answer in a tap.</div>
+      </div>
+      <!-- Scripts -->
+      <div class="shot reveal">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="screen">
+            <div class="mini">
+              <div class="mtop">Tono<span class="dot">.</span></div>
+              <div class="mlabel" data-i18n="scr_lbl">Script · at the pharmacy</div>
+              <div class="sline you-say">
+                <div class="role" data-i18n="scr_role_say">You say</div>
+                <div class="kr">감기약 있나요?</div>
+                <div class="gl" data-i18n="scr_gl1">Do you have cold medicine?</div>
+              </div>
+              <div class="sline">
+                <div class="role" data-i18n="scr_role_hear">You'll hear</div>
+                <div class="kr">어떤 증상이세요?</div>
+                <div class="gl" data-i18n="scr_gl2">What are your symptoms?</div>
+              </div>
+              <div class="sline you-say">
+                <div class="role" data-i18n="scr_role_say2">You say</div>
+                <div class="kr">목이 아파요</div>
+                <div class="gl" data-i18n="scr_gl3">My throat hurts.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cap-tag" data-i18n="show_scripts_tag">Scripts</div>
+        <div class="cap" data-i18n="show_scripts_cap">Rehearse the whole exchange before you walk in.</div>
+      </div>
+      <!-- Camera -->
+      <div class="shot reveal">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="screen">
+            <div class="mini">
+              <div class="mtop">Tono<span class="dot">.</span></div>
+              <div class="mlabel" data-i18n="cam_lbl">Camera</div>
+              <div class="cam"><div class="sign"><div class="kr">제육볶음</div></div><div class="scan"></div></div>
+              <div class="cam-out">
+                <div class="kr">제육볶음</div>
+                <div class="gl" data-i18n="cam_gl">Spicy stir-fried pork — a lunch-counter staple.</div>
+                <span class="cam-badge" data-i18n="cam_badge">Menu item</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cap-tag" data-i18n="show_camera_tag">Camera</div>
+        <div class="cap" data-i18n="show_camera_cap">Point it at a menu or a sign — read it in context.</div>
       </div>
     </div>
   </div>
@@ -391,20 +564,20 @@
   <div class="wrap" style="position:relative;z-index:1">
     <div class="hero grid" style="padding:0;gap:56px">
       <div>
-        <span class="eyebrow reveal kicker">Show Mode</span>
-        <h2 class="reveal" style="color:#fff">Hand your phone over.<br>It speaks for you.</h2>
-        <p class="reveal" style="margin-top:18px;max-width:44ch">Full screen, full brightness, with a courtesy note written in their language so a stranger knows what they're looking at. It reads their reply back too — and offers you answers to tap.</p>
+        <span class="eyebrow reveal kicker" data-i18n="sm_eyebrow">Show Mode</span>
+        <h2 class="reveal" style="color:#fff" data-i18n="sm_h2">Hand your phone over.<br>It speaks for you.</h2>
+        <p class="reveal" style="margin-top:18px;max-width:44ch" data-i18n="sm_body">Full screen, full brightness, with a courtesy note written in their language so a stranger knows what they're looking at. It reads their reply back too — and offers you answers to tap.</p>
       </div>
       <div class="reveal" style="display:flex;justify-content:center">
         <div class="phone">
           <div class="notch"></div>
           <div class="screen" style="background:#21386B">
             <div style="padding:26px 20px;min-height:420px;display:flex;flex-direction:column;color:#EAF0FB">
-              <div style="font-size:11px;font-weight:700;letter-spacing:.12em;color:#9DB2E0;text-transform:uppercase">You're showing them</div>
+              <div style="font-size:11px;font-weight:700;letter-spacing:.12em;color:#9DB2E0;text-transform:uppercase" data-i18n="sm_showing">You're showing them</div>
               <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:24px 0">
                 <div class="serif" style="font-size:34px;font-weight:700;line-height:1.2">감기약 있나요?</div>
                 <div style="font-size:15px;color:#AEC2EC">gamgiyak innayo?</div>
-                <div style="font-size:16px;color:#D3DEF3;font-style:italic">Do you have something for a cold?</div>
+                <div style="font-size:16px;color:#D3DEF3;font-style:italic" data-i18n="sm_src_gl">Do you have something for a cold?</div>
               </div>
               <div style="border-top:1px solid rgba(255,255,255,.16);padding-top:14px;font-size:13px;color:#AEC2EC">저는 한국어가 서툴러서 화면으로 보여드리고 있어요 🙏</div>
             </div>
@@ -418,9 +591,9 @@
 <!-- ============ LANGUAGES ============ -->
 <section class="band tight">
   <div class="wrap center" style="max-width:720px">
-    <span class="eyebrow reveal kicker">Nine languages, any direction</span>
-    <h2 class="reveal">Learn from the language you actually think in.</h2>
-    <p class="lead reveal" style="max-width:48ch">Every explanation arrives in your own language — and the app itself follows suit. Korean is where Tono goes deepest, but the whole thing works between any two.</p>
+    <span class="eyebrow reveal kicker" data-i18n="lang_eyebrow">Nine languages, any direction</span>
+    <h2 class="reveal" data-i18n="lang_h2">Learn from the language you actually think in.</h2>
+    <p class="lead reveal" style="max-width:48ch" data-i18n="lang_lead">Every explanation arrives in your own language — and the app itself follows suit. Korean is where Tono goes deepest, but the whole thing works between any two.</p>
     <div class="langs reveal">
       <span class="chip">한국어<span class="en">Korean</span></span>
       <span class="chip">日本語<span class="en">Japanese</span></span>
@@ -439,56 +612,56 @@
 <section id="how" class="band" style="background:var(--jjok-wash)">
   <div class="wrap">
     <div class="center" style="max-width:600px">
-      <span class="eyebrow reveal kicker">How it works</span>
-      <h2 class="reveal">Three taps to the right thing to say.</h2>
+      <span class="eyebrow reveal kicker" data-i18n="how_eyebrow">How it works</span>
+      <h2 class="reveal" data-i18n="how_h2">Three taps to the right thing to say.</h2>
     </div>
     <div class="steps">
       <div class="step reveal">
         <div class="n">1</div>
-        <h3>Type the phrase</h3>
-        <p>Or paste a message, snap a photo, or just speak it. Any of your languages, either direction.</p>
+        <h3 data-i18n="how1_h3">Type the phrase</h3>
+        <p data-i18n="how1_p">Or paste a message, snap a photo, or just speak it. Any of your languages, either direction.</p>
       </div>
       <div class="step reveal">
         <div class="n">2</div>
-        <h3>Add who &amp; where</h3>
-        <p>“To my boss.” “At a market.” One line of context is all it takes to change the whole answer.</p>
+        <h3 data-i18n="how2_h3">Add who &amp; where</h3>
+        <p data-i18n="how2_p">“To my boss.” “At a market.” One line of context is all it takes to change the whole answer.</p>
       </div>
       <div class="step reveal">
         <div class="n">3</div>
-        <h3>Get the tone, and the why</h3>
-        <p>The translation, its register named and explained, and other ways to say it for other people.</p>
+        <h3 data-i18n="how3_h3">Get the tone, and the why</h3>
+        <p data-i18n="how3_p">The translation, its register named and explained, and other ways to say it for other people.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ PRICING ============ -->
-<section id="pricing" class="band">
+<section id="premium" class="band">
   <div class="wrap">
     <div class="center" style="max-width:560px">
-      <span class="eyebrow reveal kicker">Pricing</span>
-      <h2 class="reveal">Try it free. Go unlimited when you're ready.</h2>
+      <span class="eyebrow reveal kicker" data-i18n="prem_eyebrow">Premium</span>
+      <h2 class="reveal" data-i18n="prem_h2">Try it free. Go unlimited when you're ready.</h2>
     </div>
     <div class="plans">
       <div class="plan reveal">
-        <div class="tier">Free taste</div>
+        <div class="tier" data-i18n="prem_free_tier">Free taste</div>
         <div class="price serif">5</div>
-        <div class="per">translations to try, on the house</div>
+        <div class="per" data-i18n="prem_free_per">translations to try, on the house</div>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Full context-aware translation</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Register, explained</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Talk is always free</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_free_li1">Full context-aware translation</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_free_li2">Register, explained</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_free_li3">Talk is always free</span></li>
         </ul>
       </div>
       <div class="plan pro reveal">
-        <div class="tier">Tono Pro</div>
-        <div class="price serif">7 days free</div>
-        <div class="per">then monthly or yearly · cancel anytime</div>
-        <div class="yr">Pricing shown for your region in the App Store</div>
+        <div class="tier" data-i18n="prem_pro_tier">Tono Pro</div>
+        <div class="price serif" data-i18n="prem_pro_price">7 days free</div>
+        <div class="per" data-i18n="prem_pro_per">then monthly or yearly · cancel anytime</div>
+        <div class="yr" data-i18n="prem_pro_yr">Pricing shown for your region in the App Store</div>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Unlimited translations &amp; scripts</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Photo reading</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Everything in Free, without the wall</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_pro_li1">Unlimited translations &amp; scripts</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_pro_li2">Photo reading</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_pro_li3">Everything in Free, without the wall</span></li>
         </ul>
       </div>
     </div>
@@ -498,13 +671,13 @@
 <!-- ============ FINAL CTA ============ -->
 <section id="get" class="band final">
   <div class="wrap" style="max-width:640px">
-    <span class="eyebrow reveal kicker">Get Tono</span>
-    <h2 class="reveal">Translate with the tone included.</h2>
-    <p class="lead reveal center" style="max-width:42ch">Free to try on iPhone. Understand not just what to say — but how it will land.</p>
+    <span class="eyebrow reveal kicker" data-i18n="get_eyebrow">Get Tono</span>
+    <h2 class="reveal" data-i18n="get_h2">Translate with the tone included.</h2>
+    <p class="lead reveal center" style="max-width:42ch" data-i18n="get_lead">Free to try on iPhone. Understand not just what to say — but how it will land.</p>
     <div class="reveal" style="margin-top:28px;display:flex;justify-content:center">
       <a class="appstore" href="https://apps.apple.com/app/id000000000" aria-label="Download Tono on the App Store">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.02-3.76-2.05-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.9-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.66 3.23 2.61 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.28-1.28 3.14-2.53.98-1.44 1.39-2.84 1.41-2.91-.03-.02-2.72-1.05-2.75-4.15zM14.54 4.6c.71-.87 1.19-2.07 1.06-3.26-1.02.05-2.26.68-3 1.54-.66.76-1.24 1.98-1.08 3.15 1.14.09 2.29-.58 3.02-1.43z"/></svg>
-        <span class="l"><small>Download on the</small><b>App Store</b></span>
+        <span class="l"><small data-i18n="appstore_small">Download on the</small><b>App Store</b></span>
       </a>
     </div>
   </div>
@@ -515,15 +688,15 @@
   <div class="wrap row">
     <div>
       <span class="wordmark" style="font-size:20px">Tono<span class="dot">.</span></span>
-      <span style="margin-left:12px">The tone, not just the words.</span>
+      <span style="margin-left:12px" data-i18n="foot_tagline">The tone, not just the words.</span>
     </div>
     <div class="flinks">
-      <a href="/privacy.html">Privacy</a>
-      <a href="mailto:howard.d.kim@gmail.com">Support</a>
-      <a href="#top">Back to top</a>
+      <a href="/privacy.html" data-i18n="foot_privacy">Privacy</a>
+      <a href="mailto:howard.d.kim@gmail.com" data-i18n="foot_support">Support</a>
+      <a href="#top" data-i18n="foot_top">Back to top</a>
     </div>
   </div>
-  <div class="wrap" style="margin-top:18px;font-size:12.5px;opacity:.7">© 2026 Tono · Made by Howard Kim</div>
+  <div class="wrap" style="margin-top:18px;font-size:12.5px;opacity:.7" data-i18n="foot_copy">© 2026 Tono · Made by Howard Kim</div>
 </footer>
 
 <script>
@@ -536,7 +709,6 @@
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
   }, {threshold:.14, rootMargin:"0px 0px -8% 0px"});
   document.querySelectorAll(".reveal").forEach(function(el,i){
-    // small stagger within a group
     el.style.transitionDelay = Math.min(i%4*70,210) + "ms";
     io.observe(el);
   });
@@ -546,49 +718,715 @@
   var onScroll = function(){ nav.classList.toggle("scrolled", window.scrollY > 12); };
   onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
 
-  /* ---- register demo ---- */
-  var REG = [
-    {rel:"Someone close, no distance", ko:"밥 먹었어?", rom:"bap meogeosseo?", badge:"반말",
-     why:"Plain speech — warm and familiar. Anything more formal would sound cold between friends."},
-    {rel:"Someone you just met", ko:"밥 먹었어요?", rom:"bap meogeosseoyo?", badge:"해요체",
-     why:"Polite everyday speech — friendly but respectful. The safe default with most people you don't know well."},
-    {rel:"Your boss, a customer", ko:"식사하셨습니까?", rom:"siksahasyeotseumnikka?", badge:"합쇼체",
-     why:"Deferential and formal — honorific 식사 and the ‑습니까 ending lift the whole sentence to show respect."}
+  /* =========================================================
+     i18n — Claude-authored transcreations (native-review TODO
+     for vi/id before launch). Korean example sentences stay
+     constant; only the surrounding copy localizes. */
+  var I18N = {
+  en: {
+    nav_registers:"Registers", nav_features:"Features", nav_how:"How it works", nav_premium:"Premium", nav_download:"Download",
+    hero_eyebrow:"Context-aware translation",
+    hero_h1:"The tone,<br>not just the words.",
+    hero_lead:"Every translator gives you words. Tono tells you how those words will land — the right level of formality for who you're talking to, and <em>why</em>.",
+    hero_cta2:"See how it works",
+    hero_note:"Free to try · Korean, Japanese, Chinese & 6 more",
+    appstore_small:"Download on the",
+    ph_tab0:"A close friend", ph_tab1:"Someone new", ph_tab2:"Your boss",
+    ph_src:"“Have you eaten?”",
+    reg0_rel:"Someone close, no distance",
+    reg0_why:"Plain speech — warm and familiar. Anything more formal would sound cold between friends.",
+    reg1_rel:"Someone you just met",
+    reg1_why:"Polite everyday speech — friendly but respectful. The safe default with most people you don't know well.",
+    reg2_rel:"Your boss, a customer",
+    reg2_why:"Deferential and formal — the honorific 식사 and the ‑습니까 ending lift the whole sentence to show respect.",
+    sw_eyebrow:"Same words. Different meanings.",
+    sw_h2:"Say “it's fine” to your boss and to a friend.<br>They are not the same sentence.",
+    sw_body:"A dictionary hands you one translation and wishes you luck. Tono reads the situation — who, where, how close — and picks the register a native speaker actually would.",
+    sw_c1_who:"To your manager · deferential",
+    sw_c1_en:"Reassuring, respectful, safe. The formal ending keeps the distance right.",
+    sw_c2_who:"To a friend, a little annoyed · casual",
+    sw_c2_en:"“Forget it.” Same three English words — a completely different social move.",
+    feat_eyebrow:"What you get",
+    feat_h2:"A translator that understands the room.",
+    feat1_h3:"Register, explained",
+    feat1_p:"Every answer names its formality level in the language's own terms — 해요체, 敬語, usted, Sie — and tells you in plain words why that level fits.",
+    feat2_h3:"Real speech, not textbook",
+    feat2_p:"Paste a text you don't understand. Tono reads slang, internet shorthand and typos, and tells you what was actually meant — and what the tone says about where you stand.",
+    feat3_h3:"Point the camera",
+    feat3_p:"A sign, a menu, a label, a screenshot. Get it back item by item, with the cultural context you'd otherwise miss.",
+    feat4_h3:"Talk, in person",
+    feat4_p:"Live back-and-forth across a table. They speak, you read what they meant, and you answer by tapping a ready reply or saying your own words. A split-screen mode shows both sides at once — one phone, two people, upright for each.",
+    feat5_h3:"Scripts for what's coming",
+    feat5_p:"Describe a pharmacy visit or a first meeting. Get the whole conversation — what to say, what you'll hear back, and answers ready for each.",
+    show_eyebrow:"See it in action",
+    show_h2:"Made for the moment you're actually in.",
+    talk_lbl:"They said", talk_them_gl:"“What can I get you?”", talk_you_gl:"One americano, please · 해요체",
+    show_talk_tag:"Talk", show_talk_cap:"Hear what they meant — and answer in a tap.",
+    scr_lbl:"Script · at the pharmacy", scr_role_say:"You say", scr_role_hear:"You'll hear", scr_role_say2:"You say",
+    scr_gl1:"Do you have cold medicine?", scr_gl2:"What are your symptoms?", scr_gl3:"My throat hurts.",
+    show_scripts_tag:"Scripts", show_scripts_cap:"Rehearse the whole exchange before you walk in.",
+    cam_lbl:"Camera", cam_gl:"Spicy stir-fried pork — a lunch-counter staple.", cam_badge:"Menu item",
+    show_camera_tag:"Camera", show_camera_cap:"Point it at a menu or a sign — read it in context.",
+    sm_eyebrow:"Show Mode",
+    sm_h2:"Hand your phone over.<br>It speaks for you.",
+    sm_body:"Full screen, full brightness, with a courtesy note written in their language so a stranger knows what they're looking at. It reads their reply back too — and offers you answers to tap.",
+    sm_showing:"You're showing them", sm_src_gl:"Do you have something for a cold?",
+    lang_eyebrow:"Nine languages, any direction",
+    lang_h2:"Learn from the language you actually think in.",
+    lang_lead:"Every explanation arrives in your own language — and the app itself follows suit. Korean is where Tono goes deepest, but the whole thing works between any two.",
+    how_eyebrow:"How it works",
+    how_h2:"Three taps to the right thing to say.",
+    how1_h3:"Type the phrase", how1_p:"Or paste a message, snap a photo, or just speak it. Any of your languages, either direction.",
+    how2_h3:"Add who & where", how2_p:"“To my boss.” “At a market.” One line of context is all it takes to change the whole answer.",
+    how3_h3:"Get the tone, and the why", how3_p:"The translation, its register named and explained, and other ways to say it for other people.",
+    prem_eyebrow:"Premium",
+    prem_h2:"Try it free. Go unlimited when you're ready.",
+    prem_free_tier:"Free taste", prem_free_per:"translations to try, on the house",
+    prem_free_li1:"Full context-aware translation", prem_free_li2:"Register, explained", prem_free_li3:"Talk is always free",
+    prem_pro_tier:"Tono Pro", prem_pro_price:"7 days free", prem_pro_per:"then monthly or yearly · cancel anytime",
+    prem_pro_yr:"Pricing shown for your region in the App Store",
+    prem_pro_li1:"Unlimited translations & scripts", prem_pro_li2:"Photo reading", prem_pro_li3:"Everything in Free, without the wall",
+    get_eyebrow:"Get Tono",
+    get_h2:"Translate with the tone included.",
+    get_lead:"Free to try on iPhone. Understand not just what to say — but how it will land.",
+    foot_tagline:"The tone, not just the words.",
+    foot_privacy:"Privacy", foot_support:"Support", foot_top:"Back to top",
+    foot_copy:"© 2026 Tono · Made by Howard Kim"
+  }
+  ,
+  ko: {
+    nav_registers:"말투", nav_features:"기능", nav_how:"사용법", nav_premium:"프리미엄", nav_download:"다운로드",
+    hero_eyebrow:"맥락을 아는 번역",
+    hero_h1:"단어가 아니라,<br>말투까지 번역합니다.",
+    hero_lead:"다른 번역기는 단어만 알려줍니다. Tono는 그 말이 상대에게 어떻게 들릴지 — 누구에게 하는 말이냐에 맞는 존댓말의 수위와 <em>그 이유</em>까지 — 알려줍니다.",
+    hero_cta2:"작동 방식 보기",
+    hero_note:"무료 체험 · 한국어, 일본어, 중국어 외 6개 언어",
+    ph_tab0:"친한 친구", ph_tab1:"처음 본 사람", ph_tab2:"직장 상사",
+    ph_src:"“밥 먹었어?”",
+    reg0_rel:"가깝고 격의 없는 사이",
+    reg0_why:"평어(반말) — 따뜻하고 친근합니다. 친구 사이에 이보다 격식을 차리면 오히려 차갑게 들립니다.",
+    reg1_rel:"방금 알게 된 사람",
+    reg1_why:"일상적인 존댓말 — 친근하면서도 예의 있습니다. 아직 잘 모르는 대부분의 사람에게 무난한 기본값입니다.",
+    reg2_rel:"상사나 손님",
+    reg2_why:"정중하고 격식 있는 말투 — 높임말 ‘식사’와 ‘-습니까’ 어미가 문장 전체의 예의 수준을 끌어올립니다.",
+    sw_eyebrow:"같은 말, 다른 의미.",
+    sw_h2:"상사에게 하는 “괜찮아요”와 친구에게 하는 “괜찮아”.<br>같은 문장이 아닙니다.",
+    sw_body:"사전은 번역 하나를 던져주고 알아서 하라고 합니다. Tono는 상황을 읽습니다 — 누구에게, 어디서, 얼마나 가까운 사이인지 — 그리고 원어민이 실제로 쓸 말투를 골라줍니다.",
+    sw_c1_who:"상사에게 · 정중하게",
+    sw_c1_en:"안심시키고, 예의 있고, 안전합니다. 격식 있는 어미가 적절한 거리를 지켜줍니다.",
+    sw_c2_who:"친구에게, 살짝 짜증 섞여 · 편하게",
+    sw_c2_en:"“됐어.” 겉으론 같은 말이지만, 전혀 다른 사회적 신호입니다.",
+    feat_eyebrow:"핵심 기능",
+    feat_h2:"분위기를 읽는 번역기.",
+    feat1_h3:"말투를 설명해 드립니다",
+    feat1_p:"모든 답변이 그 언어 고유의 용어로 격식 수준을 알려줍니다 — 해요체, 敬語, usted, Sie — 그리고 왜 그 말투가 맞는지 쉬운 말로 설명합니다.",
+    feat2_h3:"교과서가 아닌 진짜 말",
+    feat2_p:"이해 안 되는 메시지를 붙여넣어 보세요. Tono는 슬랭, 인터넷 줄임말, 오타까지 읽어내고 실제로 무슨 뜻이었는지 — 그리고 그 말투가 두 사람 사이를 어떻게 비추는지 — 알려줍니다.",
+    feat3_h3:"카메라를 대보세요",
+    feat3_p:"간판, 메뉴, 라벨, 스크린샷. 항목별로 번역해 드리고, 놓치기 쉬운 문화적 맥락까지 덧붙입니다.",
+    feat4_h3:"마주 앉아 대화",
+    feat4_p:"테이블을 사이에 두고 실시간으로 주고받습니다. 상대가 말하면 그 뜻을 읽고, 준비된 답변을 누르거나 직접 말해 답하세요. 화면 분할 모드는 양쪽을 동시에 보여줍니다 — 한 대의 폰, 두 사람, 각자 방향에 맞게.",
+    feat5_h3:"닥쳐올 상황을 위한 스크립트",
+    feat5_p:"약국 방문이나 첫 만남을 설명해 보세요. 대화 전체를 받아보세요 — 무슨 말을 할지, 어떤 대답이 돌아올지, 그리고 각각에 대한 답까지.",
+    show_eyebrow:"실제로 써보면",
+    show_h2:"지금 이 순간을 위해 만들었습니다.",
+    talk_lbl:"상대의 말", talk_them_gl:"“뭐 드릴까요?”", talk_you_gl:"아메리카노 한 잔 주세요 · 해요체",
+    show_talk_tag:"대화", show_talk_cap:"무슨 뜻인지 알아듣고 — 한 번의 탭으로 답하세요.",
+    scr_lbl:"스크립트 · 약국에서", scr_role_say:"이렇게 말하세요", scr_role_hear:"이런 대답이 와요", scr_role_say2:"이렇게 답하세요",
+    scr_gl1:"감기약 있는지 물어봐요.", scr_gl2:"증상이 어떤지 물어봐요.", scr_gl3:"목이 아프다고 말해요.",
+    show_scripts_tag:"스크립트", show_scripts_cap:"들어가기 전에 대화 전체를 미리 연습하세요.",
+    cam_lbl:"카메라", cam_gl:"제육볶음 — 점심 메뉴로 인기 있는 매콤한 돼지고기 볶음.", cam_badge:"메뉴 항목",
+    show_camera_tag:"카메라", show_camera_cap:"메뉴판이나 간판에 대보세요 — 맥락까지 읽어드립니다.",
+    sm_eyebrow:"쇼 모드",
+    sm_h2:"폰을 건네세요.<br>대신 말해 줍니다.",
+    sm_body:"전체 화면, 최대 밝기, 그리고 상대의 언어로 쓴 양해의 문구로 낯선 사람도 무엇을 보고 있는지 압니다. 상대의 대답도 읽어주고, 누를 수 있는 답변까지 제안합니다.",
+    sm_showing:"상대에게 보여주는 화면", sm_src_gl:"감기약 같은 거 있나요?",
+    lang_eyebrow:"9개 언어, 양방향",
+    lang_h2:"당신이 진짜로 생각하는 언어로 배우세요.",
+    lang_lead:"모든 설명이 당신의 언어로 도착합니다 — 앱 자체도 마찬가지고요. Tono는 한국어에서 가장 깊이 있지만, 어떤 두 언어 사이에서도 작동합니다.",
+    how_eyebrow:"사용법",
+    how_h2:"세 번의 탭이면 딱 맞는 한마디.",
+    how1_h3:"문장을 입력하세요", how1_p:"메시지를 붙여넣거나, 사진을 찍거나, 그냥 말해도 됩니다. 당신의 언어로, 어느 방향이든.",
+    how2_h3:"누구에게 & 어디서 추가", how2_p:"“상사에게.” “시장에서.” 한 줄의 맥락이면 답 전체가 바뀝니다.",
+    how3_h3:"말투와 그 이유까지", how3_p:"번역, 그 말투의 이름과 설명, 그리고 다른 사람에게 쓸 다른 표현들까지.",
+    prem_eyebrow:"프리미엄",
+    prem_h2:"무료로 시작하고, 준비되면 무제한으로.",
+    prem_free_tier:"무료 체험", prem_free_per:"부담 없이 써보는 번역 5회",
+    prem_free_li1:"맥락을 아는 완전한 번역", prem_free_li2:"말투 설명", prem_free_li3:"대화는 언제나 무료",
+    prem_pro_tier:"Tono Pro", prem_pro_price:"7일 무료", prem_pro_per:"이후 월간 또는 연간 · 언제든 해지",
+    prem_pro_yr:"가격은 App Store에서 지역에 맞게 표시됩니다",
+    prem_pro_li1:"무제한 번역 & 스크립트", prem_pro_li2:"사진 읽기", prem_pro_li3:"무료의 모든 기능, 제한 없이",
+    get_eyebrow:"Tono 시작하기",
+    get_h2:"말투까지 담아 번역하세요.",
+    get_lead:"iPhone에서 무료로 체험하세요. 무엇을 말할지뿐 아니라, 그 말이 어떻게 가닿을지까지.",
+    foot_tagline:"단어가 아니라, 말투를.",
+    foot_privacy:"개인정보처리방침", foot_support:"지원", foot_top:"맨 위로",
+    foot_copy:"© 2026 Tono · Made by Howard Kim"
+  }
+  ,
+  ja: {
+    nav_registers:"敬語", nav_features:"機能", nav_how:"使い方", nav_premium:"プレミアム", nav_download:"ダウンロード",
+    hero_eyebrow:"文脈を読む翻訳",
+    hero_h1:"言葉ではなく、<br>ニュアンスを訳す。",
+    hero_lead:"ほかの翻訳は言葉を返すだけ。Tonoは、その言葉が相手にどう伝わるかを教えます — 誰に話すかに合った敬語のレベルと、<em>その理由</em>まで。",
+    hero_cta2:"仕組みを見る",
+    hero_note:"無料で試せる · 韓国語・日本語・中国語ほか6言語",
+    ph_tab0:"親しい友だち", ph_tab1:"初対面の人", ph_tab2:"上司",
+    ph_src:"「ご飯食べた?」",
+    reg0_rel:"気のおけない間柄",
+    reg0_why:"タメ口 — 温かくて親しげ。友だち同士でこれ以上かしこまると、逆によそよそしく聞こえます。",
+    reg1_rel:"知り合ったばかりの人",
+    reg1_why:"日常的な丁寧語 — 親しみやすく、それでいて礼儀正しい。まだよく知らない相手への無難な基本形です。",
+    reg2_rel:"上司やお客様",
+    reg2_why:"へりくだった、格式ある言い方 — 尊敬語の「식사」と「-습니까」の語尾が、文全体の敬意を引き上げます。",
+    sw_eyebrow:"同じ言葉、違う意味。",
+    sw_h2:"上司への「大丈夫です」と友だちへの「大丈夫」。<br>同じ文ではありません。",
+    sw_body:"辞書は訳をひとつ渡して、あとは運任せ。Tonoは状況を読みます — 誰に、どこで、どれだけ近い相手か — そして、ネイティブが実際に選ぶ言い方を返します。",
+    sw_c1_who:"上司へ · かしこまって",
+    sw_c1_en:"安心させ、礼儀正しく、無難。格式ある語尾が、ちょうどいい距離を保ちます。",
+    sw_c2_who:"友だちへ、少しイラっと · くだけて",
+    sw_c2_en:"「もういいよ。」同じ言葉でも、まったく違う社会的なサインです。",
+    feat_eyebrow:"できること",
+    feat_h2:"その場の空気まで読む翻訳。",
+    feat1_h3:"敬語を、解説つきで",
+    feat1_p:"どの答えも、その言語ならではの言葉で丁寧さのレベルを示します — 해요체、敬語、usted、Sie — そして、なぜそのレベルが合うのかをやさしく説明します。",
+    feat2_h3:"教科書じゃない、生の言葉",
+    feat2_p:"意味のわからないメッセージを貼り付けてみてください。Tonoはスラングやネット略語、打ち間違いまで読み取り、本当は何を言っていたのか — そしてその口調が二人の関係をどう映すのかを教えます。",
+    feat3_h3:"カメラを向けるだけ",
+    feat3_p:"看板、メニュー、ラベル、スクリーンショット。一つずつ訳し、見落としがちな文化的背景まで添えます。",
+    feat4_h3:"対面で話す",
+    feat4_p:"テーブル越しに、その場でやり取り。相手が話せば意味を読み取り、用意された返事をタップするか、自分の言葉で答えられます。分割画面モードなら両側を同時に表示 — 一台のスマホを、二人が、それぞれの向きで。",
+    feat5_h3:"これからの場面に台本を",
+    feat5_p:"薬局での用事や初対面を説明してみてください。会話まるごと — 何を言うか、どんな返事が来るか、それぞれへの答えまで — 用意します。",
+    show_eyebrow:"実際に使うと",
+    show_h2:"今この瞬間のために。",
+    talk_lbl:"相手の言葉", talk_them_gl:"「何になさいますか?」", talk_you_gl:"アメリカーノをください · 해요체",
+    show_talk_tag:"会話", show_talk_cap:"相手の意図を汲んで — ワンタップで返す。",
+    scr_lbl:"台本 · 薬局で", scr_role_say:"あなたが言う", scr_role_hear:"こう返ってくる", scr_role_say2:"あなたが答える",
+    scr_gl1:"風邪薬はありますか?", scr_gl2:"どんな症状ですか?", scr_gl3:"のどが痛いです。",
+    show_scripts_tag:"台本", show_scripts_cap:"入る前に、会話をまるごと予行演習。",
+    cam_lbl:"カメラ", cam_gl:"제육볶음 — ランチの定番、豚肉の甘辛炒め。", cam_badge:"メニュー項目",
+    show_camera_tag:"カメラ", show_camera_cap:"メニューや看板に向けるだけ — 背景ごと読み取ります。",
+    sm_eyebrow:"見せるモード",
+    sm_h2:"スマホを渡すだけ。<br>代わりに話します。",
+    sm_body:"全画面・最大の明るさ、そして相手の言語で書いた一言のお断りで、見知らぬ人にも何を見ているかが伝わります。相手の返事も読み上げ、タップできる答えまで提案します。",
+    sm_showing:"相手に見せている画面", sm_src_gl:"風邪に効くものはありますか?",
+    lang_eyebrow:"9言語、どの方向にも",
+    lang_h2:"あなたが本当に考える言語で学ぶ。",
+    lang_lead:"どの説明もあなたの言語で届きます — アプリ自体も同じ。Tonoは韓国語にいちばん深く踏み込みますが、どの2言語の間でも使えます。",
+    how_eyebrow:"使い方",
+    how_h2:"3タップで、ちょうどいい一言。",
+    how1_h3:"フレーズを入力", how1_p:"メッセージを貼っても、写真を撮っても、話しかけてもOK。あなたのどの言語でも、どちら向きでも。",
+    how2_h3:"誰に&どこでを追加", how2_p:"「上司に。」「市場で。」たった一行の文脈で、答え全体が変わります。",
+    how3_h3:"口調と、その理由まで", how3_p:"訳と、その敬語の名前と解説、そして別の相手に向けた別の言い方まで。",
+    prem_eyebrow:"プレミアム",
+    prem_h2:"無料で試して、必要になったら無制限に。",
+    prem_free_tier:"無料でお試し", prem_free_per:"気軽に試せる翻訳5回",
+    prem_free_li1:"文脈を読む本格翻訳", prem_free_li2:"敬語の解説", prem_free_li3:"会話はいつでも無料",
+    prem_pro_tier:"Tono Pro", prem_pro_price:"7日間無料", prem_pro_per:"以降は月額または年額 · いつでも解約可",
+    prem_pro_yr:"料金はApp Storeで地域に合わせて表示されます",
+    prem_pro_li1:"翻訳&台本が無制限", prem_pro_li2:"写真の読み取り", prem_pro_li3:"無料のすべてを、制限なしで",
+    get_eyebrow:"Tonoを入手",
+    get_h2:"口調まで込めて翻訳する。",
+    get_lead:"iPhoneで無料で試せます。何を言うかだけでなく、それがどう伝わるかまで。",
+    foot_tagline:"言葉ではなく、ニュアンスを。",
+    foot_privacy:"プライバシー", foot_support:"サポート", foot_top:"トップへ戻る",
+    foot_copy:"© 2026 Tono · Made by Howard Kim"
+  }
+  ,
+  zh: {
+    nav_registers:"语气", nav_features:"功能", nav_how:"使用方法", nav_premium:"高级版", nav_download:"下载",
+    hero_eyebrow:"读懂语境的翻译",
+    hero_h1:"翻译的不只是词，<br>还有语气。",
+    hero_lead:"别的翻译只给你词句，Tono 会告诉你这句话在对方听来是什么分量——面对谁该用怎样的客气程度，以及<em>为什么</em>。",
+    hero_cta2:"看看它怎么运作",
+    hero_note:"免费试用 · 韩语、日语、中文及其他 6 种语言",
+    ph_tab0:"亲近的朋友", ph_tab1:"初次见面的人", ph_tab2:"你的上司",
+    ph_src:"“吃了吗?”",
+    reg0_rel:"亲密无间的关系",
+    reg0_why:"平语(半语)——亲切随意。朋友之间再客气，反而显得生分。",
+    reg1_rel:"刚认识的人",
+    reg1_why:"日常敬语——既亲切又有礼。对还不熟的人，这是最稳妥的默认选择。",
+    reg2_rel:"上司或客户",
+    reg2_why:"谦恭而正式——敬语‘식사’和‘-습니까’词尾，把整句话的敬意抬高了一层。",
+    sw_eyebrow:"同样的话，不同的意思。",
+    sw_h2:"对上司说“没关系”，和对朋友说“没关系”，<br>并不是同一句话。",
+    sw_body:"词典丢给你一个译文，然后祝你好运。Tono 会读懂情境——对谁、在哪、多熟——挑出母语者真正会用的那种语气。",
+    sw_c1_who:"对上司 · 谦恭",
+    sw_c1_en:"让人安心、有礼、稳妥。正式的词尾把分寸拿捏得刚好。",
+    sw_c2_who:"对朋友，有点不耐烦 · 随意",
+    sw_c2_en:"“算了吧。”同样几个字，却是完全不同的社交信号。",
+    feat_eyebrow:"你能得到什么",
+    feat_h2:"一款读得懂场合的翻译。",
+    feat1_h3:"语气，讲清楚",
+    feat1_p:"每个答案都用该语言自己的说法标出客气程度——해요체、敬語、usted、Sie——并用大白话告诉你为什么这个程度合适。",
+    feat2_h3:"地道口语，不是课本",
+    feat2_p:"把看不懂的消息粘进来。Tono 能读懂俚语、网络缩写和错别字，告诉你对方到底想说什么——以及这语气透露出你们之间是什么关系。",
+    feat3_h3:"把相机对准它",
+    feat3_p:"招牌、菜单、标签、截图。逐项翻给你看，还会补上你本会错过的文化背景。",
+    feat4_h3:"面对面交谈",
+    feat4_p:"隔着桌子实时对话。对方一开口，你就读懂他的意思，再点一句现成的回复，或用自己的话回应。分屏模式同时显示两边——一部手机，两个人，各自正着看。",
+    feat5_h3:"为即将到来的场合备稿",
+    feat5_p:"描述一次药店之行或初次会面，就能拿到整段对话——该说什么、会听到什么回应，以及每句该怎么答。",
+    show_eyebrow:"实际用起来",
+    show_h2:"为你正身处的那一刻而生。",
+    talk_lbl:"对方说", talk_them_gl:"“您要点什么?”", talk_you_gl:"请给我一杯美式 · 해요체",
+    show_talk_tag:"对话", show_talk_cap:"听懂他的意思——一点就回。",
+    scr_lbl:"备稿 · 在药店", scr_role_say:"你说", scr_role_hear:"你会听到", scr_role_say2:"你答",
+    scr_gl1:"有感冒药吗?", scr_gl2:"有什么症状?", scr_gl3:"我嗓子疼。",
+    show_scripts_tag:"备稿", show_scripts_cap:"进门之前，先把整段对话演练一遍。",
+    cam_lbl:"相机", cam_gl:"제육볶음——辣炒猪肉，午餐档口的常见菜。", cam_badge:"菜单项",
+    show_camera_tag:"相机", show_camera_cap:"对准菜单或招牌——连语境一起读给你。",
+    sm_eyebrow:"展示模式",
+    sm_h2:"把手机递过去，<br>它替你开口。",
+    sm_body:"全屏、最亮，还有一句用对方语言写的说明，让陌生人一眼明白你在给他看什么。它也会读出对方的回应——并给你几句可点的答复。",
+    sm_showing:"正在给对方看", sm_src_gl:"有治感冒的药吗?",
+    lang_eyebrow:"九种语言，双向互译",
+    lang_h2:"用你真正思考的语言去学。",
+    lang_lead:"每一条解释都用你的语言呈现——应用界面也一样。Tono 在韩语上钻得最深，但任意两种语言之间都能用。",
+    how_eyebrow:"使用方法",
+    how_h2:"三次轻点，说对那句话。",
+    how1_h3:"输入句子", how1_p:"也可以粘贴消息、拍张照片，或直接说出来。你的任意语言，任意方向。",
+    how2_h3:"补上对谁 & 在哪", how2_p:"“对我上司。”“在市场。”一句话的情境，就能改变整个答案。",
+    how3_h3:"给你语气，也给你缘由", how3_p:"译文、标注并解释它的语气，还有面对不同的人可以换的说法。",
+    prem_eyebrow:"高级版",
+    prem_h2:"免费试，随时解锁无限量。",
+    prem_free_tier:"免费尝鲜", prem_free_per:"免费送你 5 次翻译",
+    prem_free_li1:"完整的语境翻译", prem_free_li2:"语气解释", prem_free_li3:"对话永远免费",
+    prem_pro_tier:"Tono Pro", prem_pro_price:"7 天免费", prem_pro_per:"之后按月或按年 · 随时取消",
+    prem_pro_yr:"价格会在 App Store 按你所在地区显示",
+    prem_pro_li1:"无限翻译 & 备稿", prem_pro_li2:"照片识读", prem_pro_li3:"免费版的一切，没有墙",
+    get_eyebrow:"获取 Tono",
+    get_h2:"翻译，连语气一起。",
+    get_lead:"在 iPhone 上免费试用。不只知道该说什么——还知道它会怎样落地。",
+    foot_tagline:"翻的不只是词，还有语气。",
+    foot_privacy:"隐私", foot_support:"支持", foot_top:"回到顶部",
+    foot_copy:"© 2026 Tono · Made by Howard Kim"
+  }
+  ,
+  es: {
+    nav_registers:"Registro", nav_features:"Funciones", nav_how:"Cómo funciona", nav_premium:"Premium", nav_download:"Descargar",
+    hero_eyebrow:"Traducción con contexto",
+    hero_h1:"El tono,<br>no solo las palabras.",
+    hero_lead:"Los demás traductores te dan palabras. Tono te dice cómo van a caer esas palabras: el nivel de formalidad justo para con quién hablas, y <em>por qué</em>.",
+    hero_cta2:"Ver cómo funciona",
+    hero_note:"Gratis para probar · coreano, japonés, chino y 6 más",
+    ph_tab0:"Un amigo cercano", ph_tab1:"Alguien nuevo", ph_tab2:"Tu jefe",
+    ph_src:"«¿Has comido?»",
+    reg0_rel:"Alguien de confianza, sin distancias",
+    reg0_why:"Lenguaje llano — cálido y cercano. Cualquier cosa más formal sonaría fría entre amigos.",
+    reg1_rel:"Alguien que acabas de conocer",
+    reg1_why:"Habla cortés de todos los días — amable pero respetuosa. La opción segura con la mayoría de la gente que aún no conoces.",
+    reg2_rel:"Tu jefe, un cliente",
+    reg2_why:"Deferente y formal — el honorífico «식사» y la terminación «-습니까» elevan toda la frase para mostrar respeto.",
+    sw_eyebrow:"Mismas palabras. Distinto significado.",
+    sw_h2:"Decir «está bien» a tu jefe y a un amigo<br>no es la misma frase.",
+    sw_body:"Un diccionario te da una traducción y te desea suerte. Tono lee la situación —quién, dónde, cuánta confianza— y elige el registro que usaría de verdad un nativo.",
+    sw_c1_who:"A tu jefe · con deferencia",
+    sw_c1_en:"Tranquilizador, respetuoso, seguro. La terminación formal mantiene la distancia justa.",
+    sw_c2_who:"A un amigo, algo molesto · informal",
+    sw_c2_en:"«Déjalo ya.» Las mismas palabras, un gesto social completamente distinto.",
+    feat_eyebrow:"Lo que obtienes",
+    feat_h2:"Un traductor que entiende el ambiente.",
+    feat1_h3:"El registro, explicado",
+    feat1_p:"Cada respuesta nombra su nivel de formalidad con los términos propios del idioma —해요체, 敬語, usted, Sie— y te dice con palabras claras por qué encaja ese nivel.",
+    feat2_h3:"Habla real, no de manual",
+    feat2_p:"Pega un mensaje que no entiendas. Tono lee la jerga, las abreviaturas de internet y las erratas, y te dice qué se quiso decir de verdad — y qué revela ese tono sobre tu lugar frente a la otra persona.",
+    feat3_h3:"Apunta con la cámara",
+    feat3_p:"Un cartel, un menú, una etiqueta, una captura. Te lo devuelve punto por punto, con el contexto cultural que se te escaparía.",
+    feat4_h3:"Habla, en persona",
+    feat4_p:"Ida y vuelta en vivo, cara a cara. La otra persona habla, tú lees lo que quiso decir y respondes tocando una respuesta lista o con tus propias palabras. El modo de pantalla dividida muestra ambos lados a la vez — un teléfono, dos personas, cada una del derecho.",
+    feat5_h3:"Guiones para lo que viene",
+    feat5_p:"Describe una visita a la farmacia o un primer encuentro. Recibe la conversación entera — qué decir, qué te responderán y las respuestas listas para cada caso.",
+    show_eyebrow:"Míralo en acción",
+    show_h2:"Hecho para el momento en el que estás.",
+    talk_lbl:"Dijeron", talk_them_gl:"«¿Qué le pongo?»", talk_you_gl:"Un americano, por favor · 해요체",
+    show_talk_tag:"Hablar", show_talk_cap:"Entiende lo que quisieron decir — y responde con un toque.",
+    scr_lbl:"Guion · en la farmacia", scr_role_say:"Tú dices", scr_role_hear:"Escucharás", scr_role_say2:"Tú respondes",
+    scr_gl1:"¿Tienes algo para el resfriado?", scr_gl2:"¿Qué síntomas tienes?", scr_gl3:"Me duele la garganta.",
+    show_scripts_tag:"Guiones", show_scripts_cap:"Ensaya la conversación entera antes de entrar.",
+    cam_lbl:"Cámara", cam_gl:"제육볶음: cerdo salteado picante, un clásico del almuerzo.", cam_badge:"Plato del menú",
+    show_camera_tag:"Cámara", show_camera_cap:"Apúntala a un menú o un cartel — léelo con su contexto.",
+    sm_eyebrow:"Modo Mostrar",
+    sm_h2:"Pasa tu teléfono.<br>Habla por ti.",
+    sm_body:"Pantalla completa, brillo al máximo y una nota de cortesía escrita en su idioma para que un desconocido sepa qué está viendo. También lee su respuesta en voz alta — y te ofrece respuestas para tocar.",
+    sm_showing:"Le estás mostrando", sm_src_gl:"¿Tienes algo para el resfriado?",
+    lang_eyebrow:"Nueve idiomas, en cualquier dirección",
+    lang_h2:"Aprende desde el idioma en el que de verdad piensas.",
+    lang_lead:"Cada explicación llega en tu propio idioma — y la app también. El coreano es donde Tono llega más hondo, pero todo funciona entre dos idiomas cualesquiera.",
+    how_eyebrow:"Cómo funciona",
+    how_h2:"Tres toques hasta lo correcto por decir.",
+    how1_h3:"Escribe la frase", how1_p:"O pega un mensaje, haz una foto o simplemente dilo. Cualquiera de tus idiomas, en cualquier dirección.",
+    how2_h3:"Añade quién y dónde", how2_p:"«A mi jefe.» «En un mercado.» Una línea de contexto basta para cambiar toda la respuesta.",
+    how3_h3:"El tono, y el porqué", how3_p:"La traducción, su registro nombrado y explicado, y otras formas de decirlo para otras personas.",
+    prem_eyebrow:"Premium",
+    prem_h2:"Pruébalo gratis. Pásate a ilimitado cuando quieras.",
+    prem_free_tier:"Prueba gratis", prem_free_per:"5 traducciones para probar, por la casa",
+    prem_free_li1:"Traducción completa con contexto", prem_free_li2:"El registro, explicado", prem_free_li3:"Hablar es siempre gratis",
+    prem_pro_tier:"Tono Pro", prem_pro_price:"7 días gratis", prem_pro_per:"luego mensual o anual · cancela cuando quieras",
+    prem_pro_yr:"El precio se muestra según tu región en la App Store",
+    prem_pro_li1:"Traducciones y guiones ilimitados", prem_pro_li2:"Lectura de fotos", prem_pro_li3:"Todo lo del plan gratis, sin muro",
+    get_eyebrow:"Consigue Tono",
+    get_h2:"Traduce con el tono incluido.",
+    get_lead:"Gratis para probar en iPhone. Entiende no solo qué decir, sino cómo va a caer.",
+    foot_tagline:"El tono, no solo las palabras.",
+    foot_privacy:"Privacidad", foot_support:"Soporte", foot_top:"Volver arriba",
+    foot_copy:"© 2026 Tono · Hecho por Howard Kim"
+  }
+  ,
+  fr: {
+    nav_registers:"Registre", nav_features:"Fonctions", nav_how:"Comment ça marche", nav_premium:"Premium", nav_download:"Télécharger",
+    hero_eyebrow:"Traduction selon le contexte",
+    hero_h1:"Le ton,<br>pas seulement les mots.",
+    hero_lead:"Les autres traducteurs vous donnent des mots. Tono vous dit l'effet qu'ils feront — le juste niveau de politesse selon la personne à qui vous parlez, et <em>pourquoi</em>.",
+    hero_cta2:"Voir comment ça marche",
+    hero_note:"Gratuit à l'essai · coréen, japonais, chinois et 6 autres",
+    ph_tab0:"Un ami proche", ph_tab1:"Quelqu'un de nouveau", ph_tab2:"Votre patron",
+    ph_src:"« Tu as mangé ? »",
+    reg0_rel:"Un proche, aucune distance",
+    reg0_why:"Langage familier — chaleureux et complice. Plus formel, cela sonnerait froid entre amis.",
+    reg1_rel:"Quelqu'un que vous venez de rencontrer",
+    reg1_why:"Politesse de tous les jours — aimable mais respectueuse. La valeur sûre avec la plupart des gens que vous connaissez peu.",
+    reg2_rel:"Votre patron, un client",
+    reg2_why:"Déférent et formel — l'honorifique « 식사 » et la terminaison « -습니까 » élèvent toute la phrase en signe de respect.",
+    sw_eyebrow:"Mêmes mots. Sens différents.",
+    sw_h2:"Dire « c'est bon » à votre patron et à un ami,<br>ce n'est pas la même phrase.",
+    sw_body:"Un dictionnaire vous tend une traduction et vous souhaite bonne chance. Tono lit la situation — qui, où, quelle proximité — et choisit le registre qu'un natif emploierait vraiment.",
+    sw_c1_who:"À votre supérieur · déférent",
+    sw_c1_en:"Rassurant, respectueux, sûr. La terminaison formelle garde la bonne distance.",
+    sw_c2_who:"À un ami, un peu agacé · familier",
+    sw_c2_en:"« Laisse tomber. » Les mêmes mots, un geste social tout autre.",
+    feat_eyebrow:"Ce que vous obtenez",
+    feat_h2:"Un traducteur qui comprend le contexte.",
+    feat1_h3:"Le registre, expliqué",
+    feat1_p:"Chaque réponse nomme son niveau de politesse dans les termes propres à la langue — 해요체, 敬語, usted, Sie — et vous explique en clair pourquoi ce niveau convient.",
+    feat2_h3:"La vraie langue, pas le manuel",
+    feat2_p:"Collez un message que vous ne comprenez pas. Tono lit l'argot, les abréviations d'internet et les fautes de frappe, et vous dit ce qui était vraiment voulu — et ce que ce ton révèle de votre relation.",
+    feat3_h3:"Pointez l'appareil photo",
+    feat3_p:"Un panneau, un menu, une étiquette, une capture d'écran. Vous le recevez point par point, avec le contexte culturel qui vous échapperait autrement.",
+    feat4_h3:"Parler, en personne",
+    feat4_p:"Un échange en direct, de part et d'autre de la table. L'autre parle, vous lisez ce qu'il voulait dire, et vous répondez en touchant une réponse prête ou avec vos propres mots. Le mode écran partagé montre les deux côtés à la fois — un téléphone, deux personnes, à l'endroit pour chacune.",
+    feat5_h3:"Des scripts pour ce qui vient",
+    feat5_p:"Décrivez un passage à la pharmacie ou une première rencontre. Recevez toute la conversation — quoi dire, ce qu'on vous répondra, et les réponses prêtes pour chaque cas.",
+    show_eyebrow:"Voyez-le à l'œuvre",
+    show_h2:"Pensé pour l'instant où vous êtes.",
+    talk_lbl:"On vous a dit", talk_them_gl:"« Qu'est-ce que je vous sers ? »", talk_you_gl:"Un americano, s'il vous plaît · 해요체",
+    show_talk_tag:"Parler", show_talk_cap:"Comprenez ce qu'on a voulu dire — et répondez d'un geste.",
+    scr_lbl:"Script · à la pharmacie", scr_role_say:"Vous dites", scr_role_hear:"Vous entendrez", scr_role_say2:"Vous répondez",
+    scr_gl1:"Avez-vous quelque chose contre le rhume ?", scr_gl2:"Quels sont vos symptômes ?", scr_gl3:"J'ai mal à la gorge.",
+    show_scripts_tag:"Scripts", show_scripts_cap:"Répétez toute la conversation avant d'entrer.",
+    cam_lbl:"Appareil photo", cam_gl:"제육볶음 — porc sauté épicé, un classique du déjeuner.", cam_badge:"Plat du menu",
+    show_camera_tag:"Appareil photo", show_camera_cap:"Pointez-le vers un menu ou un panneau — lu avec son contexte.",
+    sm_eyebrow:"Mode Montrer",
+    sm_h2:"Tendez votre téléphone.<br>Il parle pour vous.",
+    sm_body:"Plein écran, luminosité au maximum, avec un mot de courtoisie écrit dans leur langue pour qu'un inconnu sache ce qu'il regarde. Il lit aussi sa réponse à voix haute — et vous propose des réponses à toucher.",
+    sm_showing:"Ce que vous lui montrez", sm_src_gl:"Avez-vous quelque chose contre le rhume ?",
+    lang_eyebrow:"Neuf langues, dans les deux sens",
+    lang_h2:"Apprenez depuis la langue dans laquelle vous pensez vraiment.",
+    lang_lead:"Chaque explication arrive dans votre langue — et l'app aussi. C'est en coréen que Tono va le plus loin, mais tout fonctionne entre deux langues quelconques.",
+    how_eyebrow:"Comment ça marche",
+    how_h2:"Trois touchers vers le mot juste.",
+    how1_h3:"Tapez la phrase", how1_p:"Ou collez un message, prenez une photo, ou dites-le simplement. N'importe laquelle de vos langues, dans les deux sens.",
+    how2_h3:"Ajoutez qui & où", how2_p:"« À mon patron. » « Au marché. » Une ligne de contexte suffit à changer toute la réponse.",
+    how3_h3:"Le ton, et le pourquoi", how3_p:"La traduction, son registre nommé et expliqué, et d'autres façons de le dire selon les personnes.",
+    prem_eyebrow:"Premium",
+    prem_h2:"Essayez gratuitement. Passez à l'illimité quand vous voulez.",
+    prem_free_tier:"Essai gratuit", prem_free_per:"5 traductions pour essayer, offertes",
+    prem_free_li1:"Traduction complète, selon le contexte", prem_free_li2:"Le registre, expliqué", prem_free_li3:"Parler est toujours gratuit",
+    prem_pro_tier:"Tono Pro", prem_pro_price:"7 jours gratuits", prem_pro_per:"puis mensuel ou annuel · annulez quand vous voulez",
+    prem_pro_yr:"Le prix s'affiche selon votre région sur l'App Store",
+    prem_pro_li1:"Traductions et scripts illimités", prem_pro_li2:"Lecture de photos", prem_pro_li3:"Tout le gratuit, sans le mur",
+    get_eyebrow:"Obtenir Tono",
+    get_h2:"Traduisez, le ton compris.",
+    get_lead:"Gratuit à l'essai sur iPhone. Comprenez non seulement quoi dire, mais l'effet que cela fera.",
+    foot_tagline:"Le ton, pas seulement les mots.",
+    foot_privacy:"Confidentialité", foot_support:"Assistance", foot_top:"Haut de page",
+    foot_copy:"© 2026 Tono · Créé par Howard Kim"
+  }
+  ,
+  de: {
+    nav_registers:"Register", nav_features:"Funktionen", nav_how:"So funktioniert's", nav_premium:"Premium", nav_download:"Laden",
+    hero_eyebrow:"Kontextbewusste Übersetzung",
+    hero_h1:"Der Ton,<br>nicht nur die Worte.",
+    hero_lead:"Andere Übersetzer geben dir Wörter. Tono sagt dir, wie diese Wörter ankommen — die passende Höflichkeitsstufe für dein Gegenüber, und <em>warum</em>.",
+    hero_cta2:"So funktioniert's",
+    hero_note:"Kostenlos testen · Koreanisch, Japanisch, Chinesisch & 6 weitere",
+    ph_tab0:"Ein enger Freund", ph_tab1:"Jemand Neues", ph_tab2:"Dein Chef",
+    ph_src:"„Hast du schon gegessen?“",
+    reg0_rel:"Jemand Vertrautes, keine Distanz",
+    reg0_why:"Schlichte Sprache — warm und vertraut. Alles Förmlichere klänge unter Freunden kühl.",
+    reg1_rel:"Jemand, den du gerade kennengelernt hast",
+    reg1_why:"Höfliche Alltagssprache — freundlich, aber respektvoll. Die sichere Wahl bei den meisten, die du kaum kennst.",
+    reg2_rel:"Dein Chef, ein Kunde",
+    reg2_why:"Ehrerbietig und förmlich — das höfliche „식사“ und die Endung „-습니까“ heben den ganzen Satz an, um Respekt zu zeigen.",
+    sw_eyebrow:"Gleiche Worte. Andere Bedeutung.",
+    sw_h2:"„Passt schon“ zu deinem Chef und zu einem Freund<br>ist nicht derselbe Satz.",
+    sw_body:"Ein Wörterbuch reicht dir eine Übersetzung und wünscht dir Glück. Tono liest die Situation — wer, wo, wie nah — und wählt das Register, das ein Muttersprachler wirklich nähme.",
+    sw_c1_who:"An deinen Vorgesetzten · ehrerbietig",
+    sw_c1_en:"Beruhigend, respektvoll, sicher. Die förmliche Endung wahrt die richtige Distanz.",
+    sw_c2_who:"An einen Freund, leicht genervt · locker",
+    sw_c2_en:"„Vergiss es.“ Dieselben Worte, eine völlig andere soziale Geste.",
+    feat_eyebrow:"Das bekommst du",
+    feat_h2:"Ein Übersetzer, der den Raum versteht.",
+    feat1_h3:"Register, erklärt",
+    feat1_p:"Jede Antwort benennt ihre Höflichkeitsstufe mit den eigenen Begriffen der Sprache — 해요체, 敬語, usted, Sie — und sagt dir in klaren Worten, warum diese Stufe passt.",
+    feat2_h3:"Echte Sprache, kein Lehrbuch",
+    feat2_p:"Füg einen Text ein, den du nicht verstehst. Tono liest Slang, Internet-Kürzel und Tippfehler und sagt dir, was wirklich gemeint war — und was der Ton über euer Verhältnis verrät.",
+    feat3_h3:"Halt die Kamera drauf",
+    feat3_p:"Ein Schild, eine Speisekarte, ein Etikett, ein Screenshot. Du bekommst es Punkt für Punkt zurück, mit dem kulturellen Kontext, den du sonst verpasst.",
+    feat4_h3:"Sprechen, von Angesicht zu Angesicht",
+    feat4_p:"Ein Hin und Her in Echtzeit über den Tisch. Dein Gegenüber spricht, du liest, was gemeint war, und antwortest per Tipp auf eine fertige Antwort oder mit eigenen Worten. Der geteilte Bildschirm zeigt beide Seiten zugleich — ein Handy, zwei Menschen, für jeden richtig herum.",
+    feat5_h3:"Skripte für das, was kommt",
+    feat5_p:"Beschreib einen Apothekenbesuch oder ein erstes Treffen. Bekomm das ganze Gespräch — was du sagst, was du hören wirst, und die passenden Antworten für jeden Fall.",
+    show_eyebrow:"So sieht's in Aktion aus",
+    show_h2:"Gemacht für den Moment, in dem du steckst.",
+    talk_lbl:"Gesagt wurde", talk_them_gl:"„Was darf's sein?“", talk_you_gl:"Einen Americano, bitte · 해요체",
+    show_talk_tag:"Sprechen", show_talk_cap:"Versteh, was gemeint war — und antworte per Tipp.",
+    scr_lbl:"Skript · in der Apotheke", scr_role_say:"Du sagst", scr_role_hear:"Du hörst", scr_role_say2:"Du antwortest",
+    scr_gl1:"Haben Sie etwas gegen Erkältung?", scr_gl2:"Welche Beschwerden haben Sie?", scr_gl3:"Ich habe Halsschmerzen.",
+    show_scripts_tag:"Skripte", show_scripts_cap:"Üb das ganze Gespräch, bevor du reingehst.",
+    cam_lbl:"Kamera", cam_gl:"제육볶음 — scharf gebratenes Schweinefleisch, ein Mittagsklassiker.", cam_badge:"Gericht",
+    show_camera_tag:"Kamera", show_camera_cap:"Halt sie auf eine Karte oder ein Schild — im Kontext gelesen.",
+    sm_eyebrow:"Zeige-Modus",
+    sm_h2:"Reich dein Handy rüber.<br>Es spricht für dich.",
+    sm_body:"Vollbild, volle Helligkeit, mit einer höflichen Notiz in ihrer Sprache, damit ein Fremder weiß, was er da sieht. Es liest auch die Antwort vor — und schlägt dir Antworten zum Antippen vor.",
+    sm_showing:"Das zeigst du ihnen", sm_src_gl:"Haben Sie etwas gegen Erkältung?",
+    lang_eyebrow:"Neun Sprachen, in jede Richtung",
+    lang_h2:"Lern aus der Sprache, in der du wirklich denkst.",
+    lang_lead:"Jede Erklärung kommt in deiner Sprache — und die App gleich mit. Am tiefsten geht Tono im Koreanischen, doch alles funktioniert zwischen zwei beliebigen Sprachen.",
+    how_eyebrow:"So funktioniert's",
+    how_h2:"Drei Tipps zum richtigen Satz.",
+    how1_h3:"Tipp den Satz ein", how1_p:"Oder füg eine Nachricht ein, mach ein Foto oder sprich einfach. Jede deiner Sprachen, in beide Richtungen.",
+    how2_h3:"Wer & wo dazu", how2_p:"„Zu meinem Chef.“ „Auf dem Markt.“ Eine Zeile Kontext ändert die ganze Antwort.",
+    how3_h3:"Der Ton, und das Warum", how3_p:"Die Übersetzung, ihr Register benannt und erklärt, und andere Arten, es für andere zu sagen.",
+    prem_eyebrow:"Premium",
+    prem_h2:"Kostenlos testen. Unbegrenzt, wenn du bereit bist.",
+    prem_free_tier:"Gratis testen", prem_free_per:"5 Übersetzungen zum Ausprobieren, geschenkt",
+    prem_free_li1:"Vollständige, kontextbewusste Übersetzung", prem_free_li2:"Register, erklärt", prem_free_li3:"Sprechen ist immer gratis",
+    prem_pro_tier:"Tono Pro", prem_pro_price:"7 Tage gratis", prem_pro_per:"danach monatlich oder jährlich · jederzeit kündbar",
+    prem_pro_yr:"Der Preis wird im App Store je nach Region angezeigt",
+    prem_pro_li1:"Unbegrenzte Übersetzungen & Skripte", prem_pro_li2:"Fotos lesen", prem_pro_li3:"Alles aus Gratis, ohne die Wand",
+    get_eyebrow:"Tono holen",
+    get_h2:"Übersetzen, den Ton inklusive.",
+    get_lead:"Kostenlos testen auf dem iPhone. Versteh nicht nur, was du sagst — sondern wie es ankommt.",
+    foot_tagline:"Der Ton, nicht nur die Worte.",
+    foot_privacy:"Datenschutz", foot_support:"Support", foot_top:"Nach oben",
+    foot_copy:"© 2026 Tono · Erstellt von Howard Kim"
+  }
+  ,
+  vi: {
+    nav_registers:"Sắc thái", nav_features:"Tính năng", nav_how:"Cách hoạt động", nav_premium:"Premium", nav_download:"Tải về",
+    hero_eyebrow:"Dịch theo ngữ cảnh",
+    hero_h1:"Sắc thái,<br>không chỉ là con chữ.",
+    hero_lead:"Các ứng dụng khác chỉ cho bạn từ ngữ. Tono cho bạn biết những lời ấy sẽ được đón nhận ra sao — mức lịch sự phù hợp với người bạn đang nói, và <em>vì sao</em>.",
+    hero_cta2:"Xem cách hoạt động",
+    hero_note:"Dùng thử miễn phí · Hàn, Nhật, Trung và 6 ngôn ngữ khác",
+    ph_tab0:"Một người bạn thân", ph_tab1:"Người mới quen", ph_tab2:"Sếp của bạn",
+    ph_src:"“Ăn cơm chưa?”",
+    reg0_rel:"Người thân thiết, không khoảng cách",
+    reg0_why:"Lối nói suồng sã — ấm áp và thân mật. Trịnh trọng hơn sẽ nghe xa cách giữa bạn bè.",
+    reg1_rel:"Người bạn vừa mới gặp",
+    reg1_why:"Lối nói lịch sự thường ngày — thân thiện mà vẫn tôn trọng. Lựa chọn an toàn với hầu hết những người bạn chưa quen.",
+    reg2_rel:"Sếp của bạn, một khách hàng",
+    reg2_why:"Trang trọng và cung kính — kính ngữ « 식사 » và đuôi « -습니까 » nâng cả câu lên để tỏ lòng tôn trọng.",
+    sw_eyebrow:"Cùng lời nói. Khác ý nghĩa.",
+    sw_h2:"Nói “không sao” với sếp và với một người bạn<br>không phải là cùng một câu.",
+    sw_body:"Từ điển đưa cho bạn một bản dịch rồi chúc may mắn. Tono đọc tình huống — ai, ở đâu, thân đến mức nào — và chọn sắc thái mà người bản xứ thật sự sẽ dùng.",
+    sw_c1_who:"Với cấp trên · cung kính",
+    sw_c1_en:"Trấn an, tôn trọng, an toàn. Đuôi câu trang trọng giữ đúng khoảng cách.",
+    sw_c2_who:"Với bạn, hơi bực · suồng sã",
+    sw_c2_en:"“Thôi bỏ đi.” Cùng mấy chữ ấy, nhưng là một cử chỉ xã giao hoàn toàn khác.",
+    feat_eyebrow:"Bạn nhận được gì",
+    feat_h2:"Một trình dịch hiểu cả bầu không khí.",
+    feat1_h3:"Sắc thái, có giải thích",
+    feat1_p:"Mỗi câu trả lời gọi tên mức lịch sự bằng chính thuật ngữ của ngôn ngữ đó — 해요체, 敬語, usted, Sie — và nói cho bạn bằng lời dễ hiểu vì sao mức ấy hợp.",
+    feat2_h3:"Lời nói thật, không phải sách giáo khoa",
+    feat2_p:"Dán vào một tin nhắn bạn không hiểu. Tono đọc được tiếng lóng, chữ viết tắt trên mạng và cả lỗi chính tả, rồi cho biết thật ra người ta muốn nói gì — và giọng điệu ấy nói lên điều gì về mối quan hệ của hai người.",
+    feat3_h3:"Hướng máy ảnh vào",
+    feat3_p:"Một tấm biển, một thực đơn, một cái nhãn, một ảnh chụp màn hình. Nhận lại từng mục một, kèm bối cảnh văn hóa mà bạn dễ bỏ lỡ.",
+    feat4_h3:"Trò chuyện, trực tiếp",
+    feat4_p:"Qua lại theo thời gian thực, hai bên bàn. Người kia nói, bạn đọc được ý họ, rồi đáp lại bằng một câu trả lời có sẵn hoặc bằng lời của mình. Chế độ chia đôi màn hình cho thấy cả hai phía cùng lúc — một điện thoại, hai người, mỗi người nhìn đúng chiều.",
+    feat5_h3:"Kịch bản cho điều sắp tới",
+    feat5_p:"Mô tả một lần đi hiệu thuốc hay một buổi gặp đầu tiên. Nhận cả cuộc trò chuyện — nói gì, sẽ nghe lại gì, và câu đáp sẵn sàng cho từng tình huống.",
+    show_eyebrow:"Xem thử tận mắt",
+    show_h2:"Dành cho chính khoảnh khắc bạn đang ở trong đó.",
+    talk_lbl:"Họ nói", talk_them_gl:"“Anh/chị dùng gì ạ?”", talk_you_gl:"Cho tôi một ly americano · 해요체",
+    show_talk_tag:"Trò chuyện", show_talk_cap:"Hiểu ý họ — và đáp lại chỉ bằng một chạm.",
+    scr_lbl:"Kịch bản · ở hiệu thuốc", scr_role_say:"Bạn nói", scr_role_hear:"Bạn sẽ nghe", scr_role_say2:"Bạn đáp",
+    scr_gl1:"Có thuốc cảm không?", scr_gl2:"Bạn có triệu chứng gì?", scr_gl3:"Tôi bị đau họng.",
+    show_scripts_tag:"Kịch bản", show_scripts_cap:"Tập trước cả cuộc trò chuyện trước khi bước vào.",
+    cam_lbl:"Máy ảnh", cam_gl:"제육볶음 — thịt heo xào cay, món trưa quen thuộc.", cam_badge:"Món trong thực đơn",
+    show_camera_tag:"Máy ảnh", show_camera_cap:"Hướng vào thực đơn hay tấm biển — đọc kèm ngữ cảnh.",
+    sm_eyebrow:"Chế độ Trình bày",
+    sm_h2:"Đưa điện thoại cho họ.<br>Nó nói thay bạn.",
+    sm_body:"Toàn màn hình, độ sáng tối đa, kèm một dòng nhã nhặn viết bằng ngôn ngữ của họ để người lạ biết mình đang xem gì. Nó cũng đọc lại câu trả lời của họ — và gợi ý cho bạn những câu đáp để chạm.",
+    sm_showing:"Đang cho họ xem", sm_src_gl:"Có thuốc trị cảm không?",
+    lang_eyebrow:"Chín ngôn ngữ, mọi chiều",
+    lang_h2:"Học từ chính ngôn ngữ bạn thật sự nghĩ bằng nó.",
+    lang_lead:"Mọi lời giải thích đến bằng ngôn ngữ của bạn — và bản thân ứng dụng cũng vậy. Tono đi sâu nhất ở tiếng Hàn, nhưng vẫn hoạt động giữa hai ngôn ngữ bất kỳ.",
+    how_eyebrow:"Cách hoạt động",
+    how_h2:"Ba lần chạm đến đúng điều cần nói.",
+    how1_h3:"Nhập câu", how1_p:"Hoặc dán một tin nhắn, chụp một tấm ảnh, hay cứ nói ra. Bất kỳ ngôn ngữ nào của bạn, theo cả hai chiều.",
+    how2_h3:"Thêm với ai & ở đâu", how2_p:"“Với sếp tôi.” “Ở chợ.” Chỉ một dòng bối cảnh là đủ đổi cả câu trả lời.",
+    how3_h3:"Sắc thái, và lý do", how3_p:"Bản dịch, sắc thái được gọi tên và giải thích, cùng những cách nói khác cho những người khác.",
+    prem_eyebrow:"Premium",
+    prem_h2:"Dùng thử miễn phí. Mở khóa không giới hạn khi bạn sẵn sàng.",
+    prem_free_tier:"Dùng thử miễn phí", prem_free_per:"tặng bạn 5 lần dịch để thử",
+    prem_free_li1:"Dịch đầy đủ theo ngữ cảnh", prem_free_li2:"Giải thích sắc thái", prem_free_li3:"Trò chuyện luôn miễn phí",
+    prem_pro_tier:"Tono Pro", prem_pro_price:"7 ngày miễn phí", prem_pro_per:"sau đó theo tháng hoặc năm · hủy bất cứ lúc nào",
+    prem_pro_yr:"Giá hiển thị theo khu vực của bạn trên App Store",
+    prem_pro_li1:"Dịch & kịch bản không giới hạn", prem_pro_li2:"Đọc ảnh", prem_pro_li3:"Mọi thứ của bản miễn phí, không rào cản",
+    get_eyebrow:"Tải Tono",
+    get_h2:"Dịch, kèm cả sắc thái.",
+    get_lead:"Dùng thử miễn phí trên iPhone. Hiểu không chỉ nên nói gì — mà cả cách nó được đón nhận.",
+    foot_tagline:"Sắc thái, không chỉ là con chữ.",
+    foot_privacy:"Quyền riêng tư", foot_support:"Hỗ trợ", foot_top:"Lên đầu trang",
+    foot_copy:"© 2026 Tono · Thực hiện bởi Howard Kim"
+  }
+  ,
+  id: {
+    nav_registers:"Nuansa", nav_features:"Fitur", nav_how:"Cara kerja", nav_premium:"Premium", nav_download:"Unduh",
+    hero_eyebrow:"Terjemahan yang paham konteks",
+    hero_h1:"Nadanya,<br>bukan sekadar katanya.",
+    hero_lead:"Penerjemah lain memberimu kata. Tono memberitahumu bagaimana kata itu akan diterima — tingkat kesopanan yang pas untuk lawan bicaramu, dan <em>mengapa</em>.",
+    hero_cta2:"Lihat cara kerjanya",
+    hero_note:"Coba gratis · Korea, Jepang, Mandarin & 6 lainnya",
+    ph_tab0:"Teman dekat", ph_tab1:"Orang yang baru dikenal", ph_tab2:"Atasanmu",
+    ph_src:"“Sudah makan?”",
+    reg0_rel:"Orang dekat, tanpa jarak",
+    reg0_why:"Bahasa santai — hangat dan akrab. Yang lebih formal justru terasa dingin di antara teman.",
+    reg1_rel:"Orang yang baru kamu kenal",
+    reg1_why:"Bahasa sopan sehari-hari — ramah tapi tetap hormat. Pilihan aman untuk kebanyakan orang yang belum kamu kenal.",
+    reg2_rel:"Atasanmu, seorang pelanggan",
+    reg2_why:"Penuh hormat dan formal — kata hormat « 식사 » dan akhiran « -습니까 » mengangkat seluruh kalimat sebagai tanda hormat.",
+    sw_eyebrow:"Kata sama. Makna beda.",
+    sw_h2:"Mengatakan “tidak apa-apa” kepada atasan dan kepada teman<br>bukanlah kalimat yang sama.",
+    sw_body:"Kamus memberimu satu terjemahan lalu mendoakanmu semoga beruntung. Tono membaca situasi — siapa, di mana, seberapa dekat — dan memilih nuansa yang benar-benar dipakai penutur asli.",
+    sw_c1_who:"Kepada atasan · penuh hormat",
+    sw_c1_en:"Menenangkan, sopan, aman. Akhiran formal menjaga jarak tetap pas.",
+    sw_c2_who:"Kepada teman, agak kesal · santai",
+    sw_c2_en:"“Sudahlah.” Kata yang sama, tapi sinyal sosial yang sama sekali berbeda.",
+    feat_eyebrow:"Yang kamu dapat",
+    feat_h2:"Penerjemah yang paham suasana.",
+    feat1_h3:"Nuansa, dijelaskan",
+    feat1_p:"Setiap jawaban menyebut tingkat kesopanannya dengan istilah bahasa itu sendiri — 해요체, 敬語, usted, Sie — dan menjelaskan dengan bahasa sederhana mengapa tingkat itu cocok.",
+    feat2_h3:"Bahasa asli, bukan buku pelajaran",
+    feat2_p:"Tempel pesan yang tak kamu mengerti. Tono membaca slang, singkatan internet, dan salah ketik, lalu memberitahumu apa maksud sebenarnya — dan apa yang nada itu ungkapkan tentang hubungan kalian.",
+    feat3_h3:"Arahkan kamera",
+    feat3_p:"Sebuah papan, menu, label, tangkapan layar. Diterjemahkan satu per satu, lengkap dengan konteks budaya yang mungkin kamu lewatkan.",
+    feat4_h3:"Bicara, langsung",
+    feat4_p:"Bolak-balik secara langsung di meja. Ia bicara, kamu membaca maksudnya, lalu menjawab dengan mengetuk balasan siap pakai atau dengan kata-katamu sendiri. Mode layar terbagi menampilkan kedua sisi sekaligus — satu ponsel, dua orang, tegak untuk masing-masing.",
+    feat5_h3:"Naskah untuk yang akan datang",
+    feat5_p:"Ceritakan kunjungan ke apotek atau pertemuan pertama. Dapatkan seluruh percakapan — apa yang dikatakan, apa yang akan kamu dengar, dan jawaban siap untuk tiap situasi.",
+    show_eyebrow:"Lihat langsung",
+    show_h2:"Dibuat untuk momen yang sedang kamu hadapi.",
+    talk_lbl:"Mereka bilang", talk_them_gl:"“Mau pesan apa?”", talk_you_gl:"Satu americano, ya · 해요체",
+    show_talk_tag:"Bicara", show_talk_cap:"Pahami maksud mereka — dan jawab dengan satu ketukan.",
+    scr_lbl:"Naskah · di apotek", scr_role_say:"Kamu bilang", scr_role_hear:"Kamu akan dengar", scr_role_say2:"Kamu jawab",
+    scr_gl1:"Ada obat flu?", scr_gl2:"Apa gejalamu?", scr_gl3:"Tenggorokanku sakit.",
+    show_scripts_tag:"Naskah", show_scripts_cap:"Latih seluruh percakapan sebelum kamu masuk.",
+    cam_lbl:"Kamera", cam_gl:"제육볶음 — tumis babi pedas, menu makan siang yang populer.", cam_badge:"Item menu",
+    show_camera_tag:"Kamera", show_camera_cap:"Arahkan ke menu atau papan — dibaca lengkap dengan konteksnya.",
+    sm_eyebrow:"Mode Tunjuk",
+    sm_h2:"Serahkan ponselmu.<br>Ia bicara untukmu.",
+    sm_body:"Layar penuh, kecerahan maksimal, dengan catatan sopan dalam bahasa mereka agar orang asing tahu apa yang sedang dilihat. Ia juga membacakan balasan mereka — dan menawarkan jawaban untuk kamu ketuk.",
+    sm_showing:"Yang kamu tunjukkan", sm_src_gl:"Ada obat untuk flu?",
+    lang_eyebrow:"Sembilan bahasa, segala arah",
+    lang_h2:"Belajar dari bahasa yang benar-benar kamu pakai berpikir.",
+    lang_lead:"Setiap penjelasan hadir dalam bahasamu — dan aplikasinya pun ikut. Tono paling dalam di bahasa Korea, tapi semuanya bekerja antara dua bahasa apa pun.",
+    how_eyebrow:"Cara kerja",
+    how_h2:"Tiga ketukan menuju kata yang tepat.",
+    how1_h3:"Ketik kalimatnya", how1_p:"Atau tempel pesan, potret foto, atau cukup ucapkan. Bahasa mana pun milikmu, ke arah mana pun.",
+    how2_h3:"Tambahkan kepada siapa & di mana", how2_p:"“Kepada atasan saya.” “Di pasar.” Satu baris konteks sudah cukup mengubah seluruh jawaban.",
+    how3_h3:"Nadanya, dan alasannya", how3_p:"Terjemahannya, nuansanya yang disebut dan dijelaskan, serta cara lain mengucapkannya untuk orang lain.",
+    prem_eyebrow:"Premium",
+    prem_h2:"Coba gratis. Buka tanpa batas saat kamu siap.",
+    prem_free_tier:"Coba gratis", prem_free_per:"5 terjemahan untuk dicoba, gratis",
+    prem_free_li1:"Terjemahan penuh sesuai konteks", prem_free_li2:"Nuansa, dijelaskan", prem_free_li3:"Bicara selalu gratis",
+    prem_pro_tier:"Tono Pro", prem_pro_price:"Gratis 7 hari", prem_pro_per:"lalu bulanan atau tahunan · batalkan kapan saja",
+    prem_pro_yr:"Harga ditampilkan sesuai wilayahmu di App Store",
+    prem_pro_li1:"Terjemahan & naskah tanpa batas", prem_pro_li2:"Pembacaan foto", prem_pro_li3:"Semua yang di Gratis, tanpa dinding",
+    get_eyebrow:"Dapatkan Tono",
+    get_h2:"Terjemahkan, lengkap dengan nadanya.",
+    get_lead:"Coba gratis di iPhone. Pahami bukan cuma apa yang dikatakan — tapi bagaimana ia diterima.",
+    foot_tagline:"Nadanya, bukan sekadar katanya.",
+    foot_privacy:"Privasi", foot_support:"Dukungan", foot_top:"Kembali ke atas",
+    foot_copy:"© 2026 Tono · Dibuat oleh Howard Kim"
+  }
+  /*MORE_LANGS*/
+  };
+
+  var REG_BASE = [
+    {ko:"밥 먹었어?", rom:"bap meogeosseo?", badge:"반말"},
+    {ko:"밥 먹었어요?", rom:"bap meogeosseoyo?", badge:"해요체"},
+    {ko:"식사하셨습니까?", rom:"siksahasyeotseumnikka?", badge:"합쇼체"}
   ];
-  var order = [1,0,1,2];  // start polite, cycle
-  var idx = 0, timer = null, userTouched = false;
-  var sw = document.getElementById("rswitch");
-  var card = document.getElementById("rcard");
+  var SHORT = {en:"English",ko:"한국어",ja:"日本語",zh:"中文",es:"Español",fr:"Français",de:"Deutsch",vi:"Tiếng Việt",id:"Bahasa"};
+
+  var curLang = "en", curReg = 1;
+  function tr(k){ return (I18N[curLang] && I18N[curLang][k]) || I18N.en[k] || ""; }
+
+  /* ---- register demo ---- */
+  var order = [1,0,1,2], idx = 0, timer = null, userTouched = false;
+  var sw = document.getElementById("rswitch"), card = document.getElementById("rcard");
   var elKo = document.getElementById("rKo"), elRom = document.getElementById("rRom"),
       elWhy = document.getElementById("rWhy"), elBadge = document.getElementById("rBadge"),
       elRel = document.getElementById("rRel");
   var tabs = Array.prototype.slice.call(sw.querySelectorAll("button"));
 
   function paint(reg, animate){
-    var r = REG[reg];
+    curReg = reg;
+    var b = REG_BASE[reg];
     card.setAttribute("data-reg", reg);
-    tabs.forEach(function(t){ t.setAttribute("aria-selected", String(+t.dataset.reg === reg)); });
-    elKo.textContent = r.ko; elRom.textContent = r.rom;
-    elWhy.textContent = r.why; elBadge.textContent = r.badge; elRel.textContent = r.rel;
-    if(animate && !reduce){
-      card.classList.remove("fade-swap"); void card.offsetWidth; card.classList.add("fade-swap");
-    }
+    tabs.forEach(function(tb){ tb.setAttribute("aria-selected", String(+tb.dataset.reg === reg)); });
+    elKo.textContent = b.ko; elRom.textContent = b.rom; elBadge.textContent = b.badge;
+    elRel.textContent = tr("reg"+reg+"_rel"); elWhy.innerHTML = tr("reg"+reg+"_why");
+    if(animate && !reduce){ card.classList.remove("fade-swap"); void card.offsetWidth; card.classList.add("fade-swap"); }
   }
-  function cycle(){
-    idx = (idx+1) % order.length;
-    paint(order[idx], true);
-  }
+  function cycle(){ idx = (idx+1) % order.length; paint(order[idx], true); }
   function start(){ if(reduce||userTouched) return; timer = setInterval(cycle, 3200); }
   function stop(){ if(timer){ clearInterval(timer); timer=null; } }
-
-  tabs.forEach(function(t){
-    t.addEventListener("click", function(){ userTouched = true; stop(); paint(+t.dataset.reg, true); });
+  tabs.forEach(function(tb){
+    tb.addEventListener("click", function(){ userTouched = true; stop(); paint(+tb.dataset.reg, true); });
   });
-  // pause cycling when phone off-screen
   var phone = document.getElementById("heroPhone");
   new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ start(); } else { stop(); } });
   }, {threshold:.3}).observe(phone);
+
+  /* ---- language toggle ---- */
+  var langBtn = document.getElementById("langBtn"),
+      langMenu = document.getElementById("langMenu"),
+      langCur = document.getElementById("langCur"),
+      langWrap = langBtn.parentNode,
+      langOpts = Array.prototype.slice.call(langMenu.querySelectorAll("button"));
+
+  function applyI18n(){
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      var v = tr(el.getAttribute("data-i18n"));
+      if(v) el.innerHTML = v;
+    });
+  }
+  function applyLang(lang){
+    if(!I18N[lang]) lang = "en";
+    curLang = lang;
+    document.documentElement.lang = lang;
+    applyI18n();
+    paint(curReg, false);
+    langCur.textContent = SHORT[lang] || "English";
+    langOpts.forEach(function(b){ b.setAttribute("aria-selected", String(b.dataset.lang === lang)); });
+    try{ localStorage.setItem("tono_lang", lang); }catch(e){}
+  }
+  function closeMenu(){ langMenu.setAttribute("hidden",""); langBtn.setAttribute("aria-expanded","false"); }
+  function openMenu(){ langMenu.removeAttribute("hidden"); langBtn.setAttribute("aria-expanded","true"); }
+  langBtn.addEventListener("click", function(e){ e.stopPropagation(); langMenu.hasAttribute("hidden") ? openMenu() : closeMenu(); });
+  langOpts.forEach(function(b){ b.addEventListener("click", function(){ applyLang(b.dataset.lang); closeMenu(); }); });
+  document.addEventListener("click", function(e){ if(!langWrap.contains(e.target)) closeMenu(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeMenu(); });
+
+  var saved = null; try{ saved = localStorage.getItem("tono_lang"); }catch(e){}
+  var initial = saved || (navigator.language || "en").slice(0,2).toLowerCase();
+  applyLang(I18N[initial] ? initial : "en");
 })();
 </script>
 
