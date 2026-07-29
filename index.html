@@ -365,7 +365,7 @@
           <button role="option" data-lang="ko" lang="ko">한국어<span class="lat">Korean</span></button>
           <button role="option" data-lang="ja" lang="ja">日本語<span class="lat">Japanese</span></button>
           <button role="option" data-lang="zh" lang="zh">中文<span class="lat">Chinese</span></button>
-          <button role="option" data-lang="zht" lang="zh-Hant">繁體中文<span class="lat">Traditional Chinese</span></button>
+          <button role="option" data-lang="zh-Hant" lang="zh-Hant">繁體中文<span class="lat">Traditional Chinese</span></button>
           <button role="option" data-lang="es" lang="es">Español<span class="lat">Spanish</span></button>
           <button role="option" data-lang="fr" lang="fr">Français<span class="lat">French</span></button>
           <button role="option" data-lang="de" lang="de">Deutsch<span class="lat">German</span></button>
@@ -1316,7 +1316,7 @@
     foot_copy:"© 2026 Tono · Dibuat oleh Howard Kim"
   }
   ,
-  zht: {
+  "zh-Hant": {
     nav_registers: "語氣",
     nav_features: "功能",
     nav_how: "使用方法",
@@ -1424,7 +1424,7 @@
     {ko:"밥 먹었어요?", rom:"bap meogeosseoyo?", badge:"해요체"},
     {ko:"식사하셨습니까?", rom:"siksahasyeotseumnikka?", badge:"합쇼체"}
   ];
-  var SHORT = {en:"English",ko:"한국어",ja:"日本語",zh:"中文",zht:"繁體中文",es:"Español",fr:"Français",de:"Deutsch",vi:"Tiếng Việt",id:"Bahasa"};
+  var SHORT = {en:"English",ko:"한국어",ja:"日本語",zh:"中文","zh-Hant":"繁體中文",es:"Español",fr:"Français",de:"Deutsch",vi:"Tiếng Việt",id:"Bahasa"};
 
   var curLang = "en", curReg = 1;
   function tr(k){ return (I18N[curLang] && I18N[curLang][k]) || I18N.en[k] || ""; }
