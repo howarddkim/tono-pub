@@ -311,6 +311,12 @@
   .shot .phone{width:248px;margin-bottom:22px}
   .shot .cap-tag{font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--jjok);margin-bottom:7px}
   .shot .cap{font-size:14.5px;color:var(--dim);max-width:28ch;line-height:1.5}
+  /* Real app screenshots sit inside the same bezel; the shot carries its own
+     status bar + notch, so hide the CSS notch and let the image fill the screen. */
+  .phone.real{padding:9px}
+  .phone.real .notch{display:none}
+  .phone.real .screen{background:#0c1220}
+  .shot-img{width:100%;display:block}
   /* mock screen — always the app's own light palette, whatever the page theme */
   .mini{padding:15px 13px 16px;min-height:376px;display:flex;flex-direction:column;font-family:var(--sans);color:#14171E}
   .mini .mtop{font-family:var(--serif);font-weight:600;font-size:15px;text-align:center;margin-bottom:13px;color:#14171E}
@@ -487,20 +493,10 @@
     <div class="showcase">
       <!-- Talk -->
       <div class="shot reveal">
-        <div class="phone">
+        <div class="phone real">
           <div class="notch"></div>
           <div class="screen">
-            <div class="mini">
-              <div class="mtop">Tono<span class="dot">.</span></div>
-              <div class="mlabel" data-i18n="talk_lbl">They said</div>
-              <div class="bub them">뭐 드릴까요?<div class="rom" data-i18n="talk_them_gl">“What can I get you?”</div></div>
-              <div class="bub you">아메리카노 주세요<div class="rom" data-i18n="talk_you_gl">One americano, please · 해요체</div></div>
-              <div class="chips">
-                <span class="chip-s">아이스로요</span>
-                <span class="chip-s">따뜻한 걸로요</span>
-                <span class="chip-s">얼마예요?</span>
-              </div>
-            </div>
+            <img class="shot-img" src="shots/talk.jpg" alt="Tono Talk — a live bilingual conversation with translations" loading="lazy">
           </div>
         </div>
         <div class="cap-tag" data-i18n="show_talk_tag">Talk</div>
@@ -508,28 +504,10 @@
       </div>
       <!-- Scripts -->
       <div class="shot reveal">
-        <div class="phone">
+        <div class="phone real">
           <div class="notch"></div>
           <div class="screen">
-            <div class="mini">
-              <div class="mtop">Tono<span class="dot">.</span></div>
-              <div class="mlabel" data-i18n="scr_lbl">Script · at the pharmacy</div>
-              <div class="sline you-say">
-                <div class="role" data-i18n="scr_role_say">You say</div>
-                <div class="kr">감기약 있나요?</div>
-                <div class="gl" data-i18n="scr_gl1">Do you have cold medicine?</div>
-              </div>
-              <div class="sline">
-                <div class="role" data-i18n="scr_role_hear">You'll hear</div>
-                <div class="kr">어떤 증상이세요?</div>
-                <div class="gl" data-i18n="scr_gl2">What are your symptoms?</div>
-              </div>
-              <div class="sline you-say">
-                <div class="role" data-i18n="scr_role_say2">You say</div>
-                <div class="kr">목이 아파요</div>
-                <div class="gl" data-i18n="scr_gl3">My throat hurts.</div>
-              </div>
-            </div>
+            <img class="shot-img" src="shots/scripts.jpg" alt="Tono Scripts — a pharmacy conversation rehearsed line by line" loading="lazy">
           </div>
         </div>
         <div class="cap-tag" data-i18n="show_scripts_tag">Scripts</div>
@@ -537,19 +515,10 @@
       </div>
       <!-- Camera -->
       <div class="shot reveal">
-        <div class="phone">
+        <div class="phone real">
           <div class="notch"></div>
           <div class="screen">
-            <div class="mini">
-              <div class="mtop">Tono<span class="dot">.</span></div>
-              <div class="mlabel" data-i18n="cam_lbl">Camera</div>
-              <div class="cam"><div class="sign"><div class="kr">제육볶음</div></div><div class="scan"></div></div>
-              <div class="cam-out">
-                <div class="kr">제육볶음</div>
-                <div class="gl" data-i18n="cam_gl">Spicy stir-fried pork — a lunch-counter staple.</div>
-                <span class="cam-badge" data-i18n="cam_badge">Menu item</span>
-              </div>
-            </div>
+            <img class="shot-img" src="shots/camera.jpg" alt="Tono Camera — a Korean menu photo translated with context" loading="lazy">
           </div>
         </div>
         <div class="cap-tag" data-i18n="show_camera_tag">Camera</div>
@@ -569,18 +538,10 @@
         <p class="reveal" style="margin-top:18px;max-width:44ch" data-i18n="sm_body">Full screen, full brightness, with a courtesy note written in their language so a stranger knows what they're looking at. It reads their reply back too — and offers you answers to tap.</p>
       </div>
       <div class="reveal" style="display:flex;justify-content:center">
-        <div class="phone">
+        <div class="phone real">
           <div class="notch"></div>
-          <div class="screen" style="background:#21386B">
-            <div style="padding:26px 20px;min-height:420px;display:flex;flex-direction:column;color:#EAF0FB">
-              <div style="font-size:11px;font-weight:700;letter-spacing:.12em;color:#9DB2E0;text-transform:uppercase" data-i18n="sm_showing">You're showing them</div>
-              <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:24px 0">
-                <div class="serif" style="font-size:34px;font-weight:700;line-height:1.2">감기약 있나요?</div>
-                <div style="font-size:15px;color:#AEC2EC">gamgiyak innayo?</div>
-                <div style="font-size:16px;color:#D3DEF3;font-style:italic" data-i18n="sm_src_gl">Do you have something for a cold?</div>
-              </div>
-              <div style="border-top:1px solid rgba(255,255,255,.16);padding-top:14px;font-size:13px;color:#AEC2EC">저는 한국어가 서툴러서 화면으로 보여드리고 있어요 🙏</div>
-            </div>
+          <div class="screen">
+            <img class="shot-img" src="shots/show.jpg" alt="Tono Show Mode — a full-screen phrase to show a stranger, with a courtesy note" loading="lazy">
           </div>
         </div>
       </div>
