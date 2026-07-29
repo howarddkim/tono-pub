@@ -676,7 +676,8 @@
   /* =========================================================
      i18n — Claude-authored transcreations (native-review TODO
      for vi/id before launch). Korean example sentences stay
-     constant; only the surrounding copy localizes. var I18N = {
+     constant; only the surrounding copy localizes. */
+  var I18N = {
   en: {
     nav_registers: "Why it matters",
     nav_features: "Features",
@@ -2009,7 +2010,9 @@
     prem_free_li4: "แปลภาษาแบบออฟไลน์ — ได้ไม่จำกัดโดยตรงบนอุปกรณ์ของคุณ"
   }
   /*MORE_LANGS*/
-  }ทย"};
+  };
+
+  var SHORT = {en:"English",ko:"한국어",ja:"日本語",zh:"中文","zh-Hant":"繁體中文","zh-HK":"廣東話",es:"Español",fr:"Français",de:"Deutsch",vi:"Tiếng Việt",id:"Bahasa",th:"ไทย"};
 
   var curLang = "en";
   function tr(k){ return (I18N[curLang] && I18N[curLang][k]) || I18N.en[k] || ""; }
