@@ -114,6 +114,12 @@
   h2{font-size:clamp(29px,4.4vw,46px)}
   h3{font-size:clamp(20px,2.4vw,25px)}
   p.lead{font-size:clamp(18px,2.2vw,21px);color:var(--dim);max-width:34ch;line-height:1.5}
+  /* Korean is allowed to break between any two syllables, so text-wrap:balance
+     happily splits a word like 느낌 across lines. keep-all confines breaks to
+     spaces. Korean only — CJK without spaces needs the default to avoid
+     overflowing. */
+  html[lang="ko"] h1, html[lang="ko"] h2, html[lang="ko"] h3,
+  html[lang="ko"] p.lead, html[lang="ko"] .eyebrow{word-break:keep-all}
 
   .wordmark{font-family:var(--serif);font-weight:600;letter-spacing:-.01em}
   .wordmark .dot{color:var(--jjok)}
