@@ -3,6 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) — consent defaults must run before gtag.js loads -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  /* We never advertise: ad signals stay denied everywhere. */
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  /* EEA + UK + Switzerland: no analytics cookie until the visitor opts in.
+     consent.js shows the banner that grants it. */
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE',
+             'IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'IS','LI','NO','GB','CH']
+  });
+  /* A stored "accept" applies before the first hit, so a returning visitor
+     isn't measured cookielessly for one page view. */
+  try {
+    if (localStorage.getItem('tono_consent') === 'granted') {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+  } catch (e) {}
+
+  gtag('js', new Date());
+  gtag('config', 'G-JZPE13HT20');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JZPE13HT20"></script>
+<script src="/consent.js" defer></script>
 <title>Tono — The tone, not just the words</title>
 <meta name="description" content="Tono is a context-aware translator that gets the tone right — so you never sound rude to your boss or cold to a friend. Korean, Japanese, Chinese and nine more.">
 <meta name="theme-color" content="#2E4A8F">
@@ -648,6 +681,7 @@
     <div class="flinks">
       <a href="/privacy.html" data-i18n="foot_privacy">Privacy</a>
       <a href="mailto:hello@tonotranslate.com" data-i18n="foot_support">Support</a>
+      <a href="#" data-consent-reopen>Cookie settings</a>
       <a href="#top" data-i18n="foot_top">Back to top</a>
     </div>
   </div>
