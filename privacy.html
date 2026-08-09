@@ -3,8 +3,41 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) — consent defaults must run before gtag.js loads -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  /* We never advertise: ad signals stay denied everywhere. */
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  /* EEA + UK + Switzerland: no analytics cookie until the visitor opts in.
+     consent.js shows the banner that grants it. */
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE',
+             'IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'IS','LI','NO','GB','CH']
+  });
+  /* A stored "accept" applies before the first hit, so a returning visitor
+     isn't measured cookielessly for one page view. */
+  try {
+    if (localStorage.getItem('tono_consent') === 'granted') {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+  } catch (e) {}
+
+  gtag('js', new Date());
+  gtag('config', 'G-JZPE13HT20');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JZPE13HT20"></script>
+<script src="/consent.js" defer></script>
 <title>Privacy Policy — Tono</title>
-<meta name="description" content="Tono's privacy policy: your translations pass through to an AI provider and are not stored, your library lives on your device, no ads, no tracking, no data sales.">
+<meta name="description" content="Tono's privacy policy: your translations pass through to an AI provider and are not stored, your library lives on your device, no ads, no cross-app tracking, no data sales.">
 <meta name="theme-color" content="#2E4A8F">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%232E4A8F'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Palatino,Georgia,serif' font-weight='600' font-size='40' fill='%23FAF7F2'%3ET%3C/text%3E%3C/svg%3E">
 <style>
@@ -48,7 +81,7 @@
 <header><div class="wrap">
   <div class="eyebrow">Privacy</div>
   <h1>Privacy Policy</h1>
-  <div class="eff">Effective July 23, 2026</div>
+  <div class="eff">Effective August 9, 2026</div>
 </div></header>
 
 <main><div class="wrap">
@@ -64,10 +97,14 @@
   <p><strong>Usage counts.</strong> We record how many translations your account makes per day — this enforces the free allowance and helps us understand load. Counts only; not the content.</p>
   <p><strong>Subscriptions.</strong> Purchases are processed by Apple; we never see your payment details. We use RevenueCat to manage subscription status, which processes your Apple transaction identifiers under its own privacy policy.</p>
 
+  <h2>Website analytics</h2>
+  <p>Our marketing website (tonotranslate.com, including this page) uses Google Analytics to count visits and see which pages people find useful. It records page views, the site you came from, approximate location derived from a truncated IP address, and general device and browser type, and it sets a cookie in your browser. This is about website visitors, not app users: it is not connected to your Tono account, and the app itself contains no analytics or tracking SDKs.</p>
+  <p>If you're in the EEA, the UK or Switzerland, that cookie is not set unless you accept it — we ask before anything is stored, and declining is one click. You can change your answer at any time with <a href="#" data-consent-reopen>Cookie settings</a>, at the bottom of every page. We do not use advertising cookies anywhere.</p>
+
   <h2>What we don't do</h2>
   <ul>
     <li>No advertising, and no advertising identifiers.</li>
-    <li>No tracking across other companies' apps or websites.</li>
+    <li>No tracking of you across other companies' apps or websites.</li>
     <li>No sale of any data, ever.</li>
   </ul>
 
@@ -83,7 +120,7 @@
 
 <footer><div class="wrap">
   <span>© 2026 Tono</span>
-  <span><a href="/">Home</a> · <a href="mailto:hello@tonotranslate.com">Support</a></span>
+  <span><a href="/">Home</a> · <a href="mailto:hello@tonotranslate.com">Support</a> · <a href="#" data-consent-reopen>Cookie settings</a></span>
 </div></footer>
 </body>
 </html>
