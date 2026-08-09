@@ -179,12 +179,23 @@
   }
 
   /* ---------- Phone ---------- */
+  /* Corner radius is a RATIO, not a fixed number. The screen on this device
+     is 62pt across a 402pt width — 0.154 — and the frame is drawn at two
+     sizes (300px in the hero, 248px in the showcase), so one hard-coded
+     radius was too square on the big one and too round on the small one.
+     Deriving it from --w keeps both honest, and keeps them right when
+     --w collapses to 88vw on a narrow screen.
+     The outer radius is the inner plus the bezel, which is what makes the
+     two curves concentric instead of merely both round. */
   .phone{
-    position:relative;width:300px;max-width:88vw;margin:0 auto;
-    background:#0c1220;border-radius:44px;padding:11px;
+    --w: min(300px, 88vw);
+    --pad: 11px;
+    --screen-r: calc(0.154 * (var(--w) - 2 * var(--pad)));
+    position:relative;width:var(--w);margin:0 auto;
+    background:#0c1220;border-radius:calc(var(--screen-r) + var(--pad));padding:var(--pad);
     box-shadow:0 40px 90px -30px rgba(20,30,60,.55),0 0 0 1px rgba(255,255,255,.04) inset;
   }
-  .phone .screen{background:#FAF7F2;border-radius:34px;overflow:hidden;position:relative}
+  .phone .screen{background:#FAF7F2;border-radius:var(--screen-r);overflow:hidden;position:relative}
   .phone .notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:96px;height:20px;background:#0c1220;border-radius:12px;z-index:3}
 
 
@@ -324,12 +335,12 @@
   .showcase{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:52px;align-items:start}
   @media (max-width:860px){.showcase{grid-template-columns:1fr;max-width:360px;margin-left:auto;margin-right:auto;gap:48px}}
   .shot{display:flex;flex-direction:column;align-items:center;text-align:center}
-  .shot .phone{width:248px;margin-bottom:22px}
+  .shot .phone{--w:min(248px,88vw);margin-bottom:22px}
   .shot .cap-tag{font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--jjok);margin-bottom:7px}
   .shot .cap{font-size:14.5px;color:var(--dim);max-width:28ch;line-height:1.5}
   /* Real app screenshots sit inside the same bezel; the shot carries its own
      status bar + notch, so hide the CSS notch and let the image fill the screen. */
-  .phone.real{padding:9px}
+  .phone.real{--pad:9px}
   .phone.real .notch{display:none}
   .phone.real .screen{background:#0c1220}
   .shot-img{width:100%;display:block}
