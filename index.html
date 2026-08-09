@@ -422,7 +422,7 @@
       <div class="phone real">
         <div class="notch"></div>
         <div class="screen">
-          <img class="shot-img" src="shots/register.jpg" alt="A real Tono answer: 도와주실 수 있을까요?, marked 해요체 · polite, with why this works and other ways to say it" loading="eager">
+          <img class="shot-img" data-shot="register" src="shots/register.jpg" alt="A real Tono answer: 도와주실 수 있을까요?, marked 해요체 · polite, with why this works and other ways to say it" loading="eager">
         </div>
       </div>
     </div>
@@ -525,7 +525,7 @@
         <div class="phone real">
           <div class="notch"></div>
           <div class="screen">
-            <img class="shot-img" src="shots/talk.jpg" alt="Tono Talk — a live bilingual conversation with translations" loading="lazy">
+            <img class="shot-img" data-shot="talk" src="shots/talk.jpg" alt="Tono Talk — a live bilingual conversation with translations" loading="lazy">
           </div>
         </div>
         <div class="cap-tag" data-i18n="show_talk_tag">Talk</div>
@@ -536,7 +536,7 @@
         <div class="phone real">
           <div class="notch"></div>
           <div class="screen">
-            <img class="shot-img" src="shots/scripts.jpg" alt="Tono Scripts — a pharmacy conversation rehearsed line by line" loading="lazy">
+            <img class="shot-img" data-shot="scripts" src="shots/scripts.jpg" alt="Tono Scripts — a pharmacy conversation rehearsed line by line" loading="lazy">
           </div>
         </div>
         <div class="cap-tag" data-i18n="show_scripts_tag">Scripts</div>
@@ -547,7 +547,7 @@
         <div class="phone real">
           <div class="notch"></div>
           <div class="screen">
-            <img class="shot-img" src="shots/camera.jpg" alt="Tono Camera — a Korean menu photo translated with context" loading="lazy">
+            <img class="shot-img" data-shot="camera" src="shots/camera.jpg" alt="Tono Camera — a Korean menu photo translated with context" loading="lazy">
           </div>
         </div>
         <div class="cap-tag" data-i18n="show_camera_tag">Camera</div>
@@ -570,7 +570,7 @@
         <div class="phone real">
           <div class="notch"></div>
           <div class="screen">
-            <img class="shot-img" src="shots/show.jpg" alt="Tono Show Mode — a full-screen phrase to show a stranger, with a courtesy note" loading="lazy">
+            <img class="shot-img" data-shot="show" src="shots/show.jpg" alt="Tono Show Mode — a full-screen phrase to show a stranger, with a courtesy note" loading="lazy">
           </div>
         </div>
       </div>
@@ -2072,11 +2072,41 @@
       if(v) el.innerHTML = v;
     });
   }
+  /* ---- per-language screenshots ---- */
+  /* Real captures of the app running in each language, paired with Korean —
+     except the Korean set, whose target is English. A locale whose files are
+     missing falls back to the English shot at the old flat path, so a gap
+     degrades instead of leaving a hole in the page. */
+  var SHOT_ALT = {
+    en: {register:"A Tono answer, with its politeness level named and explained", talk:"A live conversation in Tono, with ready replies to tap", scripts:"A pharmacy conversation, rehearsed line by line", camera:"A photographed menu sign, read and translated", show:"Show Mode — a full-screen phrase to show someone"},
+    ko: {register:"Tono의 답변 — 말투 단계를 짚어주고 이유까지 설명합니다", talk:"실시간 대화 — 바로 누를 수 있는 답변까지", scripts:"약국에서 나눌 대화를 한 줄씩 연습", camera:"메뉴판 사진을 찍어 번역", show:"보여주기 모드 — 전체 화면으로 보여주는 문장"},
+    ja: {register:"Tonoの回答 — 敬語のレベルを示し、理由まで説明", talk:"リアルタイム会話と、タップで送れる返答", scripts:"薬局での会話を一行ずつ練習", camera:"メニューの写真を読み取って翻訳", show:"提示モード — 全画面で見せる一文"},
+    zh: {register:"Tono 的答案，标注敬语级别并解释原因", talk:"实时对话，还有可一键发送的回复", scripts:"药店对话，逐句排练", camera:"拍下菜单，直接读懂", show:"展示模式 — 全屏显示给对方看的句子"},
+    "zh-Hant": {register:"Tono 的答案，標註敬語程度並解釋原因", talk:"即時對話，還有可一鍵送出的回覆", scripts:"藥局對話，逐句排練", camera:"拍下菜單，直接讀懂", show:"展示模式 — 全螢幕顯示給對方看的句子"},
+    "zh-HK": {register:"Tono 嘅答案，標明敬語程度同解釋原因", talk:"即時對話，仲有撳一下就送出嘅回覆", scripts:"藥房對話，一句句練習", camera:"影低餐牌，即刻睇得明", show:"展示模式 — 全螢幕俾對方睇嘅句子"},
+    es: {register:"Una respuesta de Tono, con su nivel de formalidad explicado", talk:"Una conversación en directo, con respuestas listas para tocar", scripts:"Una conversación de farmacia, ensayada línea a línea", camera:"Un cartel de menú fotografiado y traducido", show:"Modo Mostrar — una frase a pantalla completa"},
+    fr: {register:"Une réponse de Tono, avec son niveau de politesse expliqué", talk:"Une conversation en direct, avec des réponses prêtes à toucher", scripts:"Une conversation à la pharmacie, répétée ligne par ligne", camera:"Une pancarte de menu photographiée et traduite", show:"Mode Montrer — une phrase en plein écran"},
+    de: {register:"Eine Tono-Antwort, mit erklärter Höflichkeitsform", talk:"Ein Gespräch in Echtzeit, mit Antworten zum Antippen", scripts:"Ein Apothekengespräch, Zeile für Zeile geprobt", camera:"Ein fotografiertes Menüschild, übersetzt", show:"Zeigen-Modus — ein Satz im Vollbild"},
+    vi: {register:"Một câu trả lời của Tono, kèm mức độ lịch sự được giải thích", talk:"Cuộc trò chuyện trực tiếp, có sẵn câu trả lời để chạm", scripts:"Hội thoại ở hiệu thuốc, tập từng câu", camera:"Ảnh chụp bảng thực đơn, đã được dịch", show:"Chế độ Hiển thị — một câu toàn màn hình"},
+    id: {register:"Jawaban Tono, dengan tingkat kesopanannya dijelaskan", talk:"Percakapan langsung, dengan balasan siap disentuh", scripts:"Percakapan di apotek, dilatih baris per baris", camera:"Papan menu yang difoto dan diterjemahkan", show:"Mode Tampilkan — satu kalimat layar penuh"},
+    th: {register:"คำตอบของ Tono พร้อมระบุระดับความสุภาพและเหตุผล", talk:"บทสนทนาสด พร้อมคำตอบให้แตะส่งได้ทันที", scripts:"บทสนทนาที่ร้านขายยา ซ้อมทีละบรรทัด", camera:"ป้ายเมนูที่ถ่ายไว้ แปลให้อ่านออก", show:"โหมดแสดง — ประโยคเต็มจอ"}
+  };
+  function applyShots(lang){
+    document.querySelectorAll("[data-shot]").forEach(function(img){
+      var name = img.getAttribute("data-shot");
+      img.onerror = function(){ this.onerror = null; this.src = "shots/" + name + ".jpg"; };
+      img.src = "shots/" + lang + "/" + name + ".jpg";
+      var alt = (SHOT_ALT[lang] || SHOT_ALT.en)[name];
+      if(alt) img.alt = alt;
+    });
+  }
+
   function applyLang(lang){
     if(!I18N[lang]) lang = "en";
     curLang = lang;
     document.documentElement.lang = lang;
     applyI18n();
+    applyShots(lang);
     langCur.textContent = SHORT[lang] || "English";
     langOpts.forEach(function(b){ b.setAttribute("aria-selected", String(b.dataset.lang === lang)); });
     try{ localStorage.setItem("tono_lang", lang); }catch(e){}
