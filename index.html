@@ -333,6 +333,7 @@
 
   /* ---------- Feature showcase (phone mockups) ---------- */
   .showcase{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:52px;align-items:start}
+  .showcase.two{grid-template-columns:repeat(2,1fr);max-width:620px;margin-left:auto;margin-right:auto;gap:40px}
   @media (max-width:860px){.showcase{grid-template-columns:1fr;max-width:360px;margin-left:auto;margin-right:auto;gap:48px}}
   .shot{display:flex;flex-direction:column;align-items:center;text-align:center}
   .shot .phone{--w:min(248px,88vw);margin-bottom:22px}
@@ -589,6 +590,41 @@
   </div>
 </section>
 
+<!-- ============ PRACTICE ============ -->
+<section class="band tight" id="practice">
+  <div class="wrap">
+    <div class="center" style="max-width:640px">
+      <span class="eyebrow reveal kicker" data-i18n="pr_eyebrow">Practice</span>
+      <h2 class="reveal" data-i18n="pr_h2">Next time, you won't<br>need to look it up.</h2>
+      <p class="lead reveal center" style="max-width:46ch" data-i18n="pr_body">Short drills built from your own phrases, not a word list. A few minutes, and they work offline. And once a week, Tono reads what you said and writes a short lesson on the register you're actually building — kept on your phone, never on our servers.</p>
+    </div>
+    <div class="showcase two">
+      <!-- Practice -->
+      <div class="shot reveal">
+        <div class="phone real">
+          <div class="notch"></div>
+          <div class="screen">
+            <img class="shot-img" data-shot="practice" src="shots/practice.jpg" alt="A Practice card — which phrase fits this person?" loading="lazy">
+          </div>
+        </div>
+        <div class="cap-tag" data-i18n="pr_practice_tag">Practice</div>
+        <div class="cap" data-i18n="pr_practice_cap">Which one fits? Drills from your own phrases, a few minutes at a time.</div>
+      </div>
+      <!-- Weekly lesson -->
+      <div class="shot reveal">
+        <div class="phone real">
+          <div class="notch"></div>
+          <div class="screen">
+            <img class="shot-img" data-shot="lesson" src="shots/lesson.jpg" alt="This week's lesson, written from the user's own phrases" loading="lazy">
+          </div>
+        </div>
+        <div class="cap-tag" data-i18n="pr_lesson_tag">Weekly lesson</div>
+        <div class="cap" data-i18n="pr_lesson_cap">Every week, a short lesson on the register you're building — written from what you said.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ LANGUAGES ============ -->
 <section class="band tight">
   <div class="wrap center" style="max-width:720px">
@@ -667,6 +703,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_pro_li1">Unlimited translations &amp; scripts</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_pro_li2">Photo reading</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_pro_li3">Everything in Free, without the wall</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_pro_li4">Practice drills &amp; a weekly lesson</span></li>
         </ul>
       </div>
     </div>
@@ -794,6 +831,13 @@
     sm_eyebrow: "Show Mode",
     sm_h2: "Hand your phone over.<br>It speaks for you.",
     sm_body: "Full screen, full brightness, and a courtesy note in their language so a stranger understands what they're looking at — and wants to help. When they answer, it listens and shows you what they said, with replies ready to tap.",
+    pr_eyebrow: "Practice",
+    pr_h2: "Next time, you won't<br>need to look it up.",
+    pr_body: "Short drills built from your own phrases, not a word list. A few minutes, and they work offline. And once a week, Tono reads what you said and writes a short lesson on the register you're actually building — kept on your phone, never on our servers.",
+    pr_practice_tag: "Practice",
+    pr_practice_cap: "Which one fits? Drills from your own phrases, a few minutes at a time.",
+    pr_lesson_tag: "Weekly lesson",
+    pr_lesson_cap: "Every week, a short lesson on the register you're building — written from what you said.",
     sm_showing: "You're showing them",
     sm_src_gl: "Do you have something for a cold?",
     lang_eyebrow: "Twelve languages, any direction",
@@ -821,6 +865,7 @@
     prem_pro_li1: "Unlimited translations & scripts",
     prem_pro_li2: "Photo reading",
     prem_pro_li3: "Everything in Free, without the wall",
+    prem_pro_li4: "Practice drills &amp; a weekly lesson",
     get_eyebrow: "Get Tono",
     get_h2: "Never wonder how that landed.",
     get_lead: "Free to try on iPhone. Say what you mean — and know how it will land, before you say it.",
@@ -905,6 +950,13 @@
     sm_eyebrow: "보여주기 모드",
     sm_h2: "휴대폰을 건네세요.<br>앱이 대신 말해줍니다.",
     sm_body: "전체 화면, 최대 밝기, 그리고 상대방의 언어로 적힌 정중한 안내문 덕분에 낯선 사람도 상황을 바로 이해하고 기꺼이 도와줄 것입니다. 상대방이 대답하면 앱이 이를 귀담아듣고 무슨 말을 했는지 보여주며, 바로 눌러서 답할 수 있는 문장까지 준비해 줍니다.",
+    pr_eyebrow: "연습",
+    pr_h2: "다음엔 찾아보지 않아도<br>됩니다.",
+    pr_body: "단어장이 아니라, 내가 실제로 쓴 문장으로 만든 짧은 훈련. 몇 분이면 충분하고 오프라인에서도 됩니다. 그리고 일주일에 한 번, Tono가 내가 말한 것을 읽고 지금 익히는 말투에 대한 짧은 레슨을 써 줍니다. 내 휴대폰에만 저장되고, 서버에는 남지 않습니다.",
+    pr_practice_tag: "연습",
+    pr_practice_cap: "어떤 말이 맞을까? 내 문장으로 만든 훈련, 한 번에 몇 분.",
+    pr_lesson_tag: "주간 레슨",
+    pr_lesson_cap: "매주, 지금 익히는 말투에 대한 짧은 레슨 — 내가 말한 것으로 씁니다.",
     sm_showing: "상대방에게 보여주는 화면",
     sm_src_gl: "감기약 같은 것 있을까요?",
     lang_eyebrow: "12개 언어, 어떤 방향이든 자유롭게",
@@ -932,6 +984,7 @@
     prem_pro_li1: "무제한 번역 및 스크립트",
     prem_pro_li2: "사진 인식 번역",
     prem_pro_li3: "무료 버전의 모든 기능에 제한 없는 이용까지",
+    prem_pro_li4: "연습 훈련과 주간 레슨",
     get_eyebrow: "Tono 다운로드",
     get_h2: "내 말이 어떻게 전달되었을지 더 이상 고민하지 마세요.",
     get_lead: "iPhone에서 무료로 시작해 보세요. 전하고 싶은 말을 그대로 전하고, 상대방에게 어떻게 와닿을지 미리 확인하세요.",
@@ -1016,6 +1069,13 @@
     sm_eyebrow: "ショーモード",
     sm_h2: "相手にスマホを渡すだけ。<br>あなたの代わりに話してくれます。",
     sm_body: "フルスクリーン、最大輝度、そして相手の言語で書かれた丁寧な案内文。これがあれば、見知らぬ人でも自分が何を見せられているのかを理解し、力になりたいと思ってくれます。相手が答えると、アプリがその声を聴き取って内容を表示し、タップするだけで返せる選択肢を用意します。",
+    pr_eyebrow: "練習",
+    pr_h2: "次は、調べなくても<br>言えるように。",
+    pr_body: "単語帳ではなく、自分が実際に使ったフレーズから作る短いドリル。数分で済み、オフラインでも使えます。さらに週に一度、Tonoがあなたの発言を読み、いま身につけている話し方について短いレッスンを書きます。保存されるのはあなたのスマホだけ。サーバーには残りません。",
+    pr_practice_tag: "練習",
+    pr_practice_cap: "どれが合う？自分のフレーズで作るドリル、一回数分。",
+    pr_lesson_tag: "週間レッスン",
+    pr_lesson_cap: "毎週、いま身につけている話し方についての短いレッスン — あなたの発言から書き起こします。",
     sm_showing: "相手に見せる画面",
     sm_src_gl: "風邪薬はありますか？",
     lang_eyebrow: "12の言語、どの組み合わせでも",
@@ -1043,6 +1103,7 @@
     prem_pro_li1: "翻訳とスクリプトの作成が無制限",
     prem_pro_li2: "写真読み込み機能",
     prem_pro_li3: "無料プランの全機能に加え、制限なしで利用可能",
+    prem_pro_li4: "練習ドリルと週間レッスン",
     get_eyebrow: "Tonoを入手",
     get_h2: "自分の言葉がどう受け止められたか、もう悩まない。",
     get_lead: "iPhoneで無料でお試しいただけます。伝えたいことを、自信を持って。相手にどう伝わるかを、口にする前に。",
@@ -1127,6 +1188,13 @@
     sm_eyebrow: "出示模式",
     sm_h2: "把手机递给对方。<br>它会替你开口。",
     sm_body: "全屏、最高亮度，并附带一条用对方语言写的礼貌提示，让陌生人一眼看懂并乐意提供帮助。当他们回答时，应用会进行倾听并显示内容，同时提供可直接点击的回复选项。",
+    pr_eyebrow: "练习",
+    pr_h2: "下次，不用再查了。",
+    pr_body: "不是单词表，而是用你自己说过的句子做成的小练习。几分钟就够，离线也能用。每周一次，Tono 会读一读你说过的话，为你正在掌握的语气写一篇小课。只存在你的手机里，不留在我们的服务器上。",
+    pr_practice_tag: "练习",
+    pr_practice_cap: "哪一句合适？用你自己的句子做练习，一次几分钟。",
+    pr_lesson_tag: "每周一课",
+    pr_lesson_cap: "每周一篇短课，讲你正在掌握的语气——从你说过的话写起。",
     sm_showing: "你正在向对方出示",
     sm_src_gl: "请问有治感冒的药吗？",
     lang_eyebrow: "十二种语言，任意互译",
@@ -1154,6 +1222,7 @@
     prem_pro_li1: "无限次翻译与脚本生成",
     prem_pro_li2: "照片识别",
     prem_pro_li3: "包含免费版的所有功能，且无任何限制",
+    prem_pro_li4: "练习题与每周一课",
     get_eyebrow: "获取 Tono",
     get_h2: "从此不再猜测对方的反应。",
     get_lead: "iPhone 用户可免费试用。言你所想 —— 并在开口之前，就已确知对方将如何接收。",
@@ -1238,6 +1307,13 @@
     sm_eyebrow: "展示模式",
     sm_h2: "遞出您的手機。<br>讓它為您發聲。",
     sm_body: "全螢幕、全亮度，並附帶以對方語言撰寫的禮貌說明，讓陌生人一眼就能看懂——並樂意伸出援手。當對方回答時，系統會進行聆聽並顯示其說話內容，同時準備好可直接點擊的回覆。",
+    pr_eyebrow: "練習",
+    pr_h2: "下次，不用再查了。",
+    pr_body: "不是單字表，而是用你自己說過的句子做成的小練習。幾分鐘就夠，離線也能用。每週一次，Tono 會讀一讀你說過的話，為你正在掌握的語氣寫一篇小課。只存在你的手機裡，不留在我們的伺服器上。",
+    pr_practice_tag: "練習",
+    pr_practice_cap: "哪一句合適？用你自己的句子做練習，一次幾分鐘。",
+    pr_lesson_tag: "每週一課",
+    pr_lesson_cap: "每週一篇短課，講你正在掌握的語氣——從你說過的話寫起。",
     sm_showing: "您正在向對方展示",
     sm_src_gl: "請問有治感冒的藥嗎？",
     lang_eyebrow: "十二種語言，雙向互譯",
@@ -1265,6 +1341,7 @@
     prem_pro_li1: "無限制翻譯與腳本",
     prem_pro_li2: "照片辨識翻譯",
     prem_pro_li3: "包含免費版的所有功能，且無任何限制",
+    prem_pro_li4: "練習題與每週一課",
     get_eyebrow: "取得 Tono",
     get_h2: "不再為語氣的效果而忐忑不安。",
     get_lead: "iPhone 可免費試用。精準表達您的心意 —— 在開口之前，就已掌握對方聽到的感受。",
@@ -1349,6 +1426,13 @@
     sm_eyebrow: "出示模式",
     sm_h2: "遞出你的手機。<br>讓它為你發聲。",
     sm_body: "全螢幕、全亮度，並附上對方語言的禮貌提示，讓陌生人一看就懂並樂意幫忙。當對方回答時，系統會進行聆聽並顯示其說話內容，同時提供可即時點擊的回覆。",
+    pr_eyebrow: "練習",
+    pr_h2: "下次，唔使再查喇。",
+    pr_body: "唔係生字表，而係用你自己講過嘅句子整成嘅小練習。幾分鐘就夠，離線都用得。每星期一次，Tono 會睇返你講過嘅嘢，為你正在學緊嘅語氣寫一篇小課。只會留喺你部電話，唔會留喺我哋嘅伺服器。",
+    pr_practice_tag: "練習",
+    pr_practice_cap: "邊句啱？用你自己嘅句子練習，一次幾分鐘。",
+    pr_lesson_tag: "每週一課",
+    pr_lesson_cap: "每星期一篇短課，講你正在學緊嘅語氣——由你講過嘅嘢寫起。",
     sm_showing: "你正在向對方出示",
     sm_src_gl: "請問有治感冒的藥嗎？",
     lang_eyebrow: "十二種語言，雙向互譯",
@@ -1376,6 +1460,7 @@
     prem_pro_li1: "無限次翻譯及腳本",
     prem_pro_li2: "相片辨識",
     prem_pro_li3: "包含免費版的所有功能，且無任何限制",
+    prem_pro_li4: "練習題同每週一課",
     get_eyebrow: "獲取 Tono",
     get_h2: "語氣如何，一目了然。",
     get_lead: "iPhone 用戶可免費試用。精準表達心中所想，並在開口前，就已掌握對方的感受。",
@@ -1460,6 +1545,13 @@
     sm_eyebrow: "Modo Mostrar",
     sm_h2: "Presta tu teléfono.<br>Habla por ti.",
     sm_body: "Pantalla completa, brillo al máximo y una nota de cortesía en su idioma para que un extraño entienda lo que está viendo y quiera ayudarte. Cuando responda, la app escucha y te muestra lo que dijo, con respuestas listas para tocar.",
+    pr_eyebrow: "Práctica",
+    pr_h2: "La próxima vez, no tendrás<br>que buscarlo.",
+    pr_body: "Ejercicios cortos hechos con tus propias frases, no con una lista de palabras. Unos minutos, y funcionan sin conexión. Y una vez a la semana, Tono lee lo que dijiste y escribe una breve lección sobre el registro que estás construyendo. Se guarda en tu teléfono, nunca en nuestros servidores.",
+    pr_practice_tag: "Práctica",
+    pr_practice_cap: "¿Cuál encaja? Ejercicios con tus propias frases, unos minutos cada vez.",
+    pr_lesson_tag: "Lección semanal",
+    pr_lesson_cap: "Cada semana, una breve lección sobre el registro que estás construyendo — escrita a partir de lo que dijiste.",
     sm_showing: "Les estás mostrando",
     sm_src_gl: "¿Tiene algo para el resfriado?",
     lang_eyebrow: "Doce idiomas, en cualquier dirección",
@@ -1487,6 +1579,7 @@
     prem_pro_li1: "Traducciones y textos ilimitados",
     prem_pro_li2: "Lectura de fotos",
     prem_pro_li3: "Todo lo de la versión gratuita, sin límites",
+    prem_pro_li4: "Ejercicios de práctica y una lección semanal",
     get_eyebrow: "Consigue Tono",
     get_h2: "No vuelvas a dudar de cómo se recibió tu mensaje.",
     get_lead: "Pruébalo gratis en el iPhone. Di exactamente lo que quieres decir y ten la certeza de cómo se recibirá, antes de hablar.",
@@ -1571,6 +1664,13 @@
     sm_eyebrow: "Mode Présentation",
     sm_h2: "Confiez votre téléphone.<br>Il parle pour vous.",
     sm_body: "Plein écran, luminosité maximale et un petit mot de courtoisie dans leur langue pour qu'un inconnu comprenne immédiatement ce qu'il regarde — et ait envie de vous aider. Lorsqu'il vous répond, l'application écoute et affiche ses propos, avec des suggestions de réponses prêtes à être touchées.",
+    pr_eyebrow: "Entraînement",
+    pr_h2: "La prochaine fois, vous n'aurez<br>pas besoin de chercher.",
+    pr_body: "De courts exercices construits à partir de vos propres phrases, pas d'une liste de mots. Quelques minutes, et ça marche hors ligne. Et une fois par semaine, Tono relit ce que vous avez dit et rédige une courte leçon sur le registre que vous êtes en train d'acquérir. Gardée sur votre téléphone, jamais sur nos serveurs.",
+    pr_practice_tag: "Entraînement",
+    pr_practice_cap: "Laquelle convient ? Des exercices à partir de vos phrases, quelques minutes à la fois.",
+    pr_lesson_tag: "Leçon hebdomadaire",
+    pr_lesson_cap: "Chaque semaine, une courte leçon sur le registre que vous construisez — rédigée à partir de ce que vous avez dit.",
     sm_showing: "Ce que vous leur montrez",
     sm_src_gl: "Auriez-vous quelque chose contre le rhume ?",
     lang_eyebrow: "Douze langues, dans toutes les directions",
@@ -1598,6 +1698,7 @@
     prem_pro_li1: "Traductions & scripts illimités",
     prem_pro_li2: "Lecture de photos",
     prem_pro_li3: "Tout ce qui est inclus dans l'offre gratuite, sans limites",
+    prem_pro_li4: "Exercices d'entraînement et une leçon hebdomadaire",
     get_eyebrow: "Obtenir Tono",
     get_h2: "Ne vous demandez plus jamais comment votre message a été reçu.",
     get_lead: "Essai gratuit sur iPhone. Dites ce que vous pensez — et sachez comment ce sera perçu, avant même de le dire.",
@@ -1682,6 +1783,13 @@
     sm_eyebrow: "Präsentationsmodus",
     sm_h2: "Geben Sie Ihr Telefon einfach weiter.<br>Es spricht für Sie.",
     sm_body: "Vollbild, volle Helligkeit und ein höflicher Hinweis in ihrer Sprache, damit ein Fremder versteht, worauf er blickt — und gerne hilft. Wenn Ihr Gegenüber antwortet, hört die App zu, zeigt Ihnen das Gesagte und hält passende Antworten zum Antippen bereit.",
+    pr_eyebrow: "Üben",
+    pr_h2: "Beim nächsten Mal müssen Sie<br>nicht mehr nachschlagen.",
+    pr_body: "Kurze Übungen aus Ihren eigenen Sätzen, nicht aus einer Vokabelliste. Ein paar Minuten, auch offline. Und einmal pro Woche liest Tono, was Sie gesagt haben, und schreibt eine kurze Lektion zu der Höflichkeitsform, die Sie gerade aufbauen. Bleibt auf Ihrem Telefon, nie auf unseren Servern.",
+    pr_practice_tag: "Üben",
+    pr_practice_cap: "Welcher Satz passt? Übungen aus Ihren eigenen Sätzen, ein paar Minuten am Stück.",
+    pr_lesson_tag: "Wochenlektion",
+    pr_lesson_cap: "Jede Woche eine kurze Lektion zu der Höflichkeitsform, die Sie aufbauen — geschrieben aus dem, was Sie gesagt haben.",
     sm_showing: "Sie zeigen Folgendes",
     sm_src_gl: "Haben Sie etwas gegen Erkältung?",
     lang_eyebrow: "Zwölf Sprachen, in jede Richtung",
@@ -1709,6 +1817,7 @@
     prem_pro_li1: "Unbegrenzte Übersetzungen &amp; Skripte",
     prem_pro_li2: "Foto-Erkennung",
     prem_pro_li3: "Alles aus der kostenlosen Version, ohne Einschränkungen",
+    prem_pro_li4: "Übungen und eine Wochenlektion",
     get_eyebrow: "Tono herunterladen",
     get_h2: "Nie wieder fragen, wie es angekommen ist.",
     get_lead: "Kostenlos testen auf dem iPhone. Sagen Sie, was Sie meinen – und wissen Sie schon vor dem Sprechen, wie es ankommt.",
@@ -1793,6 +1902,13 @@
     sm_eyebrow: "Chế độ Hiển thị",
     sm_h2: "Đưa điện thoại của bạn cho họ.<br>Ứng dụng sẽ nói thay bạn.",
     sm_body: "Toàn màn hình, độ sáng tối đa, cùng một lời nhắn lịch sự bằng chính ngôn ngữ của họ để một người lạ có thể hiểu ngay họ đang nhìn vào cái gì — và sẵn lòng giúp đỡ. Khi họ trả lời, ứng dụng sẽ lắng nghe và hiển thị những gì họ nói, kèm theo các câu phản hồi có sẵn để bạn chỉ việc chạm.",
+    pr_eyebrow: "Luyện tập",
+    pr_h2: "Lần sau, bạn sẽ không cần<br>tra lại nữa.",
+    pr_body: "Những bài luyện ngắn được tạo từ chính câu bạn đã dùng, không phải từ danh sách từ vựng. Chỉ vài phút, và dùng được cả khi ngoại tuyến. Mỗi tuần một lần, Tono đọc lại những gì bạn đã nói và viết một bài học ngắn về cách xưng hô bạn đang xây dựng. Lưu trên điện thoại của bạn, không bao giờ trên máy chủ của chúng tôi.",
+    pr_practice_tag: "Luyện tập",
+    pr_practice_cap: "Câu nào phù hợp? Bài luyện từ chính câu của bạn, mỗi lần vài phút.",
+    pr_lesson_tag: "Bài học hằng tuần",
+    pr_lesson_cap: "Mỗi tuần, một bài học ngắn về cách xưng hô bạn đang xây dựng — viết từ những gì bạn đã nói.",
     sm_showing: "Bạn đang cho họ xem",
     sm_src_gl: "Bạn có thuốc gì trị cảm lạnh không?",
     lang_eyebrow: "Mười hai ngôn ngữ, dịch chuyển linh hoạt",
@@ -1820,6 +1936,7 @@
     prem_pro_li1: "Không giới hạn bản dịch & kịch bản",
     prem_pro_li2: "Đọc văn bản qua ảnh",
     prem_pro_li3: "Mọi tính năng của bản Miễn phí, không giới hạn",
+    prem_pro_li4: "Bài luyện tập và bài học hằng tuần",
     get_eyebrow: "Tải Tono",
     get_h2: "Không còn phải băn khoăn người nghe sẽ cảm nhận thế nào.",
     get_lead: "Dùng thử miễn phí trên iPhone. Nói đúng ý — và hiểu rõ thông điệp sẽ được đón nhận thế nào, trước khi bạn nói ra.",
@@ -1904,6 +2021,13 @@
     sm_eyebrow: "Mode Tunjuk",
     sm_h2: "Serahkan ponsel Anda.<br>Aplikasi ini akan bicara untuk Anda.",
     sm_body: "Layar penuh, kecerahan penuh, dan catatan sopan dalam bahasa mereka agar orang asing memahami apa yang mereka lihat — dan bersedia membantu. Saat mereka menjawab, aplikasi ini mendengarkan dan menunjukkan apa yang mereka katakan, lengkap dengan balasan yang siap diketuk.",
+    pr_eyebrow: "Latihan",
+    pr_h2: "Lain kali, Anda tidak perlu<br>mencarinya lagi.",
+    pr_body: "Latihan singkat yang dibuat dari kalimat Anda sendiri, bukan dari daftar kata. Beberapa menit saja, dan bisa dipakai offline. Dan seminggu sekali, Tono membaca apa yang Anda ucapkan lalu menulis pelajaran singkat tentang tingkat kesopanan yang sedang Anda bangun. Tersimpan di ponsel Anda, tidak pernah di server kami.",
+    pr_practice_tag: "Latihan",
+    pr_practice_cap: "Mana yang pas? Latihan dari kalimat Anda sendiri, beberapa menit setiap kali.",
+    pr_lesson_tag: "Pelajaran mingguan",
+    pr_lesson_cap: "Setiap minggu, pelajaran singkat tentang tingkat kesopanan yang sedang Anda bangun — ditulis dari apa yang Anda ucapkan.",
     sm_showing: "Anda menunjukkan kepada mereka",
     sm_src_gl: "Apakah Anda punya obat untuk flu?",
     lang_eyebrow: "Dua belas bahasa, ke segala arah",
@@ -1931,6 +2055,7 @@
     prem_pro_li1: "Terjemahan & skrip tanpa batas",
     prem_pro_li2: "Pembacaan foto",
     prem_pro_li3: "Semua yang ada di versi Gratis, tanpa batasan",
+    prem_pro_li4: "Latihan dan pelajaran mingguan",
     get_eyebrow: "Dapatkan Tono",
     get_h2: "Jangan pernah ragu bagaimana pesan Anda diterima.",
     get_lead: "Gratis dicoba di iPhone. Katakan apa yang Anda maksud — dan ketahui bagaimana pesan itu akan diterima, sebelum Anda mengucapkannya.",
@@ -2015,6 +2140,13 @@
     sm_eyebrow: "โหมดแสดงหน้าจอ",
     sm_h2: "ยื่นโทรศัพท์ของคุณให้คู่สนทนา<br>แล้วให้แอปพูดแทนคุณ",
     sm_body: "แสดงผลเต็มจอ เปิดความสว่างสุด พร้อมข้อความสุภาพในภาษาของพวกเขา เพื่อให้คนแปลกหน้าเข้าใจทันทีว่าพวกเขากำลังดูอะไรอยู่ — และยินดีที่จะช่วยเหลือคุณ เมื่อพวกเขาตอบกลับมา แอปจะฟังและแสดงสิ่งที่พวกเขาพูด พร้อมเตรียมคำตอบกลับให้คุณแตะส่งได้ทันที",
+    pr_eyebrow: "ฝึกฝน",
+    pr_h2: "ครั้งหน้า ไม่ต้องเปิดหาอีกแล้ว",
+    pr_body: "แบบฝึกสั้น ๆ ที่สร้างจากประโยคของคุณเอง ไม่ใช่รายการคำศัพท์ ใช้เวลาไม่กี่นาที และใช้ได้แม้ออฟไลน์ และสัปดาห์ละครั้ง Tono จะอ่านสิ่งที่คุณพูดแล้วเขียนบทเรียนสั้น ๆ เกี่ยวกับระดับความสุภาพที่คุณกำลังฝึกอยู่ เก็บไว้ในโทรศัพท์ของคุณเท่านั้น ไม่เคยอยู่บนเซิร์ฟเวอร์ของเรา",
+    pr_practice_tag: "ฝึกฝน",
+    pr_practice_cap: "ประโยคไหนเหมาะ? แบบฝึกจากประโยคของคุณเอง ครั้งละไม่กี่นาที",
+    pr_lesson_tag: "บทเรียนประจำสัปดาห์",
+    pr_lesson_cap: "ทุกสัปดาห์ บทเรียนสั้น ๆ เกี่ยวกับระดับความสุภาพที่คุณกำลังฝึก — เขียนจากสิ่งที่คุณพูด",
     sm_showing: "สิ่งที่คุณกำลังแสดงให้พวกเขาดู",
     sm_src_gl: "มียาแก้หวัดบ้างไหมครับ/ค่ะ?",
     lang_eyebrow: "12 ภาษา แปลสลับไปมาได้ทุกทิศทาง",
@@ -2042,6 +2174,7 @@
     prem_pro_li1: "แปลภาษาและสคริปต์ได้ไม่จำกัด",
     prem_pro_li2: "อ่านข้อความจากภาพถ่าย",
     prem_pro_li3: "ครบทุกฟีเจอร์ในเวอร์ชันฟรี แบบไม่มีข้อจำกัด",
+    prem_pro_li4: "แบบฝึกหัดและบทเรียนประจำสัปดาห์",
     get_eyebrow: "ดาวน์โหลด Tono",
     get_h2: "หมดกังวลว่าผู้ฟังจะรู้สึกอย่างไร",
     get_lead: "ทดลองใช้ฟรีบน iPhone พูดสิ่งที่คุณต้องการสื่อสาร — และเข้าใจความรู้สึกของผู้รับสารอย่างแม่นยำก่อนที่คุณจะพูดออกไป",
@@ -2089,18 +2222,18 @@
      missing falls back to the English shot at the old flat path, so a gap
      degrades instead of leaving a hole in the page. */
   var SHOT_ALT = {
-    en: {register:"A Tono answer, with its politeness level named and explained", talk:"A live conversation in Tono, with ready replies to tap", scripts:"A pharmacy conversation, rehearsed line by line", camera:"A photographed menu sign, read and translated", show:"Show Mode — a full-screen phrase to show someone"},
-    ko: {register:"Tono의 답변 — 말투 단계를 짚어주고 이유까지 설명합니다", talk:"실시간 대화 — 바로 누를 수 있는 답변까지", scripts:"약국에서 나눌 대화를 한 줄씩 연습", camera:"메뉴판 사진을 찍어 번역", show:"보여주기 모드 — 전체 화면으로 보여주는 문장"},
-    ja: {register:"Tonoの回答 — 敬語のレベルを示し、理由まで説明", talk:"リアルタイム会話と、タップで送れる返答", scripts:"薬局での会話を一行ずつ練習", camera:"メニューの写真を読み取って翻訳", show:"提示モード — 全画面で見せる一文"},
-    zh: {register:"Tono 的答案，标注敬语级别并解释原因", talk:"实时对话，还有可一键发送的回复", scripts:"药店对话，逐句排练", camera:"拍下菜单，直接读懂", show:"展示模式 — 全屏显示给对方看的句子"},
-    "zh-Hant": {register:"Tono 的答案，標註敬語程度並解釋原因", talk:"即時對話，還有可一鍵送出的回覆", scripts:"藥局對話，逐句排練", camera:"拍下菜單，直接讀懂", show:"展示模式 — 全螢幕顯示給對方看的句子"},
-    "zh-HK": {register:"Tono 嘅答案，標明敬語程度同解釋原因", talk:"即時對話，仲有撳一下就送出嘅回覆", scripts:"藥房對話，一句句練習", camera:"影低餐牌，即刻睇得明", show:"展示模式 — 全螢幕俾對方睇嘅句子"},
-    es: {register:"Una respuesta de Tono, con su nivel de formalidad explicado", talk:"Una conversación en directo, con respuestas listas para tocar", scripts:"Una conversación de farmacia, ensayada línea a línea", camera:"Un cartel de menú fotografiado y traducido", show:"Modo Mostrar — una frase a pantalla completa"},
-    fr: {register:"Une réponse de Tono, avec son niveau de politesse expliqué", talk:"Une conversation en direct, avec des réponses prêtes à toucher", scripts:"Une conversation à la pharmacie, répétée ligne par ligne", camera:"Une pancarte de menu photographiée et traduite", show:"Mode Montrer — une phrase en plein écran"},
-    de: {register:"Eine Tono-Antwort, mit erklärter Höflichkeitsform", talk:"Ein Gespräch in Echtzeit, mit Antworten zum Antippen", scripts:"Ein Apothekengespräch, Zeile für Zeile geprobt", camera:"Ein fotografiertes Menüschild, übersetzt", show:"Zeigen-Modus — ein Satz im Vollbild"},
-    vi: {register:"Một câu trả lời của Tono, kèm mức độ lịch sự được giải thích", talk:"Cuộc trò chuyện trực tiếp, có sẵn câu trả lời để chạm", scripts:"Hội thoại ở hiệu thuốc, tập từng câu", camera:"Ảnh chụp bảng thực đơn, đã được dịch", show:"Chế độ Hiển thị — một câu toàn màn hình"},
-    id: {register:"Jawaban Tono, dengan tingkat kesopanannya dijelaskan", talk:"Percakapan langsung, dengan balasan siap disentuh", scripts:"Percakapan di apotek, dilatih baris per baris", camera:"Papan menu yang difoto dan diterjemahkan", show:"Mode Tampilkan — satu kalimat layar penuh"},
-    th: {register:"คำตอบของ Tono พร้อมระบุระดับความสุภาพและเหตุผล", talk:"บทสนทนาสด พร้อมคำตอบให้แตะส่งได้ทันที", scripts:"บทสนทนาที่ร้านขายยา ซ้อมทีละบรรทัด", camera:"ป้ายเมนูที่ถ่ายไว้ แปลให้อ่านออก", show:"โหมดแสดง — ประโยคเต็มจอ"}
+    en: {register:"A Tono answer, with its politeness level named and explained", talk:"A live conversation in Tono, with ready replies to tap", scripts:"A pharmacy conversation, rehearsed line by line", camera:"A photographed menu sign, read and translated", show:"Show Mode — a full-screen phrase to show someone", practice:"A Practice card — which phrase fits this person?", lesson:"This week's lesson, written from the user's own phrases"},
+    ko: {register:"Tono의 답변 — 말투 단계를 짚어주고 이유까지 설명합니다", talk:"실시간 대화 — 바로 누를 수 있는 답변까지", scripts:"약국에서 나눌 대화를 한 줄씩 연습", camera:"메뉴판 사진을 찍어 번역", show:"보여주기 모드 — 전체 화면으로 보여주는 문장", practice:"연습 카드 — 이 상대에게 맞는 말은?", lesson:"이번 주 레슨 — 내가 쓴 문장으로 만든"},
+    ja: {register:"Tonoの回答 — 敬語のレベルを示し、理由まで説明", talk:"リアルタイム会話と、タップで送れる返答", scripts:"薬局での会話を一行ずつ練習", camera:"メニューの写真を読み取って翻訳", show:"提示モード — 全画面で見せる一文", practice:"練習カード — この相手に合う言い方は？", lesson:"今週のレッスン — 自分のフレーズから"},
+    zh: {register:"Tono 的答案，标注敬语级别并解释原因", talk:"实时对话，还有可一键发送的回复", scripts:"药店对话，逐句排练", camera:"拍下菜单，直接读懂", show:"展示模式 — 全屏显示给对方看的句子", practice:"练习卡片——哪一句适合这个人？", lesson:"本周课程——由你自己的句子写成"},
+    "zh-Hant": {register:"Tono 的答案，標註敬語程度並解釋原因", talk:"即時對話，還有可一鍵送出的回覆", scripts:"藥局對話，逐句排練", camera:"拍下菜單，直接讀懂", show:"展示模式 — 全螢幕顯示給對方看的句子", practice:"練習卡片——哪一句適合這個人？", lesson:"本週課程——由你自己的句子寫成"},
+    "zh-HK": {register:"Tono 嘅答案，標明敬語程度同解釋原因", talk:"即時對話，仲有撳一下就送出嘅回覆", scripts:"藥房對話，一句句練習", camera:"影低餐牌，即刻睇得明", show:"展示模式 — 全螢幕俾對方睇嘅句子", practice:"練習卡——邊句啱呢個人？", lesson:"今個星期嘅課——由你自己嘅句子寫成"},
+    es: {register:"Una respuesta de Tono, con su nivel de formalidad explicado", talk:"Una conversación en directo, con respuestas listas para tocar", scripts:"Una conversación de farmacia, ensayada línea a línea", camera:"Un cartel de menú fotografiado y traducido", show:"Modo Mostrar — una frase a pantalla completa", practice:"Una tarjeta de práctica: ¿qué frase encaja con esta persona?", lesson:"La lección de esta semana, escrita a partir de tus propias frases"},
+    fr: {register:"Une réponse de Tono, avec son niveau de politesse expliqué", talk:"Une conversation en direct, avec des réponses prêtes à toucher", scripts:"Une conversation à la pharmacie, répétée ligne par ligne", camera:"Une pancarte de menu photographiée et traduite", show:"Mode Montrer — une phrase en plein écran", practice:"Une carte d'entraînement : quelle phrase convient à cette personne ?", lesson:"La leçon de la semaine, rédigée à partir de vos propres phrases"},
+    de: {register:"Eine Tono-Antwort, mit erklärter Höflichkeitsform", talk:"Ein Gespräch in Echtzeit, mit Antworten zum Antippen", scripts:"Ein Apothekengespräch, Zeile für Zeile geprobt", camera:"Ein fotografiertes Menüschild, übersetzt", show:"Zeigen-Modus — ein Satz im Vollbild", practice:"Eine Übungskarte – welcher Satz passt zu dieser Person?", lesson:"Die Lektion der Woche, aus Ihren eigenen Sätzen geschrieben"},
+    vi: {register:"Một câu trả lời của Tono, kèm mức độ lịch sự được giải thích", talk:"Cuộc trò chuyện trực tiếp, có sẵn câu trả lời để chạm", scripts:"Hội thoại ở hiệu thuốc, tập từng câu", camera:"Ảnh chụp bảng thực đơn, đã được dịch", show:"Chế độ Hiển thị — một câu toàn màn hình", practice:"Một thẻ luyện tập — câu nào phù hợp với người này?", lesson:"Bài học tuần này, viết từ chính câu của bạn"},
+    id: {register:"Jawaban Tono, dengan tingkat kesopanannya dijelaskan", talk:"Percakapan langsung, dengan balasan siap disentuh", scripts:"Percakapan di apotek, dilatih baris per baris", camera:"Papan menu yang difoto dan diterjemahkan", show:"Mode Tampilkan — satu kalimat layar penuh", practice:"Kartu latihan — kalimat mana yang pas untuk orang ini?", lesson:"Pelajaran minggu ini, ditulis dari kalimat Anda sendiri"},
+    th: {register:"คำตอบของ Tono พร้อมระบุระดับความสุภาพและเหตุผล", talk:"บทสนทนาสด พร้อมคำตอบให้แตะส่งได้ทันที", scripts:"บทสนทนาที่ร้านขายยา ซ้อมทีละบรรทัด", camera:"ป้ายเมนูที่ถ่ายไว้ แปลให้อ่านออก", show:"โหมดแสดง — ประโยคเต็มจอ", practice:"การ์ดฝึก — ประโยคไหนเหมาะกับคนนี้?", lesson:"บทเรียนสัปดาห์นี้ เขียนจากประโยคของคุณเอง"}
   };
   function applyShots(lang){
     document.querySelectorAll("[data-shot]").forEach(function(img){
