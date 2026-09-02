@@ -335,6 +335,8 @@
   .showcase{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:52px;align-items:start}
   .showcase.two{grid-template-columns:repeat(2,1fr);max-width:620px;margin-left:auto;margin-right:auto;gap:40px}
   @media (max-width:860px){.showcase{grid-template-columns:1fr;max-width:360px;margin-left:auto;margin-right:auto;gap:48px}}
+  /* .showcase.two outranks the rule above (two classes vs one), so it needs its own collapse. */
+  @media (max-width:860px){.showcase.two{grid-template-columns:1fr;max-width:360px;gap:48px}}
   .shot{display:flex;flex-direction:column;align-items:center;text-align:center}
   .shot .phone{--w:min(248px,88vw);margin-bottom:22px}
   .shot .cap-tag{font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--jjok);margin-bottom:7px}
