@@ -318,7 +318,7 @@
     position:absolute;top:calc(100% + 10px);right:0;background:var(--card);
     border:1px solid var(--card-hair);border-radius:16px;
     box-shadow:0 26px 64px -26px rgba(20,30,60,.55);padding:8px;
-    display:grid;gap:1px;min-width:210px;z-index:60;max-height:72vh;overflow:auto;
+    display:grid;gap:1px;min-width:250px;z-index:60;max-height:72vh;overflow:auto;
   }
   .langmenu[hidden]{display:none}
   .langmenu button{
@@ -327,7 +327,12 @@
     font-family:var(--sans);font-size:15.5px;font-weight:600;color:var(--fg);cursor:pointer;transition:background .15s;
   }
   .langmenu button:hover{background:var(--jjok-wash)}
-  .langmenu button .lat{font-size:12px;color:var(--dim);font-weight:500}
+  /* The English gloss hugs the right edge. It must not wrap: "Traditional
+     Chinese" and "Brazilian Portuguese" broke onto a second line, which then
+     sat left-aligned inside the span and read as a broken right edge. Let the
+     endonym wrap instead — it is the primary label. */
+  .langmenu button .lat{font-size:12px;color:var(--dim);font-weight:500;
+    white-space:nowrap;flex:none;text-align:right}
   .langmenu button[aria-selected="true"]{color:var(--jjok)}
   .langmenu button[aria-selected="true"] .lat{color:var(--jjok);opacity:.8}
 
@@ -2313,7 +2318,7 @@
     ph_tab2: "Seu chefe",
     ph_src: "“Já comeu?”",
     reg0_rel: "Alguém próximo, sem distância",
-    reg0_why: "Linguagem informal — calorosa e familiar. Qualquer coisa mais formal soaria frio entre amigos.",
+    reg0_why: "Linguagem informal — calorosa e familiar. Qualquer coisa mais formal soaria fria entre amigos.",
     reg1_rel: "Alguém que você acabou de conhecer",
     reg1_why: "Linguagem polida do dia a dia — amigável, mas respeitosa. O padrão seguro com a maioria das pessoas que você não conhece bem.",
     reg2_rel: "Seu chefe, um cliente",
@@ -2334,14 +2339,14 @@
     feat3_h3: "Peça como se soubesse ler o cardápio",
     feat3_p: "Aponte a câmera para um cardápio, placa ou rótulo. A tradução vem item por item, com o contexto que um morador local nunca precisaria explicar.",
     feat4_h3: "Tenha uma conversa de verdade, não só palavras",
-    feat4_p: "Um bate-papo ao vivo de ponta a ponta na mesa. A pessoa fala, você vê o que ela quis dizer e responde tocando em uma sugestão ou falando o que quiser. A tela dividida mostra os dois lados ao mesmo tempo — um celular, duas pessoas, do jeito certo para cada uma.",
+    feat4_p: "Uma conversa ao vivo, frente a frente. A pessoa fala, você vê o que ela quis dizer e responde tocando em uma sugestão ou falando o que quiser. A tela dividida mostra os dois lados ao mesmo tempo — um celular, duas pessoas, do jeito certo para cada uma.",
     feat5_h3: "Chegue confiante em vez de ansioso",
     feat5_p: "Descreva a situação — uma ida à farmácia, a primeira reunião, o processo do visto. Veja o diálogo completo: o que falar, o que você vai ouvir de volta e uma resposta pronta para cada momento.",
     show_eyebrow: "Veja em ação",
     show_h2: "Feito para o momento exato em que você está.",
     talk_lbl: "Disseram",
     talk_them_gl: "“O que vai desejar?”",
-    talk_you_gl: "Um americano, por favor · 해요체",
+    talk_you_gl: "Um café americano, por favor · 해요체",
     show_talk_tag: "Conversa",
     show_talk_cap: "Ouça o que quiseram dizer — e responda com um toque.",
     scr_lbl: "Roteiro · na farmácia",
@@ -2380,7 +2385,7 @@
     lang_h2: "Aprenda no idioma em que você realmente pensa.",
     lang_lead: "Cada explicação chega no seu idioma — assim como o próprio app. É no coreano que o Tono vai mais a fundo, mas tudo funciona perfeitamente entre quaisquer dois idiomas.",
     how_eyebrow: "Como funciona",
-    how_h2: "A três toques da frase certa a se dizer.",
+    how_h2: "Três toques até a frase certa.",
     how1_h3: "Digite a frase",
     how1_p: "Ou cole uma mensagem, tire uma foto ou apenas fale. Em qualquer um dos seus idiomas, em qualquer direção.",
     how2_h3: "Adicione quem &amp; onde",
@@ -2393,12 +2398,12 @@
     prem_free_per: "traduções para testar, por nossa conta",
     prem_free_li1: "Tradução completa e contextualizada",
     prem_free_li2: "Nível de formalidade, explicado",
-    prem_free_li3: "Falar é sempre de graça",
+    prem_free_li3: "Conversa é sempre de graça",
     prem_pro_tier: "Tono Pro",
     prem_pro_price: "7 dias grátis",
     prem_pro_per: "depois mensal ou anual · cancele quando quiser",
     prem_pro_yr: "Preços para a sua região exibidos na App Store",
-    prem_pro_li1: "Traduções e transcrições ilimitadas",
+    prem_pro_li1: "Traduções e roteiros ilimitados",
     prem_pro_li2: "Leitura por foto",
     prem_pro_li3: "Tudo do plano Grátis, sem limitações",
     prem_pro_li4: "Exercícios práticos &amp; uma lição semanal",
@@ -2417,7 +2422,7 @@
     mom2_h3: "Sua primeira semana na equipe",
     mom2_p: "Colegas de trabalho não vão dizer se o seu coreano soa ríspido. Eles só vão parar de pedir sua opinião.",
     mom3_h3: "A mensagem que você não consegue decifrar",
-    mom3_p: "Amigável, formal ou flerte? Traduzir as palavras é fácil. O tom por trás delas não era — até agora.",
+    mom3_p: "Amigável, formal ou flerte? Traduzir as palavras é fácil. O tom por trás delas não é — até agora.",
     prem_free_li4: "Tradução offline — ilimitada, direto no seu aparelho",
   },
   /*MORE_LANGS*/
