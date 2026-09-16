@@ -152,11 +152,12 @@
   }
   nav.top.scrolled{border-color:var(--hair)}
   nav.top .row{display:flex;align-items:center;justify-content:space-between;height:64px}
-  nav.top .brand{font-size:23px}
-  nav.top .links{display:flex;align-items:center;gap:30px;font-size:14.5px;font-weight:500;color:var(--dim)}
+  nav.top .brand{font-size:23px;white-space:nowrap;flex:none}
+  nav.top .links{display:flex;align-items:center;gap:30px;margin-left:24px;font-size:14.5px;font-weight:500;color:var(--dim)}
   nav.top .links a:hover{color:var(--fg)}
   nav.top .links .btn{padding:9px 17px;font-size:14px}
-  @media (max-width:720px){nav.top .links a.navlink{display:none}}
+  @media (max-width:900px){nav.top .links a.navlink{display:none}}
+  @media (max-width:520px){nav.top .brand{font-size:20px}nav.top .links{gap:14px}nav.top .langtoggle #langCur{display:none}}
 
   /* ---------- Hero ---------- */
   .hero{padding:72px 0 40px;overflow:hidden}
@@ -396,7 +397,7 @@
 <!-- ============ NAV ============ -->
 <nav class="top" id="nav">
   <div class="wrap row">
-    <a class="brand wordmark" href="#top">Tono<span class="dot">.</span></a>
+    <a class="brand wordmark" href="#top" aria-label="Tono Translate — home">Tono Translate<span class="dot">.</span></a>
     <div class="links">
       <a class="navlink" href="#registers" data-i18n="nav_registers">Why it matters</a>
       <a class="navlink" href="#features" data-i18n="nav_features">Features</a>
@@ -450,7 +451,7 @@
       <p class="note reveal" style="margin-top:14px" data-i18n="hero_note">Free to try · Korean, Japanese, Chinese &amp; 10 more</p>
     </div>
 
-    <!-- The real thing: an actual Tono answer, no mockup -->
+    <!-- The real thing: an actual Tono Translate answer, no mockup -->
     <div class="reveal">
       <div class="phone real">
         <div class="notch"></div>
@@ -771,7 +772,7 @@
 <footer>
   <div class="wrap row">
     <div>
-      <span class="wordmark" style="font-size:20px">Tono<span class="dot">.</span></span>
+      <span class="wordmark" style="font-size:20px">Tono Translate<span class="dot">.</span></span>
       <span style="margin-left:12px" data-i18n="foot_tagline">Translated as you meant it.</span>
     </div>
     <div class="flinks">
