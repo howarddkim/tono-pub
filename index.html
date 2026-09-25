@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+<script>document.documentElement.classList.add("js")</script>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -157,6 +158,10 @@
   nav.top .links a:hover{color:var(--fg)}
   nav.top .links .btn{padding:9px 17px;font-size:14px}
   @media (max-width:900px){nav.top .links a.navlink{display:none}}
+  /* The links never wrap; the script hides them when they don't fit on one line in the
+     current language (fitNav) — French needs ~1120px where Chinese needs ~800. */
+  nav.top .links a.navlink{white-space:nowrap}
+  nav.top.compact .links a.navlink{display:none}
   @media (max-width:520px){nav.top .brand{font-size:20px}nav.top .links{gap:14px}nav.top .langtoggle #langCur{display:none}}
 
   /* ---------- Hero ---------- */
@@ -307,6 +312,59 @@
   footer .flinks{display:flex;gap:22px;flex-wrap:wrap}
   footer a:hover{color:var(--fg)}
 
+  /* ---------- 까치 and 말이 (2026-09-24) ----------
+     The app's cast, drawn from the app's own sources by nuance/marketing/mascots/web.py:
+     까치 is ios/branding/kkachi/kkachi-layers.svg (parts as classes, pivots from
+     kkachi-pivots.json), 말이 is MascotTier's geometry, coloured with currentColor and its
+     eyes cut out with a mask. The app's rule holds here: 말이 wherever a sentence or its
+     level is shown, 까치 wherever it's about you. Motion is ONE-SHOT, never a loop, and the
+     reduced-motion rule below switches it all off — so every resting state is the final pose. */
+  .kk-mark{height:.95em;width:auto;vertical-align:-.06em;margin-left:.1em}
+  .kk-says{--h:88px;--bw:calc(var(--h)*1.283);--bh:calc(var(--h)*.44);--bubw:calc(var(--bh)*1.26);
+    --rise:calc(var(--bh)*.9);position:relative;display:block;pointer-events:none;
+    width:calc(var(--bw)*.86 + 2px + var(--bubw)*.94);height:calc(var(--h) + var(--rise))}
+  .kk-says.flip{transform:scaleX(-1)}
+  .kk-fly{position:absolute;left:0;top:var(--rise);width:var(--bw);height:var(--h);transform-origin:61% 99%}
+  .kk-fly svg,.kk-fly img{display:block;width:100%;height:100%}
+  .kk-bubble{position:absolute;left:calc(var(--bw)*.86 + 2px - var(--bubw)*.06);
+    top:calc(var(--rise) + var(--h)*.30 - var(--bh) - 2px);width:var(--bubw);height:var(--bh);
+    color:var(--jjok);transform-origin:6% 100%}
+  .kk-bubble svg{display:block;width:100%;height:100%}
+  .kk-live svg .kk-wing{transform-box:view-box;transform-origin:226px 138px}
+  .kk-live svg .kk-tail{transform-box:view-box;transform-origin:150px 190px}
+  .kk-live svg .kk-head{transform-box:view-box;transform-origin:262px 168px}
+  /* Until the live bird is inlined it stays hidden — otherwise the still one would show perched
+     and then jump into the air. Without JS the still <img> simply stands there. */
+  .js .kk-anim:not(.ready){visibility:hidden}
+  /* The hero: 까치 lands on the phone, facing the headline, and says it (the app's splash). */
+  #top{padding-top:132px}
+  .phone .kk-perch{--h:100px;position:absolute;right:-10px;bottom:calc(100% - 3px);z-index:4}
+  @media (max-width:900px){#top{padding-top:72px} .hero-phone{padding-top:104px} .phone .kk-perch{--h:84px}}
+  .kk-anim.go .kk-fly{animation:kk-land .74s cubic-bezier(.25,.7,.35,1) .35s both}
+  .kk-anim.go .kk-wing{animation:kk-flap .74s linear .35s both}
+  .kk-anim.go .kk-tail{animation:kk-flick .4s ease-out .98s both}
+  .kk-anim.go .kk-bubble{animation:kk-pop .32s cubic-bezier(.3,1.35,.5,1) 1.12s both}
+  .kk-anim.go .kk-head{animation:kk-bow .7s ease-in-out 1.3s both}
+  .kk-anim.go .kk-eyelids{animation:kk-blink .2s linear 1.5s both}
+  /* The send-off: already standing, it chirps and bows once as the section arrives. */
+  .kk-cta{--h:96px;margin:0 auto 22px}
+  .kk-cta.in .kk-bubble{animation:kk-pop .32s cubic-bezier(.3,1.35,.5,1) .5s both}
+  .kk-cta.in .kk-head{animation:kk-bow .7s ease-in-out .7s both}
+  .kk-cta.in .kk-eyelids{animation:kk-blink .2s linear .9s both}
+  @keyframes kk-land{0%{transform:translate(-95%,-85%) rotate(-12deg);opacity:0}14%{opacity:1}
+    64%{transform:translate(-5%,-5%) rotate(-3deg)}76%{transform:translate(0,0) scale(1.05,.9)}
+    90%{transform:scale(.99,1.02)}100%{transform:none}}
+  @keyframes kk-flap{0%,36%{transform:rotate(22deg)}18%,52%{transform:rotate(-6deg)}66%{transform:rotate(16deg)}100%{transform:none}}
+  @keyframes kk-flick{0%{transform:none}40%{transform:rotate(9deg)}100%{transform:none}}
+  @keyframes kk-pop{0%{transform:scale(.4);opacity:0}100%{transform:none;opacity:1}}
+  @keyframes kk-bow{0%,100%{transform:none}45%{transform:rotate(7deg)}}
+  @keyframes kk-blink{0%,100%{opacity:0}30%,70%{opacity:1}}
+  /* A level shown in words gets 말이 in that level, as in the app. Dark-ground colours. */
+  .mari-mark{display:inline-block;height:1.4em;vertical-align:-.36em;margin-right:.5em}
+  .mari-mark svg{display:block;height:100%;width:auto}
+  .qcard .mari-formal{color:#A9BCE8}
+  .qcard .mari-casual{color:#D0973F}
+
   /* ---------- Reveal ---------- */
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.3,1)}
   .reveal.in{opacity:1;transform:none}
@@ -397,7 +455,7 @@
 <!-- ============ NAV ============ -->
 <nav class="top" id="nav">
   <div class="wrap row">
-    <a class="brand wordmark" href="#top" aria-label="Tono Translate — home">Tono Translate<span class="dot">.</span></a>
+    <a class="brand wordmark" href="#top" aria-label="Tono Translate — home">Tono Translate<span class="dot">.</span><img class="kk-mark" src="mascots/kkachi.svg" alt="" width="28" height="22"></a>
     <div class="links">
       <a class="navlink" href="#registers" data-i18n="nav_registers">Why it matters</a>
       <a class="navlink" href="#features" data-i18n="nav_features">Features</a>
@@ -452,8 +510,9 @@
     </div>
 
     <!-- The real thing: an actual Tono Translate answer, no mockup -->
-    <div class="reveal">
+    <div class="reveal hero-phone">
       <div class="phone real">
+        <span class="kk-says flip kk-perch kk-anim" aria-hidden="true"><span class="kk-fly"><span class="kk-live"><img src="mascots/kkachi.svg" alt=""></span></span><span class="kk-bubble"><svg viewBox="0 0 126 100" aria-hidden="true" focusable="false"><mask id="mari-hero"><rect width="126" height="100" fill="#fff"/><ellipse cx="47.2" cy="40" rx="6.2" ry="7.1"/><ellipse cx="78.8" cy="40" rx="6.2" ry="7.1"/></mask><g mask="url(#mari-hero)" fill="currentColor"><rect width="126" height="80" rx="24"/><path d="M22.7 74L7.6 100L50.4 74Z"/></g></svg></span></span>
         <div class="notch"></div>
         <div class="screen">
           <img class="shot-img" data-shot="register" src="shots/register.jpg" alt="A Tono Translate answer, with its politeness level named and explained" loading="eager">
@@ -472,12 +531,12 @@
     <p class="reveal" style="margin-top:16px;max-width:52ch;margin-left:auto;margin-right:auto" data-i18n="sw_body">Get a word wrong and someone corrects you. Get the level of formality wrong and nobody says anything. Every other translator hands you a sentence without telling you which level it's on — and in Korean, Japanese or Spanish, the level is the message.</p>
     <div class="compare">
       <div class="qcard reveal">
-        <div class="who" data-i18n="sw_c1_who">To your manager · deferential</div>
+        <div class="who"><span class="mari-mark mari-formal" aria-hidden="true"><svg viewBox="0 0 84 100" aria-hidden="true" focusable="false"><mask id="mari-c1"><rect width="84" height="100" fill="#fff"/><ellipse cx="24.6" cy="44" rx="6.8" ry="7.8"/><ellipse cx="59.4" cy="44" rx="6.8" ry="7.8"/></mask><g mask="url(#mari-c1)" fill="currentColor"><rect width="84" height="88" rx="9.7"/><path d="M25.2 82L20.2 100L48.7 82Z"/></g></svg></span><span data-i18n="sw_c1_who">To your manager · deferential</span></div>
         <div class="ko">괜찮습니다</div>
         <div class="en" data-i18n="sw_c1_en">Reassuring and respectful. The formal ending holds exactly the distance the moment asks for.</div>
       </div>
       <div class="qcard warm reveal">
-        <div class="who" data-i18n="sw_c2_who">To a friend, a little annoyed · casual</div>
+        <div class="who"><span class="mari-mark mari-casual" aria-hidden="true"><svg viewBox="0 0 180 100" aria-hidden="true" focusable="false"><mask id="mari-c2"><rect width="180" height="100" fill="#fff"/><ellipse cx="75.8" cy="36" rx="5.6" ry="6.4"/><ellipse cx="104.2" cy="36" rx="5.6" ry="6.4"/></mask><g mask="url(#mari-c2)" fill="currentColor"><rect width="180" height="72" rx="36"/><path d="M104.4 66L162 100L133.2 66Z"/></g></svg></span><span data-i18n="sw_c2_who">To a friend, a little annoyed · casual</span></div>
         <div class="ko">아, 됐어</div>
         <div class="en" data-i18n="sw_c2_en">“Forget it.” The same three English words — and a completely different relationship afterwards.</div>
       </div>
@@ -756,6 +815,7 @@
 <!-- ============ FINAL CTA ============ -->
 <section id="get" class="band final">
   <div class="wrap" style="max-width:640px">
+    <span class="kk-says kk-cta reveal" aria-hidden="true"><span class="kk-fly"><span class="kk-live"><img src="mascots/kkachi.svg" alt=""></span></span><span class="kk-bubble"><svg viewBox="0 0 126 100" aria-hidden="true" focusable="false"><mask id="mari-cta"><rect width="126" height="100" fill="#fff"/><ellipse cx="47.2" cy="40" rx="6.2" ry="7.1"/><ellipse cx="78.8" cy="40" rx="6.2" ry="7.1"/></mask><g mask="url(#mari-cta)" fill="currentColor"><rect width="126" height="80" rx="24"/><path d="M22.7 74L7.6 100L50.4 74Z"/></g></svg></span></span>
     <span class="eyebrow reveal kicker" data-i18n="get_eyebrow">Get Tono Translate</span>
     <h2 class="reveal" data-i18n="get_h2">Never wonder if you got it right.</h2>
     <p class="lead reveal center" style="max-width:42ch" data-i18n="get_lead">Free to try on iPhone. Say what you mean, at the right level of formality — and know why it works.</p>
@@ -789,6 +849,34 @@
 (function(){
   "use strict";
   var reduce = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+  /* ---- 까치: the still <img> becomes the layered drawing, whose head, wing, tail and
+     eyelids the CSS can move. On any failure the <img> stays, standing still. ---- */
+  var lives = document.querySelectorAll(".kk-live");
+  var anims = document.querySelectorAll(".kk-anim");
+  function ready(go){ anims.forEach(function(a){ a.classList.add("ready"); if(go) a.classList.add("go"); }); }
+  if (lives.length && window.fetch) {
+    fetch("mascots/kkachi.svg").then(function(r){ if(!r.ok) throw 0; return r.text(); }).then(function(svg){
+      lives.forEach(function(el){ el.innerHTML = svg; });
+      requestAnimationFrame(function(){ ready(!reduce); });
+    }).catch(function(){ ready(false); });
+  } else { ready(false); }
+
+  /* ---- nav: the section links show only when they fit on one line. Measured, not a fixed
+     breakpoint: the labels' lengths differ by a third between languages. ---- */
+  var nav = document.getElementById("nav");
+  var navRow = nav.querySelector(".row"), navBrand = nav.querySelector(".brand"), navLinks = nav.querySelector(".links");
+  function fitNav(){
+    nav.classList.remove("compact");
+    var have = navRow.clientWidth - 48;                       // .wrap's side padding
+    var need = navBrand.getBoundingClientRect().width + 24 + navLinks.scrollWidth;
+    if (need > have) nav.classList.add("compact");
+  }
+  var fitQueued = false;
+  window.addEventListener("resize", function(){
+    if (fitQueued) return; fitQueued = true;
+    requestAnimationFrame(function(){ fitQueued = false; fitNav(); });
+  });
 
   /* ---- scroll reveals ---- */
   var io = new IntersectionObserver(function(entries){
@@ -2010,6 +2098,7 @@
     document.documentElement.lang = lang;
     applyI18n();
     applyShots(lang);
+    fitNav();
     langCur.textContent = SHORT[lang] || "English";
     langOpts.forEach(function(b){ b.setAttribute("aria-selected", String(b.dataset.lang === lang)); });
     try{ localStorage.setItem("tono_lang", lang); }catch(e){}
