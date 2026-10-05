@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) — consent defaults must run before gtag.js loads -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  /* We never advertise: ad signals stay denied everywhere. */
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  /* EEA + UK + Switzerland: no analytics cookie until the visitor opts in.
+     consent.js shows the banner that grants it. */
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE',
+             'IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'IS','LI','NO','GB','CH']
+  });
+  /* A stored "accept" applies before the first hit, so a returning visitor
+     isn't measured cookielessly for one page view. */
+  try {
+    if (localStorage.getItem('tono_consent') === 'granted') {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+  } catch (e) {}
+
+  gtag('js', new Date());
+  gtag('config', 'G-JZPE13HT20');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JZPE13HT20"></script>
+<script src="/consent.js" defer></script>
+<title>When to Use Keigo: Sonkeigo vs Kenjougo — Tono Translate</title>
+<meta name="description" content="When to use keigo in Japanese: sonkeigo vs kenjougo vs teineigo, です/ます vs plain form, with verb tables, example sentences and common mistakes.">
+<meta name="theme-color" content="#2E4A8F">
+<link rel="canonical" href="https://tonotranslate.com/guides/japanese-keigo-sonkeigo-vs-kenjougo.html">
+<meta name="apple-itunes-app" content="app-id=6792506542">
+<meta property="og:type" content="article">
+<meta property="og:title" content="When to Use Keigo: Sonkeigo vs Kenjougo Explained">
+<meta property="og:description" content="When to use keigo in Japanese: sonkeigo vs kenjougo vs teineigo, です/ます vs plain form, with verb tables, example sentences and common mistakes.">
+<meta property="og:site_name" content="Tono Translate">
+<meta property="og:url" content="https://tonotranslate.com/guides/japanese-keigo-sonkeigo-vs-kenjougo.html">
+<meta property="og:image" content="https://tonotranslate.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-06">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="When to Use Keigo: Sonkeigo vs Kenjougo Explained">
+<meta name="twitter:description" content="When to use keigo in Japanese: sonkeigo vs kenjougo vs teineigo, です/ます vs plain form, with verb tables, example sentences and common mistakes.">
+<meta name="twitter:image" content="https://tonotranslate.com/og-image.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%232E4A8F'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Palatino,Georgia,serif' font-weight='600' font-size='40' fill='%23FAF7F2'%3ET%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "When to Use Keigo: 丁寧語, 尊敬語 and 謙譲語 Explained",
+    "description": "When to use keigo in Japanese: sonkeigo vs kenjougo vs teineigo, です/ます vs plain form, with verb tables, example sentences and common mistakes.",
+    "inLanguage": "en",
+    "about": [
+      "Japanese keigo",
+      "尊敬語",
+      "謙譲語",
+      "丁寧語"
+    ],
+    "keywords": "when to use keigo, sonkeigo vs kenjougo, Japanese keigo, teineigo, です/ます vs plain form",
+    "datePublished": "2026-10-06",
+    "dateModified": "2026-10-06",
+    "mainEntityOfPage": "https://tonotranslate.com/guides/japanese-keigo-sonkeigo-vs-kenjougo.html",
+    "url": "https://tonotranslate.com/guides/japanese-keigo-sonkeigo-vs-kenjougo.html",
+    "image": "https://tonotranslate.com/og-image.png",
+    "author": {
+      "@type": "Organization",
+      "name": "Tono Translate",
+      "url": "https://tonotranslate.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Tono Translate",
+      "url": "https://tonotranslate.com/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "When should I use keigo as a beginner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use です/ます with everyone except close friends and family. Then learn to recognize the sonkeigo and kenjōgo you'll hear from staff, such as いらっしゃいませ and 少々お待ちください. Active use of full keigo matters most at work, in interviews and in formal emails."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the difference between sonkeigo and kenjougo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sonkeigo raises the person who performs the action, so you use it for what others do: いらっしゃる, おっしゃる, 召し上がる. Kenjōgo lowers the speaker's side, so you use it for what you do: 参る, 申す, いただく. The respect goes to the same person either way."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is です/ます keigo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. です and ます are 丁寧語, polite language, which is one of the types of keigo. It's the most basic and most widely used one."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many types of keigo are there?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Traditionally three: 丁寧語, 尊敬語 and 謙譲語. A 2007 government guideline splits them into five, separating 丁重語 (humble-polite forms like 参る and おる, aimed at the listener) and 美化語 (beautifying words like お茶 and ご飯). For learners, the three-way split is enough to start."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When can I switch to plain form?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When the other person switches first or invites you, for example with タメ口でいいよ (\"You can talk casually\"). With people your age in casual settings, this can happen quickly. With seniors, wait to be asked."
+        }
+      }
+    ]
+  }
+]
+</script>
+<style>
+  :root{
+    --paper:#FAF7F2;--ink:#14171E;--muted:#5F636E;--jjok:#2E4A8F;--hair:rgba(20,23,30,.10);--card:#fff;
+    --serif:"Palatino","Palatino Linotype","Book Antiqua",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){:root{--paper:#0F1118;--ink:#ECEAE4;--muted:#9AA0AD;--jjok:#7B99DA;--hair:rgba(255,255,255,.10);--card:#171A22}}
+  :root[data-theme="dark"]{--paper:#0F1118;--ink:#ECEAE4;--muted:#9AA0AD;--jjok:#7B99DA;--hair:rgba(255,255,255,.10);--card:#171A22}
+  :root[data-theme="light"]{--paper:#FAF7F2;--ink:#14171E;--muted:#5F636E;--jjok:#2E4A8F;--hair:rgba(20,23,30,.10);--card:#fff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--jjok);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:680px;margin:0 auto;padding:0 24px}
+  nav{border-bottom:1px solid var(--hair)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .mk{font-family:var(--serif);font-weight:600;font-size:22px;color:var(--ink)}
+  .mk .dot{color:var(--jjok)}
+  nav a.back{font-size:14.5px;color:var(--muted)}
+  header{padding:56px 0 8px}
+  header .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--jjok);margin-bottom:14px}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(32px,6vw,46px);line-height:1.1;letter-spacing:-.01em}
+  .eff{color:var(--muted);font-size:14.5px;margin-top:14px}
+  main{padding:20px 0 40px}
+  main p{margin:16px 0;color:var(--ink)}
+  main .intro{font-size:19px;color:var(--muted);line-height:1.55}
+  h2{font-family:var(--serif);font-weight:600;font-size:24px;margin:38px 0 6px;letter-spacing:-.01em}
+  main ul{margin:12px 0 12px 4px;list-style:none;display:flex;flex-direction:column;gap:8px}
+  main li{padding-left:20px;position:relative;color:var(--ink)}
+  main li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--jjok)}
+  strong{font-weight:650}
+  footer{border-top:1px solid var(--hair);padding:32px 0 56px;color:var(--muted);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer a{color:var(--muted)}footer a:hover{color:var(--ink)}
+
+  /* guide additions */
+  .wrap.wide{max-width:760px}
+  .mk .kk-mark{height:.95em;width:auto;vertical-align:-.06em;margin-left:.15em}
+  h3{font-family:var(--serif);font-weight:600;font-size:19px;margin:26px 0 4px}
+  main em{color:var(--muted)}
+  .tbl{overflow-x:auto;margin:18px 0;border:1px solid var(--hair);border-radius:12px;background:var(--card)}
+  table{border-collapse:collapse;width:100%;font-size:15.5px;line-height:1.5}
+  th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--hair);vertical-align:top}
+  th{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  tr:last-child td{border-bottom:0}
+  td,h1,h2,h3,main p,main li{overflow-wrap:break-word}
+  [lang="ko"]{word-break:keep-all}
+  @media (max-width:520px){table{font-size:14px}th,td{padding:8px 10px}td:last-child{min-width:150px}}
+  .cta{margin:44px 0 8px;padding:24px;border:1px solid var(--hair);border-radius:16px;background:var(--card)}
+  .cta p{margin:0 0 14px}
+  .cta .btn{display:inline-block;margin-top:4px;background:var(--jjok);color:#fff;font-weight:600;font-size:15px;padding:10px 18px;border-radius:999px}
+  .cta .btn:hover{text-decoration:none;opacity:.92}
+  @media (prefers-color-scheme:dark){.cta .btn{color:#0F1118}}
+  :root[data-theme="dark"] .cta .btn{color:#0F1118}
+  :root[data-theme="light"] .cta .btn{color:#fff}
+  .glist{list-style:none;display:grid;gap:14px;margin:26px 0 0}
+  .glist li{padding:0}
+  .glist li::before{display:none}
+  .glist a{display:block;padding:20px 22px;border:1px solid var(--hair);border-radius:16px;background:var(--card);color:var(--ink)}
+  .glist a:hover{text-decoration:none;border-color:var(--jjok)}
+  .glist .lang{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--jjok)}
+  .glist .gt{display:block;font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.25;margin:6px 0 6px}
+  .glist .gd{display:block;color:var(--muted);font-size:15.5px;line-height:1.55}
+</style>
+</head>
+<body>
+<nav><div class="wrap wide"><a class="mk" href="/" aria-label="Tono Translate — home">Tono Translate<span class="dot">.</span><img class="kk-mark" src="/mascots/kkachi.svg" alt="" width="28" height="22"></a><a class="back" href="/guides/">← All guides</a></div></nav>
+
+<header><div class="wrap wide">
+  <div class="eyebrow">Japanese guide</div>
+  <h1>When to Use Keigo: <span lang="ja">丁寧語</span>, <span lang="ja">尊敬語</span> and <span lang="ja">謙譲語</span> Explained</h1>
+  <div class="eff">Updated <time datetime="2026-10-06">October 6, 2026</time> · Keigo for learners of Japanese</div>
+</div></header>
+
+<main lang="en"><div class="wrap wide">
+<p class="intro">Japanese has a whole layer of grammar for showing respect, called <strong><span lang="ja">敬語</span></strong> (<em>keigo</em>). You can get through daily life with polite <span lang="ja">です</span>/<span lang="ja">ます</span> forms, but the moment you call a company, start a part-time job or meet your partner's parents, you'll hear words like <span lang="ja">いらっしゃる</span> and <span lang="ja">申します</span> that your textbook barely mentioned. This guide explains the three main types of keigo, how sonkeigo and kenjōgo differ, and when each one is expected.</p>
+<h2>The three types of keigo</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Japanese</th>
+<th>What it does</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Polite language</td>
+<td><span lang="ja">丁寧語</span> (<em>teineigo</em>)</td>
+<td>Makes your speech polite to the listener</td>
+<td><span lang="ja">行きます</span>, <span lang="ja">です</span></td>
+</tr>
+<tr>
+<td>Respectful language</td>
+<td><span lang="ja">尊敬語</span> (<em>sonkeigo</em>)</td>
+<td>Raises the actions of the person you respect</td>
+<td><span lang="ja">いらっしゃる</span></td>
+</tr>
+<tr>
+<td>Humble language</td>
+<td><span lang="ja">謙譲語</span> (<em>kenjōgo</em>, also written <em>kenjougo</em>)</td>
+<td>Lowers your own actions toward that person</td>
+<td><span lang="ja">参る</span>, <span lang="ja">伺う</span></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong><span lang="ja">丁寧語</span></strong> is the base layer: <span lang="ja">です</span>, <span lang="ja">ます</span> and <span lang="ja">ございます</span>. It's polite to whoever you're talking to, and it's what most adult conversation between non-friends runs on.</p>
+<p><strong><span lang="ja">尊敬語</span></strong> and <strong><span lang="ja">謙譲語</span></strong> are about <em>who does the action</em>. Sonkeigo is used for things the other person (or someone you respect) does. Kenjōgo is used for things you, or your side, do for or toward them. Both are usually combined with <span lang="ja">です</span>/<span lang="ja">ます</span>.</p>
+<h2>Sonkeigo vs kenjōgo: one simple test</h2>
+<p>Ask: <em>whose action is it?</em></p>
+<ul>
+<li>If it's the customer's, your boss's, your teacher's or your host's action, use <strong>sonkeigo</strong>. <span lang="ja">社長がいらっしゃいました</span> (<em>Shachō ga irasshaimashita</em>, "The president has arrived").</li>
+<li>If it's your own action, or your company's or family's, use <strong>kenjōgo</strong>. <span lang="ja">私が参ります</span> (<em>Watashi ga mairimasu</em>, "I'll go").</li>
+</ul>
+<p>Many common verbs have special keigo forms:</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Plain</th>
+<th><span lang="ja">丁寧語</span></th>
+<th><span lang="ja">尊敬語</span> (their action)</th>
+<th><span lang="ja">謙譲語</span> (your action)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span lang="ja">する</span> (do)</td>
+<td><span lang="ja">します</span></td>
+<td><span lang="ja">なさる</span></td>
+<td><span lang="ja">いたす</span></td>
+</tr>
+<tr>
+<td><span lang="ja">行く</span> (go)</td>
+<td><span lang="ja">行きます</span></td>
+<td><span lang="ja">いらっしゃる</span></td>
+<td><span lang="ja">参る</span> / <span lang="ja">伺う</span></td>
+</tr>
+<tr>
+<td><span lang="ja">来る</span> (come)</td>
+<td><span lang="ja">来ます</span></td>
+<td><span lang="ja">いらっしゃる</span> / <span lang="ja">お越しになる</span></td>
+<td><span lang="ja">参る</span></td>
+</tr>
+<tr>
+<td><span lang="ja">いる</span> (be)</td>
+<td><span lang="ja">います</span></td>
+<td><span lang="ja">いらっしゃる</span></td>
+<td><span lang="ja">おる</span></td>
+</tr>
+<tr>
+<td><span lang="ja">言う</span> (say)</td>
+<td><span lang="ja">言います</span></td>
+<td><span lang="ja">おっしゃる</span></td>
+<td><span lang="ja">申す</span> / <span lang="ja">申し上げる</span></td>
+</tr>
+<tr>
+<td><span lang="ja">食べる</span> (eat)</td>
+<td><span lang="ja">食べます</span></td>
+<td><span lang="ja">召し上がる</span></td>
+<td><span lang="ja">いただく</span></td>
+</tr>
+<tr>
+<td><span lang="ja">見る</span> (see)</td>
+<td><span lang="ja">見ます</span></td>
+<td><span lang="ja">ご覧になる</span></td>
+<td><span lang="ja">拝見する</span></td>
+</tr>
+<tr>
+<td><span lang="ja">知っている</span> (know)</td>
+<td><span lang="ja">知っています</span></td>
+<td><span lang="ja">ご存じだ</span></td>
+<td><span lang="ja">存じている</span></td>
+</tr>
+<tr>
+<td><span lang="ja">会う</span> (meet)</td>
+<td><span lang="ja">会います</span></td>
+<td><span lang="ja">お会いになる</span></td>
+<td><span lang="ja">お目にかかる</span></td>
+</tr>
+<tr>
+<td><span lang="ja">くれる</span> / <span lang="ja">あげる</span> (give)</td>
+<td><span lang="ja">くれます</span> / <span lang="ja">あげます</span></td>
+<td><span lang="ja">くださる</span></td>
+<td><span lang="ja">差し上げる</span></td>
+</tr>
+</tbody>
+</table></div>
+<p>For verbs without a special form, there are regular patterns:</p>
+<ul>
+<li><strong>Sonkeigo:</strong> <span lang="ja">お</span> + verb stem + <span lang="ja">になる</span> (<span lang="ja">お待ちになる</span>, "you wait"), or the -<span lang="ja">れる</span>/-<span lang="ja">られる</span> form (<span lang="ja">行かれる</span>). Requests use <span lang="ja">お</span>/<span lang="ja">ご</span> + stem + <span lang="ja">ください</span>: <span lang="ja">お待ちください</span>, <span lang="ja">ご確認ください</span>.</li>
+<li><strong>Kenjōgo:</strong> <span lang="ja">お</span>/<span lang="ja">ご</span> + verb stem + <span lang="ja">する</span> or <span lang="ja">いたす</span>: <span lang="ja">お持ちします</span> ("I'll carry it"), <span lang="ja">ご案内いたします</span> ("I'll show you the way").</li>
+</ul>
+<p><span lang="ja">伺う</span> specifically means visiting or asking <em>the person you're respecting</em>. <span lang="ja">参る</span> is a more general humble "go/come", common in announcements and business: <span lang="ja">電車が参ります</span> ("A train is arriving").</p>
+<h2><span lang="ja">です</span>/<span lang="ja">ます</span> vs plain form</h2>
+<p>Underneath keigo is the basic choice between polite and plain style.</p>
+<ul>
+<li><strong>Plain form</strong> (<span lang="ja">普通形</span>, <span lang="ja">行く</span>, <span lang="ja">食べた</span>, <span lang="ja">暑いね</span>) is for friends, family, children and close peers. Talking in plain form is called <span lang="ja">タメ口</span> (<em>tameguchi</em>).</li>
+<li><strong><span lang="ja">です</span>/<span lang="ja">ます</span> form</strong> (<span lang="ja">行きます</span>, <span lang="ja">食べました</span>, <span lang="ja">暑いですね</span>) is for strangers, colleagues, shop staff, teachers and anyone you're not close to.</li>
+<li>In writing, articles, essays and reports usually use the plain <span lang="ja">である</span> style, while letters, emails and blog posts addressed to readers often use <span lang="ja">です</span>/<span lang="ja">ます</span>.</li>
+</ul>
+<p>Switching to plain form too early can sound presumptuous. Switching too late can sound distant. Most people follow the other person's lead.</p>
+<h2>When to use keigo</h2>
+<ul>
+<li><strong>Work.</strong> Use <span lang="ja">です</span>/<span lang="ja">ます</span> with colleagues and sonkeigo for your boss's actions. With customers and other companies, full keigo is expected, including kenjōgo for your own side. This is the <em>uchi/soto</em> (inside/outside) rule: when talking to a client, even your own boss is "inside", so you refer to them humbly and without <span lang="ja">さん</span>. <span lang="ja">山田はただいま席を外しております</span>.</li>
+<li><strong>Service.</strong> Staff use heavy keigo with customers: <span lang="ja">いらっしゃいませ</span>, <span lang="ja">少々お待ちください</span>. As a customer, plain <span lang="ja">です</span>/<span lang="ja">ます</span> is perfect.</li>
+<li><strong>Strangers.</strong> <span lang="ja">です</span>/<span lang="ja">ます</span> is the safe default. Sonkeigo for an older stranger's actions is a nice touch, but not required.</li>
+<li><strong>Elders and in-laws.</strong> <span lang="ja">です</span>/<span lang="ja">ます</span> plus some sonkeigo (<span lang="ja">召し上がってください</span>, <span lang="ja">お元気でいらっしゃいますか</span>). Families vary, so take your cue from your partner.</li>
+<li><strong>Teachers.</strong> Students use <span lang="ja">です</span>/<span lang="ja">ます</span> with teachers, and sonkeigo when talking about what the teacher does.</li>
+<li><strong>Job interviews, formal emails, phone calls to companies.</strong> Full keigo, including set phrases like <span lang="ja">お世話になっております</span>.</li>
+<li><strong>Friends.</strong> Plain form. Keigo with close friends sounds cold or sarcastic.</li>
+</ul>
+<h2>Example sentences</h2>
+<p>Romanization follows modified Hepburn, with macrons for long vowels.</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>English</th>
+<th>Plain</th>
+<th><span lang="ja">です</span>/<span lang="ja">ます</span> (<span lang="ja">丁寧語</span>)</th>
+<th>Keigo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>My name is Yamada.</td>
+<td><span lang="ja">山田だよ。</span><br><em>Yamada da yo.</em></td>
+<td><span lang="ja">山田です。</span><br><em>Yamada desu.</em></td>
+<td><span lang="ja">山田と申します。</span><br><em>Yamada to mōshimasu.</em> (kenjōgo)</td>
+</tr>
+<tr>
+<td>What time is the teacher coming?</td>
+<td><span lang="ja">先生って何時に来るの？</span><br><em>Sensei tte nanji ni kuru no?</em></td>
+<td><span lang="ja">先生は何時に来ますか？</span><br><em>Sensei wa nanji ni kimasu ka?</em></td>
+<td><span lang="ja">先生は何時にいらっしゃいますか？</span><br><em>Sensei wa nanji ni irasshaimasu ka?</em> (sonkeigo)</td>
+</tr>
+<tr>
+<td>I'll come by tomorrow.</td>
+<td><span lang="ja">明日行くね。</span><br><em>Ashita iku ne.</em></td>
+<td><span lang="ja">明日行きます。</span><br><em>Ashita ikimasu.</em></td>
+<td><span lang="ja">明日伺います。</span><br><em>Ashita ukagaimasu.</em> (kenjōgo)</td>
+</tr>
+<tr>
+<td>I looked at the documents.</td>
+<td><span lang="ja">資料、見たよ。</span><br><em>Shiryō, mita yo.</em></td>
+<td><span lang="ja">資料を見ました。</span><br><em>Shiryō o mimashita.</em></td>
+<td><span lang="ja">資料を拝見しました。</span><br><em>Shiryō o haiken shimashita.</em> (kenjōgo)</td>
+</tr>
+<tr>
+<td>Please, help yourself.</td>
+<td><span lang="ja">どうぞ、食べて。</span><br><em>Dōzo, tabete.</em></td>
+<td><span lang="ja">どうぞ食べてください。</span><br><em>Dōzo tabete kudasai.</em></td>
+<td><span lang="ja">どうぞ召し上がってください。</span><br><em>Dōzo meshiagatte kudasai.</em> (sonkeigo)</td>
+</tr>
+<tr>
+<td>Wait a moment, please.</td>
+<td><span lang="ja">ちょっと待って。</span><br><em>Chotto matte.</em></td>
+<td><span lang="ja">ちょっと待ってください。</span><br><em>Chotto matte kudasai.</em></td>
+<td><span lang="ja">少々お待ちください。</span><br><em>Shōshō omachi kudasai.</em> (sonkeigo)</td>
+</tr>
+<tr>
+<td>Do you know about it?</td>
+<td><span lang="ja">知ってる？</span><br><em>Shitteru?</em></td>
+<td><span lang="ja">知っていますか？</span><br><em>Shitte imasu ka?</em></td>
+<td><span lang="ja">ご存じですか？</span><br><em>Gozonji desu ka?</em> (sonkeigo)</td>
+</tr>
+<tr>
+<td>Yamada isn't at his desk right now. (to an outside caller)</td>
+<td><span lang="ja">山田、今いないよ。</span><br><em>Yamada, ima inai yo.</em></td>
+<td><span lang="ja">山田は今いません。</span><br><em>Yamada wa ima imasen.</em></td>
+<td><span lang="ja">山田はただいま席を外しております。</span><br><em>Yamada wa tadaima seki o hazushite orimasu.</em> (kenjōgo)</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Common mistakes</h2>
+<ul>
+<li><strong>Using kenjōgo for the other person.</strong> <span lang="ja">どうぞいただいてください</span> or <span lang="ja">先生が拝見しました</span> lowers the person you meant to respect. Use <span lang="ja">召し上がってください</span> and <span lang="ja">ご覧になりました</span>.</li>
+<li><strong>Double keigo (<span lang="ja">二重敬語</span>).</strong> <span lang="ja">おっしゃられる</span> and <span lang="ja">お読みになられる</span> stack two respectful forms. <span lang="ja">おっしゃる</span> and <span lang="ja">お読みになる</span> are enough. A few doubles, like <span lang="ja">お召し上がりになる</span>, are accepted by custom, but don't build your own.</li>
+<li><strong>Calling your own boss <span lang="ja">さん</span> in front of clients.</strong> To an outsider, your boss is <span lang="ja">山田</span> or <span lang="ja">部長の山田</span>, and their actions take kenjōgo.</li>
+<li><strong>Overusing <span lang="ja">させていただく</span>.</strong> It means "humbly do, with your permission". Used for everything, it sounds overdone. <span lang="ja">休まさせていただきます</span> is also wrong: it's <span lang="ja">休ませていただきます</span>.</li>
+<li><strong>"Part-time job keigo."</strong> Phrases like <span lang="ja">こちらコーヒーになります</span> and <span lang="ja">よろしかったでしょうか</span> are common in shops but widely criticized. <span lang="ja">こちらコーヒーでございます</span> and <span lang="ja">よろしいでしょうか</span> are the standard forms.</li>
+</ul>
+<h2>FAQ</h2>
+<h3>When should I use keigo as a beginner?</h3>
+<p>Use <span lang="ja">です</span>/<span lang="ja">ます</span> with everyone except close friends and family. Then learn to recognize the sonkeigo and kenjōgo you'll hear from staff, such as <span lang="ja">いらっしゃいませ</span> and <span lang="ja">少々お待ちください</span>. Active use of full keigo matters most at work, in interviews and in formal emails.</p>
+<h3>What's the difference between sonkeigo and kenjougo?</h3>
+<p>Sonkeigo raises the person who performs the action, so you use it for what others do: <span lang="ja">いらっしゃる</span>, <span lang="ja">おっしゃる</span>, <span lang="ja">召し上がる</span>. Kenjōgo lowers the speaker's side, so you use it for what you do: <span lang="ja">参る</span>, <span lang="ja">申す</span>, <span lang="ja">いただく</span>. The respect goes to the same person either way.</p>
+<h3>Is <span lang="ja">です</span>/<span lang="ja">ます</span> keigo?</h3>
+<p>Yes. <span lang="ja">です</span> and <span lang="ja">ます</span> are <span lang="ja">丁寧語</span>, polite language, which is one of the types of keigo. It's the most basic and most widely used one.</p>
+<h3>How many types of keigo are there?</h3>
+<p>Traditionally three: <span lang="ja">丁寧語</span>, <span lang="ja">尊敬語</span> and <span lang="ja">謙譲語</span>. A 2007 government guideline splits them into five, separating <span lang="ja">丁重語</span> (humble-polite forms like <span lang="ja">参る</span> and <span lang="ja">おる</span>, aimed at the listener) and <span lang="ja">美化語</span> (beautifying words like <span lang="ja">お茶</span> and <span lang="ja">ご飯</span>). For learners, the three-way split is enough to start.</p>
+<h3>When can I switch to plain form?</h3>
+<p>When the other person switches first or invites you, for example with <span lang="ja">タメ口でいいよ</span> ("You can talk casually"). With people your age in casual settings, this can happen quickly. With seniors, wait to be asked.</p>
+
+<aside class="cta">
+<p>Keigo is mostly about one question: whose action is it, and how close are you? Tono Translate shows you which form fits the person you're talking to, and why. <a class="btn" href="https://apps.apple.com/us/app/tono-translate/id6792506542">Free to try on the App Store.</a></p>
+</aside>
+</div></main>
+
+<footer><div class="wrap wide">
+  <span>© 2026 Tono Translate</span>
+  <span><a href="/">Home</a> · <a href="/guides/">Guides</a> · <a href="/privacy.html">Privacy</a> · <a href="mailto:hello@tonotranslate.com">Support</a> · <a href="#" data-consent-reopen>Cookie settings</a></span>
+</div></footer>
+</body>
+</html>
