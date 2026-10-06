@@ -1,4 +1,4 @@
-/* Tono — cookie consent banner.
+/* Tono Translate — cookie consent banner.
  *
  * Shown only to visitors who look like they're in the EEA/UK, where the
  * ePrivacy Directive wants consent BEFORE an analytics cookie is set.

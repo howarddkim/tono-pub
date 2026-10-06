@@ -4,7 +4,7 @@
     python3 draft-site-locale.py <code> "<Language name>"     e.g. pt-BR "Brazilian Portuguese"
 
 Reads the English entries out of index.html, translates them in batches
-(HTML tags, &amp; entities and the word Tono kept verbatim), and inserts a
+(HTML tags, &amp; entities and the name Tono Translate kept verbatim), and inserts a
 "<code>": {...} block after the last existing language in each dictionary.
 Machine-authored, like the rest of the site's twelve — a native pass is
 still worth doing. Idempotent: refuses to run if the block already exists.
@@ -30,10 +30,10 @@ js = block("I18N") + "\n" + block("SHOT_ALT") + "\nconsole.log(JSON.stringify({i
 en = json.loads(subprocess.run(["node", "-e", js], capture_output=True, text=True, check=True).stdout)
 
 def ask(items):
-    prompt = (f"You are localizing the marketing website of 'Tono', an iOS translator app that explains "
+    prompt = (f"You are localizing the marketing website of 'Tono Translate', an iOS translator app that explains "
               f"politeness levels (register). Translate each string from English into {name}. Rules: natural, "
               f"idiomatic marketing copy a native speaker would publish, matching the original's warmth and "
-              f"brevity; keep HTML tags like <br> and entities like &amp; exactly; keep 'Tono', 'Tono Pro', "
+              f"brevity; keep HTML tags like <br> and entities like &amp; exactly; keep 'Tono Translate', 'Tono Translate Pro', "
               f"'App Store' and any Korean/Japanese example text untranslated; keep line lengths similar so "
               f"headlines still fit. Return a JSON array of strings, same order, one per input, nothing else.\n\n"
               + json.dumps(items, ensure_ascii=False))
