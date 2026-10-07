@@ -1,4 +1,4 @@
-# Tono — marketing site
+# Tono Translate — marketing site
 
 Static promo site for **Tono Translate** (tonotranslate.com), served via GitHub Pages.
 
