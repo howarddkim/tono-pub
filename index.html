@@ -38,7 +38,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZPE13HT20"></script>
 <script src="/consent.js" defer></script>
 <title>Tono Translate — The translator that teaches.</title>
-<meta name="description" content="Tono Translate is a context-aware translator for people learning a language. It picks the right level of formality for the person you're talking to, and explains why. Korean, Japanese, Chinese and ten more.">
+<meta name="description" content="Tono Translate is a context-aware translator for people learning a language. It picks the right level of formality for the person you're talking to, explains why, and turns what you look up into practice. Korean, Japanese, Chinese and ten more.">
 <meta name="theme-color" content="#2E4A8F">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Tono Translate — The translator that teaches.">
@@ -66,7 +66,7 @@
   "url": "https://tonotranslate.com/",
   "downloadUrl": "https://apps.apple.com/us/app/tono-translate/id6792506542",
   "installUrl": "https://apps.apple.com/us/app/tono-translate/id6792506542",
-  "description": "A context-aware translator for language learners. It picks the right level of formality for the person you're talking to and explains why."
+  "description": "A context-aware translator for language learners. It picks the right level of formality for the person you're talking to, explains why, and turns the phrases you look up into practice drills, a weekly lesson and a Home Screen widget."
 }
 </script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%232E4A8F'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Palatino,Georgia,serif' font-weight='600' font-size='40' fill='%23FAF7F2'%3ET%3C/text%3E%3C/svg%3E">
@@ -183,7 +183,7 @@
   .hero{padding:72px 0 40px;overflow:hidden}
   .hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
   @media (max-width:900px){.hero .grid{grid-template-columns:1fr;gap:40px}}
-  /* Polish, Show Mode and Decode put BOTH classes on one element
+  /* Show Mode and Decode put BOTH classes on one element
      (class="hero grid"), which the descendant selector above never matched —
      so those sections had always stacked their paragraph above a tall phone,
      the densest shape on the page. Side by side, each reads in one glance. */
@@ -468,6 +468,42 @@
   .cam-out .kr{font-family:var(--serif);font-size:17px;font-weight:600;color:#14171E}
   .cam-out .gl{font-size:12px;color:#6A6E7A;margin-top:3px}
   .cam-badge{display:inline-block;font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:999px;background:rgba(46,74,143,.1);color:#2E4A8F;margin-top:10px}
+
+  /* ---------- Practice rows ---------- */
+  .pr-rows{display:grid;gap:88px;margin-top:64px}
+  .pr-row{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:960px;margin:0 auto;width:100%}
+  .pr-row.flip .pr-text{order:2}
+  .pr-text h3{font-size:clamp(26px,3vw,34px);margin:4px 0 14px}
+  .pr-text p{color:var(--dim);font-size:16.5px;line-height:1.6;max-width:42ch}
+  .pr-text .cap-tag{font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--jjok)}
+  .pr-media{display:flex;justify-content:center}
+  .pr-media .phone{--w:min(272px,80vw)}
+  @media (max-width:860px){
+    .pr-rows{gap:64px;margin-top:48px}
+    .pr-row{grid-template-columns:1fr;gap:28px;text-align:center}
+    .pr-row.flip .pr-text{order:0}
+    .pr-text p{margin:0 auto}
+  }
+  /* Home Screen widget illustration — the app's own palette, whatever the page theme */
+  .hs-figure{margin:0;display:flex;flex-direction:column;align-items:center}
+  .phone.hs .screen{background:#C9D3EA}
+  .hs-wall{aspect-ratio:9/19.5;display:flex;flex-direction:column;padding:44px 12px 14px;
+    background:linear-gradient(165deg,#DCE3F2 0%,#B9C6E4 48%,#E9D9C6 100%)}
+  .wdg{position:relative;background:linear-gradient(160deg,#2E4A8F,#1C2D59);border-radius:20px;padding:14px 14px 13px;
+    color:#fff;min-height:132px;box-shadow:0 10px 24px -10px rgba(20,30,60,.55);text-align:left;font-family:var(--sans)}
+  .wdg-top{display:flex;align-items:center;gap:7px}
+  .wdg-bub{width:17px;height:11px;border-radius:5px;background:#E0A24A;position:relative;flex:none}
+  .wdg-bub:after{content:"";position:absolute;left:3px;bottom:-3px;border-left:4px solid transparent;border-top:4px solid #E0A24A}
+  .wdg-eyebrow{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.78);line-height:1.2;max-width:70%}
+  .wdg-phrase{font-size:17px;font-weight:600;margin:16px 0 14px;max-width:68%;line-height:1.3}
+  .wdg-btn{display:inline-block;font-size:10.5px;font-weight:600;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;max-width:62%}
+  .wdg-kk{position:absolute;right:8px;bottom:8px;width:62px;height:auto;transform:scaleX(-1)}
+  .hs-icons{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 14px;padding:22px 6px 0}
+  .hs-icons i,.hs-dock i{display:block;aspect-ratio:1;border-radius:24%;background:rgba(255,255,255,.55)}
+  .hs-dock{margin-top:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:12px 10px;border-radius:24px;background:rgba(255,255,255,.32)}
+  .hs-note{margin-top:16px;font-size:12.5px;color:var(--dim)}
+  /* Japanese headings break at phrase boundaries, not mid-word (Chrome/Edge 119+; others ignore it) */
+  :lang(ja) h1,:lang(ja) h2,:lang(ja) h3{word-break:auto-phrase}
 </style>
 
 <!-- ============ NAV ============ -->
@@ -475,9 +511,9 @@
   <div class="wrap row">
     <a class="brand wordmark" href="#top" aria-label="Tono Translate — home">Tono Translate<span class="dot">.</span><img class="kk-mark" src="mascots/kkachi.svg" alt="" width="28" height="22"></a>
     <div class="links">
-      <a class="navlink" href="#registers" data-i18n="nav_registers">Why it matters</a>
-      <a class="navlink" href="#features" data-i18n="nav_features">Features</a>
+      <a class="navlink" href="#practice" data-i18n="nav_practice">Practice</a>
       <a class="navlink" href="#how" data-i18n="nav_how">How it works</a>
+      <a class="navlink" href="#registers" data-i18n="nav_registers">Why it matters</a>
       <a class="navlink" href="#premium" data-i18n="nav_premium">Premium</a>
       <div class="langwrap">
         <button class="langtoggle" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Change language">
@@ -516,13 +552,13 @@
     <div>
       <span class="eyebrow reveal" data-i18n="hero_eyebrow">Translation that reads the room</span>
       <h1 class="reveal" data-i18n="hero_h1">The translator<br>that teaches.</h1>
-      <p class="lead reveal" data-i18n="hero_lead">Other translators hand you words and wish you luck. Tono Translate picks the level of formality for the person you're talking to — your boss, a friend, someone you love — and explains why, in your own language.</p>
+      <p class="lead reveal" data-i18n="hero_lead">Look it up, understand why it fits the person you’re talking to, and practice it until it sticks. Tono Translate picks the level of formality for your boss, a friend, someone you love — and explains it in your own language.</p>
       <div class="cta-row reveal">
         <a class="appstore" href="https://apps.apple.com/app/id6792506542" aria-label="Download Tono Translate on the App Store">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.02-3.76-2.05-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.9-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.66 3.23 2.61 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.28-1.28 3.14-2.53.98-1.44 1.39-2.84 1.41-2.91-.03-.02-2.72-1.05-2.75-4.15zM14.54 4.6c.71-.87 1.19-2.07 1.06-3.26-1.02.05-2.26.68-3 1.54-.66.76-1.24 1.98-1.08 3.15 1.14.09 2.29-.58 3.02-1.43z"/></svg>
           <span class="l"><small data-i18n="appstore_small">Download on the</small><b>App Store</b></span>
         </a>
-        <a class="btn btn-ghost" href="#registers" data-i18n="hero_cta2">See how it works</a>
+        <a class="btn btn-ghost" href="#how" data-i18n="hero_cta2">See how it works</a>
       </div>
       <p class="note reveal" style="margin-top:14px" data-i18n="hero_note">Free to try on the App Store · Korean, Japanese, Chinese &amp; 10 more</p>
     </div>
@@ -540,31 +576,107 @@
   </div>
 </header>
 
-<!-- ============ SAME WORDS (dark) ============ -->
-<section id="registers" class="band dark">
-  <div class="ambient" aria-hidden="true"><div class="ga" style="font-size:340px;bottom:-120px;left:-60px">語</div></div>
-  <div class="wrap center" style="position:relative;z-index:1;max-width:760px">
-    <span class="eyebrow reveal kicker" data-i18n="sw_eyebrow">Why it matters</span>
-    <h2 class="reveal" data-i18n="sw_h2">Right words,<br>wrong level.</h2>
-    <p class="reveal" style="margin-top:16px;max-width:52ch;margin-left:auto;margin-right:auto" data-i18n="sw_body">Get a word wrong and someone corrects you. Get the level of formality wrong and nobody says anything. Every other translator hands you a sentence without telling you which level it's on — and in Korean, Japanese or Spanish, the level is the message.</p>
-    <div class="compare">
-      <div class="qcard reveal">
-        <div class="who"><span class="mari-mark mari-formal" aria-hidden="true"><svg viewBox="0 0 84 100" aria-hidden="true" focusable="false"><mask id="mari-c1"><rect width="84" height="100" fill="#fff"/><ellipse cx="24.6" cy="44" rx="6.8" ry="7.8"/><ellipse cx="59.4" cy="44" rx="6.8" ry="7.8"/></mask><g mask="url(#mari-c1)" fill="currentColor"><rect width="84" height="88" rx="9.7"/><path d="M25.2 82L20.2 100L48.7 82Z"/></g></svg></span><span data-i18n="sw_c1_who">To your manager · deferential</span></div>
-        <div class="ko">괜찮습니다</div>
-        <div class="en" data-i18n="sw_c1_en">Reassuring and respectful. The formal ending holds exactly the distance the moment asks for.</div>
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how" class="band" style="background:var(--jjok-wash)">
+  <div class="wrap">
+    <div class="center" style="max-width:600px">
+      <span class="eyebrow reveal kicker" data-i18n="how_eyebrow">How it works</span>
+      <h2 class="reveal" data-i18n="how_h2">Look it up. See why. Make it stick.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n">1</div>
+        <h3 data-i18n="how1_h3">Look it up</h3>
+        <p data-i18n="how1_p">Type the phrase — or paste a message, snap a photo, or just say it — and add who and where: “to my boss,” “at a market.” One line of context changes the whole answer.</p>
       </div>
-      <div class="qcard warm reveal">
-        <div class="who"><span class="mari-mark mari-casual" aria-hidden="true"><svg viewBox="0 0 180 100" aria-hidden="true" focusable="false"><mask id="mari-c2"><rect width="180" height="100" fill="#fff"/><ellipse cx="75.8" cy="36" rx="5.6" ry="6.4"/><ellipse cx="104.2" cy="36" rx="5.6" ry="6.4"/></mask><g mask="url(#mari-c2)" fill="currentColor"><rect width="180" height="72" rx="36"/><path d="M104.4 66L162 100L133.2 66Z"/></g></svg></span><span data-i18n="sw_c2_who">To a friend, a little annoyed · casual</span></div>
-        <div class="ko">아, 됐어</div>
-        <div class="en" data-i18n="sw_c2_en">“Forget it.” The same three English words — and a completely different relationship afterwards.</div>
+      <div class="step reveal">
+        <div class="n">2</div>
+        <h3 data-i18n="how2_h3">See why it fits</h3>
+        <p data-i18n="how2_p">The right level of formality for that person, named and explained in your own language — plus other ways to say it to other people.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">3</div>
+        <h3 data-i18n="how3_h3">Practice it</h3>
+        <p data-i18n="how3_p">What you look up comes back as short drills, a weekly lesson and a phrase a day on your Home Screen — until you don’t need to look it up.</p>
       </div>
     </div>
-    <p class="reveal sw-more"><a href="/guides/haeyo-che-vs-hamnida-che.html" data-i18n="sw_more">Learn more about Korean speech levels →</a></p>
   </div>
 </section>
 
-<!-- ============ FEATURES ============ -->
-<!-- ============ WHEN IT COUNTS (the stakes, on photographs) ============ -->
+<!-- ============ PRACTICE ============ -->
+<section class="band" id="practice">
+  <div class="wrap">
+    <div class="center" style="max-width:640px">
+      <span class="eyebrow reveal kicker" data-i18n="pr_eyebrow">Practice</span>
+      <h2 class="reveal" data-i18n="pr_h2">Next time, you won't<br>need to look it up.</h2>
+      <p class="lead reveal center" style="max-width:46ch" data-i18n="pr_body">Everything you look up comes back to you — as drills, a weekly lesson and a phrase a day — so the right words are already there next time.</p>
+    </div>
+    <div class="pr-rows">
+      <!-- Drills -->
+      <div class="pr-row">
+        <div class="pr-text">
+          <div class="cap-tag reveal" data-i18n="pr_drill_tag">Drills</div>
+          <h3 class="reveal" data-i18n="pr_drill_h3">Drills from your own phrases</h3>
+          <p class="reveal" data-i18n="pr_drill_p">Not a word list: the sentences you actually needed. Say one from memory, work out what a message says, or pick which version fits which person. A few minutes at a time, and it works offline.</p>
+        </div>
+        <div class="pr-media reveal">
+          <div class="phone real">
+            <div class="notch"></div>
+            <div class="screen">
+              <img class="shot-img" data-shot="practice" src="shots/practice.jpg" alt="A Practice card — which phrase fits this person?" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Weekly lesson -->
+      <div class="pr-row flip">
+        <div class="pr-text">
+          <div class="cap-tag reveal" data-i18n="pr_lesson_tag">Weekly lesson</div>
+          <h3 class="reveal" data-i18n="pr_lesson_h3">A short lesson, written from your week</h3>
+          <p class="reveal" data-i18n="pr_lesson_p">Once a week, Tono Translate reads what you looked up and writes a short lesson on the level of formality you’re building. It asks you for phrases from memory, brings back earlier ones, and gives gentle feedback on a sentence of your own. Written from your own phrases and saved on your phone, never on our servers.</p>
+        </div>
+        <div class="pr-media reveal">
+          <div class="phone real">
+            <div class="notch"></div>
+            <div class="screen">
+              <img class="shot-img" data-shot="lesson" src="shots/lesson.jpg" alt="This week's lesson, written from the user's own phrases" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Home Screen widget (an illustration: drawn in HTML/CSS in the app's own style) -->
+      <div class="pr-row">
+        <div class="pr-text">
+          <div class="cap-tag reveal" data-i18n="pr_widget_tag">Home Screen widget</div>
+          <h3 class="reveal" data-i18n="pr_widget_h3">A phrase a day on your Home Screen</h3>
+          <p class="reveal" data-i18n="pr_widget_p">Add the Tono Translate widget and each day it brings back one phrase you looked up, with the meaning hidden. Try to remember it, then tap Show the meaning. Tap the card to open the phrase in the app. With Tono Translate Pro.</p>
+        </div>
+        <div class="pr-media reveal">
+          <figure class="hs-figure">
+            <div class="phone hs" aria-hidden="true">
+              <div class="notch"></div>
+              <div class="screen">
+                <div class="hs-wall">
+                  <div class="wdg">
+                    <div class="wdg-top"><span class="wdg-bub"></span><span class="wdg-eyebrow" data-i18n="pr_w_eyebrow">Say it from memory</span></div>
+                    <div class="wdg-phrase" lang="ko">계산 부탁드립니다</div>
+                    <span class="wdg-btn" data-i18n="pr_w_btn">Show the meaning</span>
+                    <img class="wdg-kk" src="mascots/kkachi.svg" alt="">
+                  </div>
+                  <div class="hs-icons"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                  <div class="hs-dock"><i></i><i></i><i></i><i></i></div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="hs-note" data-i18n="pr_widget_note">Illustration of the widget.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MOMENTS: when it counts (the stakes, on photographs) ============ -->
 <section class="band" id="features">
   <div class="wrap">
     <div class="center" style="max-width:620px">
@@ -596,30 +708,30 @@
   </div>
 </section>
 
-<!-- ============ POLISH ============ -->
-<section class="band" id="polish" style="background:var(--jjok-wash)">
-  <div class="wrap">
-    <div class="hero grid" style="padding:0;gap:56px">
-      <div>
-        <span class="eyebrow reveal kicker" data-i18n="po_eyebrow">Polish</span>
-        <h2 class="reveal" data-i18n="po_h2">Make the mistake<br>once.</h2>
-        <p class="reveal" style="margin-top:18px;max-width:44ch" data-i18n="po_body">You wrote it in the language you're learning and you're not sure it's right — or right for them. Paste it, say who it's for, and Tono Translate corrects the spelling, the grammar and the formality, with a line on each change in your own language, so the same mistake doesn't come back. In the app, from Shortcuts and Siri, and from the share sheet.</p>
-        <p class="reveal" style="margin-top:14px;max-width:44ch;font-size:14px;color:var(--dim)" data-i18n="po_cap">Select what you wrote in any app, share it to Tono Translate, copy it back corrected.</p>
+<!-- ============ SPEECH LEVELS (dark) ============ -->
+<section id="registers" class="band dark">
+  <div class="ambient" aria-hidden="true"><div class="ga" style="font-size:340px;bottom:-120px;left:-60px">語</div></div>
+  <div class="wrap center" style="position:relative;z-index:1;max-width:760px">
+    <span class="eyebrow reveal kicker" data-i18n="sw_eyebrow">Why it matters</span>
+    <h2 class="reveal" data-i18n="sw_h2">Right words,<br>wrong level.</h2>
+    <p class="reveal" style="margin-top:16px;max-width:52ch;margin-left:auto;margin-right:auto" data-i18n="sw_body">Get a word wrong and someone corrects you. Get the level of formality wrong and nobody says anything — and in Korean, Japanese or Spanish, the level is the message.</p>
+    <div class="compare">
+      <div class="qcard reveal">
+        <div class="who"><span class="mari-mark mari-formal" aria-hidden="true"><svg viewBox="0 0 84 100" aria-hidden="true" focusable="false"><mask id="mari-c1"><rect width="84" height="100" fill="#fff"/><ellipse cx="24.6" cy="44" rx="6.8" ry="7.8"/><ellipse cx="59.4" cy="44" rx="6.8" ry="7.8"/></mask><g mask="url(#mari-c1)" fill="currentColor"><rect width="84" height="88" rx="9.7"/><path d="M25.2 82L20.2 100L48.7 82Z"/></g></svg></span><span data-i18n="sw_c1_who">To your manager · deferential</span></div>
+        <div class="ko">괜찮습니다</div>
+        <div class="en" data-i18n="sw_c1_en">Reassuring and respectful. The formal ending holds exactly the distance the moment asks for.</div>
       </div>
-      <div class="reveal" style="display:flex;justify-content:center">
-        <div class="phone real">
-          <div class="notch"></div>
-          <div class="screen">
-            <img class="shot-img" data-shot="polish" src="shots/polish.jpg" alt="A message polished by Tono Translate, with each change explained" loading="lazy">
-          </div>
-        </div>
+      <div class="qcard warm reveal">
+        <div class="who"><span class="mari-mark mari-casual" aria-hidden="true"><svg viewBox="0 0 180 100" aria-hidden="true" focusable="false"><mask id="mari-c2"><rect width="180" height="100" fill="#fff"/><ellipse cx="75.8" cy="36" rx="5.6" ry="6.4"/><ellipse cx="104.2" cy="36" rx="5.6" ry="6.4"/></mask><g mask="url(#mari-c2)" fill="currentColor"><rect width="180" height="72" rx="36"/><path d="M104.4 66L162 100L133.2 66Z"/></g></svg></span><span data-i18n="sw_c2_who">To a friend, a little annoyed · casual</span></div>
+        <div class="ko">아, 됐어</div>
+        <div class="en" data-i18n="sw_c2_en">“Forget it.” The same three English words — and a completely different relationship afterwards.</div>
       </div>
     </div>
+    <p class="reveal sw-more"><a href="/guides/haeyo-che-vs-hamnida-che.html" data-i18n="sw_more">Learn more about Korean speech levels →</a></p>
   </div>
 </section>
 
-<!-- ============ LANGUAGES ============ -->
-<!-- ============ DECODE (understand what they meant) ============ -->
+<!-- ============ DECODE (understand a message and its formality) ============ -->
 <section class="band tight" id="decode">
   <div class="wrap">
     <div class="hero grid" style="padding:0;gap:56px">
@@ -633,7 +745,7 @@
       </div>
       <div>
         <span class="eyebrow reveal kicker" data-i18n="mom3_h3">The message you can't read</span>
-        <h2 class="reveal" data-i18n="feat2_h3">Understand what they actually meant</h2>
+        <h2 class="reveal" data-i18n="feat2_h3">Understand what they said, and how formal it was</h2>
         <p class="reveal" style="margin-top:18px;max-width:44ch" data-i18n="feat2_p">Paste the message you can't read. Tono Translate decodes slang, shorthand and typos — and explains the level of formality they chose, so you know where you stand.</p>
         <p class="reveal" style="margin-top:14px;max-width:44ch;font-size:14px;color:var(--dim)" data-i18n="mom3_p">Friendly, formal, or flirting? The words translate easily. The signal underneath doesn't — until now.</p>
       </div>
@@ -658,7 +770,7 @@
           </div>
         </div>
         <div class="cap-tag" data-i18n="show_talk_tag">Talk</div>
-        <div class="cap" data-i18n="show_talk_cap">Hear what they meant — and answer in a tap.</div>
+        <div class="cap" data-i18n="show_talk_cap">See what they said — and answer in a tap.</div>
       </div>
       <!-- Scripts -->
       <div class="shot reveal">
@@ -711,41 +823,7 @@
   </div>
 </section>
 
-<!-- ============ PRACTICE ============ -->
-<section class="band tight" id="practice">
-  <div class="wrap">
-    <div class="center" style="max-width:640px">
-      <span class="eyebrow reveal kicker" data-i18n="pr_eyebrow">Practice</span>
-      <h2 class="reveal" data-i18n="pr_h2">Next time, you won't<br>need to look it up.</h2>
-      <p class="lead reveal center" style="max-width:46ch" data-i18n="pr_body">Short drills built from your own phrases, not a word list. A few minutes, and they work offline. And once a week, Tono Translate reads what you said and writes a short lesson on the register you're actually building — kept on your phone, never on our servers.</p>
-    </div>
-    <div class="showcase two">
-      <!-- Practice -->
-      <div class="shot reveal">
-        <div class="phone real">
-          <div class="notch"></div>
-          <div class="screen">
-            <img class="shot-img" data-shot="practice" src="shots/practice.jpg" alt="A Practice card — which phrase fits this person?" loading="lazy">
-          </div>
-        </div>
-        <div class="cap-tag" data-i18n="pr_practice_tag">Practice</div>
-        <div class="cap" data-i18n="pr_practice_cap">Which one fits? Drills from your own phrases, a few minutes at a time.</div>
-      </div>
-      <!-- Weekly lesson -->
-      <div class="shot reveal">
-        <div class="phone real">
-          <div class="notch"></div>
-          <div class="screen">
-            <img class="shot-img" data-shot="lesson" src="shots/lesson.jpg" alt="This week's lesson, written from the user's own phrases" loading="lazy">
-          </div>
-        </div>
-        <div class="cap-tag" data-i18n="pr_lesson_tag">Weekly lesson</div>
-        <div class="cap" data-i18n="pr_lesson_cap">Every week, a short lesson on the register you're building — written from what you said.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- ============ LANGUAGES ============ -->
 <section class="band tight">
   <div class="wrap center" style="max-width:720px">
     <span class="eyebrow reveal kicker" data-i18n="lang_eyebrow">Thirteen languages, any direction</span>
@@ -765,33 +843,6 @@
       <span class="chip">Bahasa</span>
       <span class="chip">ไทย<span class="en">Thai</span></span>
       <span class="chip">Português<span class="en">Brazil</span></span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ HOW IT WORKS ============ -->
-<section id="how" class="band" style="background:var(--jjok-wash)">
-  <div class="wrap">
-    <div class="center" style="max-width:600px">
-      <span class="eyebrow reveal kicker" data-i18n="how_eyebrow">How it works</span>
-      <h2 class="reveal" data-i18n="how_h2">Three taps to the right thing to say.</h2>
-    </div>
-    <div class="steps">
-      <div class="step reveal">
-        <div class="n">1</div>
-        <h3 data-i18n="how1_h3">Type the phrase</h3>
-        <p data-i18n="how1_p">Or paste a message, snap a photo, or just speak it. Any of your languages, either direction.</p>
-      </div>
-      <div class="step reveal">
-        <div class="n">2</div>
-        <h3 data-i18n="how2_h3">Add who &amp; where</h3>
-        <p data-i18n="how2_p">“To my boss.” “At a market.” One line of context is all it takes to change the whole answer.</p>
-      </div>
-      <div class="step reveal">
-        <div class="n">3</div>
-        <h3 data-i18n="how3_h3">Get the right level, and the why</h3>
-        <p data-i18n="how3_p">The translation, its register named and explained, and other ways to say it for other people.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -824,7 +875,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_pro_li1">Unlimited translations &amp; scripts</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_pro_li2">Photo reading</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_pro_li3">Everything in Free, without the wall</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_pro_li4">Practice drills &amp; a weekly lesson</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="prem_pro_li4">Practice drills, the weekly lesson &amp; the Home Screen widget</span></li>
         </ul>
       </div>
     </div>
@@ -836,8 +887,8 @@
   <div class="wrap" style="max-width:640px">
     <span class="kk-says kk-cta reveal" aria-hidden="true"><span class="kk-fly"><span class="kk-live"><img src="mascots/kkachi.svg" alt=""></span></span><span class="kk-bubble"><svg viewBox="0 0 126 100" aria-hidden="true" focusable="false"><mask id="mari-cta"><rect width="126" height="100" fill="#fff"/><ellipse cx="47.2" cy="40" rx="6.2" ry="7.1"/><ellipse cx="78.8" cy="40" rx="6.2" ry="7.1"/></mask><g mask="url(#mari-cta)" fill="currentColor"><rect width="126" height="80" rx="24"/><path d="M22.7 74L7.6 100L50.4 74Z"/></g></svg></span></span>
     <span class="eyebrow reveal kicker" data-i18n="get_eyebrow">Get Tono Translate</span>
-    <h2 class="reveal" data-i18n="get_h2">Never wonder if you got it right.</h2>
-    <p class="lead reveal center" style="max-width:42ch" data-i18n="get_lead">Free to try on the App Store. Say what you mean, at the right level of formality — and know why it works.</p>
+    <h2 class="reveal" data-i18n="get_h2">Learn it once. Use it right every time.</h2>
+    <p class="lead reveal center" style="max-width:42ch" data-i18n="get_lead">Free to try on the App Store. Translate, see why, and practice until it sticks.</p>
     <div class="reveal" style="margin-top:28px;display:flex;justify-content:center">
       <a class="appstore" href="https://apps.apple.com/app/id6792506542" aria-label="Download Tono Translate on the App Store">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.02-3.76-2.05-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.9-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.66 3.23 2.61 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.28-1.28 3.14-2.53.98-1.44 1.39-2.84 1.41-2.91-.03-.02-2.72-1.05-2.75-4.15zM14.54 4.6c.71-.87 1.19-2.07 1.06-3.26-1.02.05-2.26.68-3 1.54-.66.76-1.24 1.98-1.08 3.15 1.14.09 2.29-.58 3.02-1.43z"/></svg>
@@ -919,30 +970,30 @@
   var I18N = {
   en: {
     nav_registers: "Why it matters",
-    nav_features: "Features",
+    nav_practice: "Practice",
     nav_how: "How it works",
     nav_premium: "Premium",
     nav_download: "Download",
     hero_eyebrow: "Translation that reads the room",
     hero_h1: "The translator<br>that teaches.",
-    hero_lead: "Other translators hand you words and wish you luck. Tono Translate picks the level of formality for the person you're talking to — your boss, a friend, someone you love — and explains why, in your own language.",
+    hero_lead: "Look it up, understand why it fits the person you’re talking to, and practice it until it sticks. Tono Translate picks the level of formality for your boss, a friend, someone you love — and explains it in your own language.",
     hero_cta2: "See how it works",
     hero_note: "Free to try on the App Store · Korean, Japanese, Chinese &amp; 10 more",
     appstore_small: "Download on the",
     sw_eyebrow: "Why it matters",
     sw_h2: "Right words,<br>wrong level.",
-    sw_body: "Get a word wrong and someone corrects you. Get the level of formality wrong and nobody says anything. Every other translator hands you a sentence without telling you which level it's on — and in Korean, Japanese or Spanish, the level is the message.",
+    sw_body: "Get a word wrong and someone corrects you. Get the level of formality wrong and nobody says anything — and in Korean, Japanese or Spanish, the level is the message.",
     sw_c1_who: "To your manager · deferential",
     sw_c1_en: "Reassuring and respectful. The formal ending holds exactly the distance the moment asks for.",
     sw_c2_who: "To a friend, a little annoyed · casual",
     sw_c2_en: "“Forget it.” The same three English words — and a completely different relationship afterwards.",
     sw_more: "Learn more about Korean speech levels →",
-    feat2_h3: "Understand what they actually meant",
+    feat2_h3: "Understand what they said, and how formal it was",
     feat2_p: "Paste the message you can't read. Tono Translate decodes slang, shorthand and typos — and explains the level of formality they chose, so you know where you stand.",
     show_eyebrow: "See it in action",
     show_h2: "Made for the moment you're actually in.",
     show_talk_tag: "Talk",
-    show_talk_cap: "Hear what they meant — and answer in a tap.",
+    show_talk_cap: "See what they said — and answer in a tap.",
     show_scripts_tag: "Scripts",
     show_scripts_cap: "Rehearse the whole exchange before you walk in.",
     show_camera_tag: "Camera",
@@ -950,28 +1001,32 @@
     sm_eyebrow: "Show Mode",
     sm_h2: "Hand your phone over.<br>It speaks for you.",
     sm_body: "Full screen, full brightness, and a courtesy note in their language so a stranger understands what they're looking at — and wants to help. When they answer, it listens and shows you what they said, with replies ready to tap.",
-    po_eyebrow: "Polish",
-    po_h2: "Make the mistake<br>once.",
-    po_body: "You wrote it in the language you're learning and you're not sure it's right — or right for them. Paste it, say who it's for, and Tono Translate corrects the spelling, the grammar and the formality, with a line on each change in your own language, so the same mistake doesn't come back. In the app, from Shortcuts and Siri, and from the share sheet.",
-    po_cap: "Select what you wrote in any app, share it to Tono Translate, copy it back corrected.",
     pr_eyebrow: "Practice",
     pr_h2: "Next time, you won't<br>need to look it up.",
-    pr_body: "Short drills built from your own phrases, not a word list. A few minutes, and they work offline. And once a week, Tono Translate reads what you said and writes a short lesson on the register you're actually building — kept on your phone, never on our servers.",
-    pr_practice_tag: "Practice",
-    pr_practice_cap: "Which one fits? Drills from your own phrases, a few minutes at a time.",
+    pr_body: "Everything you look up comes back to you — as drills, a weekly lesson and a phrase a day — so the right words are already there next time.",
     pr_lesson_tag: "Weekly lesson",
-    pr_lesson_cap: "Every week, a short lesson on the register you're building — written from what you said.",
+    pr_drill_tag: "Drills",
+    pr_drill_h3: "Drills from your own phrases",
+    pr_drill_p: "Not a word list: the sentences you actually needed. Say one from memory, work out what a message says, or pick which version fits which person. A few minutes at a time, and it works offline.",
+    pr_lesson_h3: "A short lesson, written from your week",
+    pr_lesson_p: "Once a week, Tono Translate reads what you looked up and writes a short lesson on the level of formality you’re building. It asks you for phrases from memory, brings back earlier ones, and gives gentle feedback on a sentence of your own. Written from your own phrases and saved on your phone, never on our servers.",
+    pr_widget_tag: "Home Screen widget",
+    pr_widget_h3: "A phrase a day on your Home Screen",
+    pr_widget_p: "Add the Tono Translate widget and each day it brings back one phrase you looked up, with the meaning hidden. Try to remember it, then tap Show the meaning. Tap the card to open the phrase in the app. With Tono Translate Pro.",
+    pr_w_eyebrow: "Say it from memory",
+    pr_w_btn: "Show the meaning",
+    pr_widget_note: "Illustration of the widget.",
     lang_eyebrow: "Thirteen languages, any direction",
     lang_h2: "Learn in the language you actually think in.",
     lang_lead: "Every explanation arrives in your own language — and so does the app itself. Korean is where Tono Translate goes deepest, but the whole thing works between any two.",
     how_eyebrow: "How it works",
-    how_h2: "Three taps to the right thing to say.",
-    how1_h3: "Type the phrase",
-    how1_p: "Or paste a message, snap a photo, or just speak it. Any of your languages, either direction.",
-    how2_h3: "Add who & where",
-    how2_p: "“To my boss.” “At a market.” One line of context is all it takes to change the whole answer.",
-    how3_h3: "Get the right level, and the why",
-    how3_p: "The translation, its register named and explained, and other ways to say it for other people.",
+    how_h2: "Look it up. See why. Make it stick.",
+    how1_h3: "Look it up",
+    how1_p: "Type the phrase — or paste a message, snap a photo, or just say it — and add who and where: “to my boss,” “at a market.” One line of context changes the whole answer.",
+    how2_h3: "See why it fits",
+    how2_p: "The right level of formality for that person, named and explained in your own language — plus other ways to say it to other people.",
+    how3_h3: "Practice it",
+    how3_p: "What you look up comes back as short drills, a weekly lesson and a phrase a day on your Home Screen — until you don’t need to look it up.",
     prem_eyebrow: "Premium",
     prem_h2: "Try Tono Translate. Go unlimited when you're ready.",
     prem_free_tier: "Free taste",
@@ -986,10 +1041,10 @@
     prem_pro_li1: "Unlimited translations & scripts",
     prem_pro_li2: "Photo reading",
     prem_pro_li3: "Everything in Free, without the wall",
-    prem_pro_li4: "Practice drills &amp; a weekly lesson",
+    prem_pro_li4: "Practice drills, the weekly lesson &amp; the Home Screen widget",
     get_eyebrow: "Get Tono Translate",
-    get_h2: "Never wonder if you got it right.",
-    get_lead: "Free to try on the App Store. Say what you mean, at the right level of formality — and know why it works.",
+    get_h2: "Learn it once. Use it right every time.",
+    get_lead: "Free to try on the App Store. Translate, see why, and practice until it sticks.",
     foot_tagline: "The translator that teaches.",
     foot_privacy: "Privacy",
     foot_guides: "Guides",
@@ -1009,30 +1064,30 @@
   ,
   ko: {
     nav_registers: "격식이 중요한 이유",
-    nav_features: "주요 기능",
+    nav_practice: "연습",
     nav_how: "작동 방식",
     nav_premium: "프리미엄",
     nav_download: "다운로드",
     hero_eyebrow: "상황과 분위기까지 읽는 번역",
     hero_h1: "가르쳐 주는<br>번역 앱.",
-    hero_lead: "다른 번역기들은 단어만 던져주고 행운을 빌어줄 뿐입니다. Tono Translate는 상사, 친구, 사랑하는 사람 — 상대가 누구인지에 맞춰 격식의 정도를 고르고, 왜 그런지 내 언어로 설명해 줍니다.",
+    hero_lead: "찾아보고, 왜 그 표현이 맞는지 이해하고, 입에 붙을 때까지 연습하세요. Tono Translate는 상사, 친구, 사랑하는 사람 — 상대에 맞는 격식을 골라 주고, 그 이유를 내 언어로 설명해 줍니다.",
     hero_cta2: "작동 방식 보기",
     hero_note: "App Store에서 무료 체험 · 한국어, 일본어, 중국어 외 10개 언어",
     appstore_small: "다운로드하기",
     sw_eyebrow: "격식이 중요한 이유",
     sw_h2: "단어는 맞았는데,<br>격식이 틀렸다면.",
-    sw_body: "단어를 틀리면 상대방이 고쳐주기라도 합니다. 하지만 격식의 정도를 틀리면 아무도 말해주지 않습니다. 다른 번역기들은 그 문장이 어떤 격식인지 알려주지 않은 채 그대로 건넵니다. 어떤 언어든 격식이 곧 메시지인데도요.",
+    sw_body: "단어를 틀리면 상대방이 고쳐주기라도 합니다. 하지만 격식의 정도를 틀리면 아무도 말해주지 않습니다. 한국어든 일본어든 스페인어든, 격식이 곧 메시지입니다.",
     sw_c1_who: "상사에게 · 공손하게",
     sw_c1_en: "신뢰감을 주며 예의 바른 표현입니다. 격식 있는 어미를 사용하여 상황에 걸맞은 적절한 거리감을 유지합니다.",
     sw_c2_who: "친구에게, 약간 짜증 섞인 말투로 · 편하게",
     sw_c2_en: "“됐어, 신경 쓰지 마.” 영어로는 똑같은 세 단어지만, 그 한마디 이후 두 사람의 관계는 완전히 달라집니다.",
     sw_more: "한국어 말투 단계 자세히 알아보기 →",
-    feat2_h3: "상대방의 진짜 속뜻을 이해하세요",
+    feat2_h3: "무슨 말인지, 얼마나 격식 있는 말인지 이해하세요",
     feat2_p: "읽기 힘든 메시지를 붙여넣어 보세요. Tono Translate가 슬랭, 축약어, 오타를 풀어 주고, 상대가 선택한 격식의 정도까지 설명해 주어 두 사람의 관계가 어디쯤인지 알 수 있습니다.",
     show_eyebrow: "직접 확인해 보세요",
     show_h2: "당신이 마주한 바로 그 순간을 위해 만들어졌습니다.",
     show_talk_tag: "대화",
-    show_talk_cap: "상대방의 속뜻을 이해하고 탭 한 번으로 대답하세요.",
+    show_talk_cap: "상대가 한 말을 확인하고 탭 한 번으로 대답하세요.",
     show_scripts_tag: "스크립트",
     show_scripts_cap: "들어가기 전에 대화의 전체 흐름을 미리 연습해 보세요.",
     show_camera_tag: "카메라",
@@ -1040,28 +1095,32 @@
     sm_eyebrow: "보여주기 모드",
     sm_h2: "휴대폰을 건네세요.<br>앱이 대신 말해줍니다.",
     sm_body: "전체 화면, 최대 밝기, 그리고 상대방의 언어로 적힌 정중한 안내문 덕분에 낯선 사람도 상황을 바로 이해하고 기꺼이 도와줄 것입니다. 상대방이 대답하면 앱이 이를 귀담아듣고 무슨 말을 했는지 보여주며, 바로 눌러서 답할 수 있는 문장까지 준비해 줍니다.",
-    po_eyebrow: "다듬기",
-    po_h2: "같은 실수는<br>한 번이면 충분해요.",
-    po_body: "학습 중인 언어로 썼는데 맞는지, 이 사람에게 맞는지 자신이 없을 때. 붙여넣고 누구에게 보내는지 알려주면, Tono Translate가 맞춤법과 문법, 격식을 고치고 바뀐 부분마다 한 줄씩 내 언어로 설명해 주어 같은 실수가 반복되지 않습니다. 앱 안에서도, 단축어와 Siri에서도, 공유 시트에서도.",
-    po_cap: "어느 앱에서든 쓴 글을 선택해 Tono Translate로 공유하고, 고쳐진 글을 다시 복사하세요.",
     pr_eyebrow: "연습",
     pr_h2: "다음엔 찾아보지 않아도<br>됩니다.",
-    pr_body: "단어장이 아니라, 내가 실제로 쓴 문장으로 만든 짧은 훈련. 몇 분이면 충분하고 오프라인에서도 됩니다. 그리고 일주일에 한 번, Tono Translate가 내가 말한 것을 읽고 지금 익히는 격식 표현에 대한 짧은 레슨을 써 줍니다. 내 휴대폰에만 저장되고, 서버에는 남지 않습니다.",
-    pr_practice_tag: "연습",
-    pr_practice_cap: "어떤 말이 맞을까? 내 문장으로 만든 훈련, 한 번에 몇 분.",
+    pr_body: "찾아본 표현은 모두 연습 문제로, 주간 레슨으로, 하루 한 문장으로 다시 돌아옵니다. 다음번엔 알맞은 말이 이미 머릿속에 있도록요.",
     pr_lesson_tag: "주간 레슨",
-    pr_lesson_cap: "매주, 지금 익히는 말투에 대한 짧은 레슨 — 내가 말한 것으로 씁니다.",
+    pr_drill_tag: "연습 문제",
+    pr_drill_h3: "내가 찾아본 문장으로 만든 연습",
+    pr_drill_p: "단어장이 아니라, 실제로 필요했던 문장들입니다. 기억에서 꺼내 말해 보고, 메시지가 무슨 뜻인지 풀어 보고, 어떤 표현이 어떤 사람에게 맞는지 골라 보세요. 한 번에 몇 분이면 충분하고, 오프라인에서도 됩니다.",
+    pr_lesson_h3: "나의 한 주로 만든 짧은 레슨",
+    pr_lesson_p: "일주일에 한 번, Tono Translate가 내가 찾아본 것을 읽고 지금 익히고 있는 격식에 대한 짧은 레슨을 써 줍니다. 기억에서 꺼내 말해 볼 문장을 묻고, 예전에 익힌 표현을 다시 꺼내 주고, 내가 직접 쓴 문장 하나에 부드러운 피드백을 줍니다. 내 문장으로 만들어져 내 휴대폰에 저장되며, 저희 서버에는 절대 저장되지 않습니다.",
+    pr_widget_tag: "홈 화면 위젯",
+    pr_widget_h3: "홈 화면에서 하루 한 문장",
+    pr_widget_p: "Tono Translate 위젯을 추가하면 매일 내가 찾아본 문장 하나를 뜻은 가린 채 보여 줍니다. 먼저 떠올려 본 다음 ‘뜻 보기’를 누르세요. 카드를 누르면 앱에서 그 문장이 열립니다. Tono Translate Pro에 포함되어 있습니다.",
+    pr_w_eyebrow: "기억에서 꺼내 말하기",
+    pr_w_btn: "뜻 보기",
+    pr_widget_note: "위젯 예시 이미지입니다.",
     lang_eyebrow: "열세 개 언어, 어느 방향이든",
     lang_h2: "실제로 생각하는 언어로 배우세요.",
     lang_lead: "모든 설명은 물론 앱 자체도 사용자의 모국어로 제공됩니다. Tono Translate가 가장 깊이 있게 지원하는 언어는 한국어이지만, 지원하는 모든 언어 쌍에서 완벽하게 작동합니다.",
     how_eyebrow: "작동 방식",
-    how_h2: "딱 세 번의 탭으로 가장 적절한 표현을 찾으세요.",
-    how1_h3: "문구 입력하기",
-    how1_p: "메시지를 붙여넣거나, 사진을 찍거나, 그냥 말해보세요. 어떤 언어든, 어느 방향이든 상관없습니다.",
-    how2_h3: "대화 상대와 상황 추가하기",
-    how2_p: "“상사에게.” “시장에서.” 단 한 줄의 맥락만으로도 번역 결과 전체가 달라집니다.",
-    how3_h3: "알맞은 격식과 그 이유 파악하기",
-    how3_p: "번역문과 함께 적용된 사회적 관계(어조)의 명칭과 설명, 그리고 다른 사람에게 말할 때 쓸 수 있는 대안 표현까지 보여줍니다.",
+    how_h2: "찾아보고, 이해하고, 내 것으로.",
+    how1_h3: "찾아보기",
+    how1_p: "문장을 입력하거나, 메시지를 붙여넣거나, 사진을 찍거나, 그냥 말해 보세요. 그리고 누구에게, 어디서인지 덧붙이세요. “상사에게.” “시장에서.” 맥락 한 줄이면 답이 완전히 달라집니다.",
+    how2_h3: "왜 맞는지 이해하기",
+    how2_p: "그 상대에게 맞는 격식을 짚어 주고 내 언어로 설명해 줍니다. 다른 사람에게 쓸 수 있는 표현도 함께 보여 줍니다.",
+    how3_h3: "연습하기",
+    how3_p: "찾아본 표현은 짧은 연습 문제, 주간 레슨, 홈 화면의 하루 한 문장으로 다시 돌아옵니다. 더 이상 찾아볼 필요가 없을 때까지요.",
     prem_eyebrow: "프리미엄",
     prem_h2: "Tono Translate를 체험해 보세요. 준비가 되면 무제한으로 이용하실 수 있습니다.",
     prem_free_tier: "무료 체험",
@@ -1076,10 +1135,10 @@
     prem_pro_li1: "무제한 번역 및 스크립트",
     prem_pro_li2: "사진 인식 번역",
     prem_pro_li3: "무료 버전의 모든 기능에 제한 없는 이용까지",
-    prem_pro_li4: "연습 훈련과 주간 레슨",
+    prem_pro_li4: "연습 문제, 주간 레슨, 홈 화면 위젯",
     get_eyebrow: "Tono Translate 다운로드",
-    get_h2: "제대로 말했는지 더 이상 고민하지 마세요.",
-    get_lead: "App Store에서 무료로 시작해 보세요. 전하고 싶은 말을 알맞은 격식으로 전하고, 왜 그 표현이 맞는지까지 알 수 있습니다.",
+    get_h2: "한 번 배우고, 언제나 알맞게.",
+    get_lead: "App Store에서 무료로 시작해 보세요. 번역하고, 이유를 이해하고, 입에 붙을 때까지 연습하세요.",
     foot_tagline: "가르쳐 주는 번역 앱.",
     foot_privacy: "개인정보 처리방침",
     foot_guides: "가이드",
@@ -1099,30 +1158,30 @@
   ,
   ja: {
     nav_registers: "なぜ重要なのか",
-    nav_features: "機能",
+    nav_practice: "練習",
     nav_how: "仕組み",
     nav_premium: "プレミアム",
     nav_download: "ダウンロード",
     hero_eyebrow: "空気を読む翻訳",
     hero_h1: "教えてくれる<br>翻訳アプリ。",
-    hero_lead: "他の翻訳アプリは言葉をただ提示して、あとは幸運を祈るだけ。Tono Translateは、上司、友人、大切な人——相手が誰かに合わせて丁寧さの段階を選び、その理由をあなたの言語で説明します。",
+    hero_lead: "調べて、なぜその言い方が合うのかを理解し、身につくまで練習する。Tono Translateは、上司、友人、大切な人——相手に合わせて丁寧さの段階を選び、その理由をあなたの言語で説明します。",
     hero_cta2: "仕組みを見る",
     hero_note: "App Storeで無料でお試し · 韓国語、日本語、中国語、その他10言語に対応",
     appstore_small: "App Storeから",
     sw_eyebrow: "なぜ重要なのか",
     sw_h2: "言葉は合っているのに、<br>丁寧さが違う。",
-    sw_body: "単語を間違えれば、誰かが指摘してくれます。しかし丁寧さの段階を間違えても、誰も教えてはくれません。他の翻訳ツールは、その文がどの段階なのかを伝えないまま出力します。韓国語でも日本語でもスペイン語でも、段階そのものがメッセージなのに。",
+    sw_body: "単語を間違えれば、誰かが指摘してくれます。しかし丁寧さの段階を間違えても、誰も教えてはくれません。韓国語でも日本語でもスペイン語でも、段階そのものがメッセージなのです。",
     sw_c1_who: "マネージャーへ · 敬意を表す表現",
     sw_c1_en: "安心感を与える、敬意に満ちた表現。フォーマルな語尾が、その場にふさわしい適切な距離感を保ちます。",
     sw_c2_who: "友人へ、少し不機嫌に · カジュアルな表現",
     sw_c2_en: "「もういいよ。」英語ではまったく同じ「Forget it.」という言葉でも、選ぶトーンによって、その後の関係性は180度変わります。",
     sw_more: "韓国語の丁寧さの段階を詳しく見る →",
-    feat2_h3: "相手の「真意」を理解する",
+    feat2_h3: "何と言っているのか、どれくらい丁寧なのかがわかる",
     feat2_p: "読めないメッセージを貼り付けてください。Tono Translateがスラング、略語、打ち間違いを読み解き、相手が選んだ丁寧さの段階まで説明します。二人の距離感がわかります。",
     show_eyebrow: "実際の動作を見る",
     show_h2: "「今、この瞬間」のために作られました。",
     show_talk_tag: "会話",
-    show_talk_cap: "相手の真意を理解し、タップするだけで返答。",
+    show_talk_cap: "相手の言ったことを確認して、タップするだけで返答。",
     show_scripts_tag: "台本",
     show_scripts_cap: "その場に臨む前に、会話の流れを丸ごとリハーサル。`",
     show_camera_tag: "カメラ",
@@ -1130,28 +1189,32 @@
     sm_eyebrow: "ショーモード",
     sm_h2: "相手にスマホを渡すだけ。<br>あなたの代わりに話してくれます。",
     sm_body: "フルスクリーン、最大輝度、そして相手の言語で書かれた丁寧な案内文。これがあれば、見知らぬ人でも自分が何を見せられているのかを理解し、力になりたいと思ってくれます。相手が答えると、アプリがその声を聴き取って内容を表示し、タップするだけで返せる選択肢を用意します。",
-    po_eyebrow: "整える",
-    po_h2: "間違えるのは<br>一度だけ。",
-    po_body: "学習中の言語で書いたけれど、合っているか、その相手に合っているか自信がないとき。貼り付けて、誰に送るかを伝えるだけで、Tono Translateがつづりと文法と丁寧さを直し、変更点ごとに一行、あなたの言語で説明します。同じ間違いは繰り返しません。アプリの中でも、ショートカットとSiriからも、共有シートからも。",
-    po_cap: "どのアプリでも書いた文を選択してTono Translateに共有し、直った文をコピーして戻すだけ。",
     pr_eyebrow: "練習",
     pr_h2: "次は、調べなくても<br>言えるように。",
-    pr_body: "単語帳ではなく、自分が実際に使ったフレーズから作る短いドリル。数分で済み、オフラインでも使えます。さらに週に一度、Tono Translateがあなたの発言を読み、いま身につけている話し方について短いレッスンを書きます。保存されるのはあなたのスマホだけ。サーバーには残りません。",
-    pr_practice_tag: "練習",
-    pr_practice_cap: "どれが合う？自分のフレーズで作るドリル、一回数分。",
+    pr_body: "調べたことはすべて、ドリルや週間レッスン、毎日ひと言として戻ってきます。次に必要なとき、ふさわしい言葉がもう頭に入っているように。",
     pr_lesson_tag: "週間レッスン",
-    pr_lesson_cap: "毎週、いま身につけている話し方についての短いレッスン — あなたの発言から書き起こします。",
+    pr_drill_tag: "ドリル",
+    pr_drill_h3: "自分で調べたフレーズから作るドリル",
+    pr_drill_p: "単語帳ではなく、本当に必要だった文から。思い出して言ってみる、メッセージの意味を読み解く、どの言い方がどの相手に合うかを選ぶ。1回数分で、オフラインでも使えます。",
+    pr_lesson_h3: "あなたの1週間から作る短いレッスン",
+    pr_lesson_p: "週に一度、Tono Translateがあなたの調べたものを読み、いま身につけている丁寧さの段階について短いレッスンを書きます。フレーズを思い出して言ってもらい、以前のフレーズもふたたび取り上げ、あなた自身が書いた文にやさしくフィードバックします。あなた自身のフレーズから作られ、保存されるのはあなたのスマホだけで、当社のサーバーには決して保存されません。",
+    pr_widget_tag: "ホーム画面ウィジェット",
+    pr_widget_h3: "ホーム画面に、毎日ひと言",
+    pr_widget_p: "Tono Translateのウィジェットを追加すると、調べたフレーズを毎日ひとつ、意味を隠した状態で表示します。まず思い出してから「意味を見る」をタップ。カードをタップすると、アプリでそのフレーズが開きます。Tono Translate Proでご利用いただけます。",
+    pr_w_eyebrow: "思い出して言ってみる",
+    pr_w_btn: "意味を見る",
+    pr_widget_note: "ウィジェットのイメージ図です。",
     lang_eyebrow: "13言語、どの方向にも",
     lang_h2: "あなたが普段考えている言語で学ぶ。",
     lang_lead: "すべての解説はあなたの母国語で表示され、アプリ自体も同様です。Tono Translateが最も深く対応しているのは韓国語ですが、すべての機能はどの2言語間でもシームレスに動作します。",
     how_eyebrow: "仕組み",
-    how_h2: "3タップで、伝えたい言葉にたどり着く。",
-    how1_h3: "フレーズを入力する",
-    how1_p: "または、メッセージを貼り付ける、写真を撮る、あるいは声に出して話すだけ。対応しているどの言語からでも、双方向に翻訳できます。",
-    how2_h3: "「誰に」「どこで」を追加する",
-    how2_p: "「上司に」「市場で」。たった1行の状況設定だけで、翻訳結果のニュアンスがガラリと変わります。",
-    how3_h3: "ふさわしい丁寧さと、その理由がわかる",
-    how3_p: "翻訳結果とともに、その言葉遣い（敬語など）の名称と解説、そして他の相手に伝えるための別の表現方法も提案します。",
+    how_h2: "調べる。理由がわかる。身につく。",
+    how1_h3: "調べる",
+    how1_p: "フレーズを入力して（メッセージの貼り付け、写真、音声でもOK）、「誰に」「どこで」を添えましょう。「上司に」「市場で」。たった1行の状況で、答えががらりと変わります。",
+    how2_h3: "なぜ合うのかがわかる",
+    how2_p: "その相手にふさわしい丁寧さの段階を示し、あなたの言語で説明します。ほかの相手に向けた言い方もあわせて提案します。",
+    how3_h3: "練習する",
+    how3_p: "調べたフレーズは、短いドリル、週間レッスン、ホーム画面の「毎日ひと言」として戻ってきます。もう調べなくてもよくなるまで。",
     prem_eyebrow: "プレミアム",
     prem_h2: "Tono Translateをお試し。準備ができたら制限なしのプランへ。",
     prem_free_tier: "無料体験",
@@ -1166,10 +1229,10 @@
     prem_pro_li1: "翻訳と台本が無制限",
     prem_pro_li2: "写真読み込み機能",
     prem_pro_li3: "無料プランの全機能に加え、制限なしで利用可能",
-    prem_pro_li4: "練習ドリルと週間レッスン",
+    prem_pro_li4: "練習ドリル、週間レッスン、ホーム画面ウィジェット",
     get_eyebrow: "Tono Translateを入手",
-    get_h2: "ちゃんと言えたか、もう悩まない。",
-    get_lead: "App Storeで無料でお試しいただけます。伝えたいことを、ふさわしい丁寧さで。なぜそれが合うのかも、わかります。",
+    get_h2: "一度覚えれば、いつでも正しく使える。",
+    get_lead: "App Storeで無料でお試しいただけます。翻訳して、理由を知って、身につくまで練習。",
     foot_tagline: "教えてくれる翻訳アプリ。",
     foot_privacy: "プライバシー",
     foot_guides: "ガイド",
@@ -1182,37 +1245,37 @@
     mom1_p: "一度きりの第一印象。崩しすぎた表現は、親しみやすさではなく「失礼」と受け取られてしまうかもしれません。",
     mom2_h3: "チームでの最初の1週間",
     mom2_p: "同僚は、あなたの韓国語がぶっきらぼうに聞こえても、わざわざ指摘してくれません。ただ、意見を求められなくなるだけです。",
-    mom3_h3: "真意が読み取れないメッセージ",
+    mom3_h3: "読み解けないメッセージ",
     mom3_p: "フレンドリーなのか、フォーマルなのか、それとも好意のサインなのか。言葉そのものの翻訳は簡単ですが、その裏にある「ニュアンス」は、Tono Translateを使うまで見えてきません。",
     prem_free_li4: "オフライン翻訳 — デバイス上で制限なく利用可能"
   }
   ,
   zh: {
     nav_registers: "为什么这很重要",
-    nav_features: "功能",
+    nav_practice: "练习",
     nav_how: "工作原理",
     nav_premium: "高级版",
     nav_download: "下载",
     hero_eyebrow: "懂人情世故的翻译",
     hero_h1: "不只翻译，<br>还教你。",
-    hero_lead: "其他翻译工具只会把词汇丢给你，然后祝你好运。Tono Translate 会按你的对话对象——老板、朋友、爱人——选出合适的敬语等级，并用你的语言解释为什么。",
+    hero_lead: "查一查，弄懂它为什么适合对方，再练到脱口而出。Tono Translate 会按你的对话对象——老板、朋友、爱人——选出合适的敬语等级，并用你的语言解释为什么。",
     hero_cta2: "了解工作原理",
     hero_note: "可在 App Store 免费试用 · 支持韩语、日语、中文及其他 10 种语言",
     appstore_small: "下载自",
     sw_eyebrow: "为什么这很重要",
     sw_h2: "词用对了，<br>等级却错了。",
-    sw_body: "用错一个词，别人会纠正你。但用错敬语等级，没人会说什么。其他翻译软件给你一句话，却不告诉你它属于哪个等级——而在韩语、日语和西班牙语里，等级本身就是信息。",
+    sw_body: "用错一个词，别人会纠正你。但用错敬语等级，没人会说什么——而在韩语、日语和西班牙语里，等级本身就是信息。",
     sw_c1_who: "给你的经理 · 恭敬",
     sw_c1_en: "让人安心且充满敬意。正式的句尾恰到好处地保持了当下所需的距离感。",
     sw_c2_who: "给朋友，带点小情绪 · 随性",
     sw_c2_en: "“算了吧。” 同样是这三个字——之后带来的却是完全不同的人际关系。",
     sw_more: "进一步了解韩语的敬语等级 →",
-    feat2_h3: "读懂他们的弦外之音",
+    feat2_h3: "读懂对方说了什么，以及有多正式",
     feat2_p: "粘贴你读不懂的信息。Tono Translate 能解读俚语、缩写和错别字，并说明对方选用了怎样的敬语等级，让你知道自己在对方心中的位置。",
     show_eyebrow: "观看实际演示",
     show_h2: "专为身临其境的瞬间而生。",
     show_talk_tag: "对话",
-    show_talk_cap: "听懂弦外之音——轻点即可回复。",
+    show_talk_cap: "看清对方说了什么——轻点即可回复。",
     show_scripts_tag: "剧本",
     show_scripts_cap: "在步入场景前，先预演整个对话。",
     show_camera_tag: "相机",
@@ -1220,28 +1283,32 @@
     sm_eyebrow: "出示模式",
     sm_h2: "把手机递给对方。<br>它会替你开口。",
     sm_body: "全屏、最高亮度，并附带一条用对方语言写的礼貌提示，让陌生人一眼看懂并乐意提供帮助。当他们回答时，应用会进行倾听并显示内容，同时提供可直接点击的回复选项。",
-    po_eyebrow: "润色",
-    po_h2: "同一个错，<br>只犯一次。",
-    po_body: "你用正在学的语言写了一段话，却不确定对不对——或者对这个人合不合适。粘贴进来，说明发给谁，Tono Translate 会修正拼写、语法和敬语等级，并用你的语言为每处改动写一句说明，同样的错误不会再犯。在 App 里、通过快捷指令和 Siri、以及共享面板都能用。",
-    po_cap: "在任意 App 中选中你写的内容，共享给 Tono Translate，再把改好的复制回去。",
     pr_eyebrow: "练习",
     pr_h2: "下次，不用再查了。",
-    pr_body: "不是单词表，而是用你自己说过的句子做成的小练习。几分钟就够，离线也能用。每周一次，Tono Translate 会读一读你说过的话，为你正在掌握的敬语等级写一篇小课。只存在你的手机里，不留在我们的服务器上。",
-    pr_practice_tag: "练习",
-    pr_practice_cap: "哪一句合适？用你自己的句子做练习，一次几分钟。",
+    pr_body: "你查过的每一句话都会回来——变成练习、每周一课和每天一句——下次需要时，合适的话已经在你脑子里。",
     pr_lesson_tag: "每周一课",
-    pr_lesson_cap: "每周一篇短课，讲你正在掌握的语气——从你说过的话写起。",
+    pr_drill_tag: "练习题",
+    pr_drill_h3: "用你查过的句子做练习",
+    pr_drill_p: "不是单词表，而是你真正需要过的句子。凭记忆说出来，弄懂一条消息在说什么，或者选出哪种说法适合哪个人。每次几分钟，离线也能用。",
+    pr_lesson_h3: "用你这一周写成的小课",
+    pr_lesson_p: "每周一次，Tono Translate 会读一读你查过的内容，为你正在掌握的敬语等级写一篇小课。它会请你凭记忆说出句子，带你复习以前的句子，还会对你自己写的一句话给出温和的反馈。根据你自己的句子写成，保存在你的手机上，绝不会存储在我们的服务器上。",
+    pr_widget_tag: "主屏幕小组件",
+    pr_widget_h3: "每天一句，就在主屏幕上",
+    pr_widget_p: "添加 Tono Translate 小组件后，它每天会展示一句你查过的话，并先把意思藏起来。先试着回想，再点按“看意思”。点按卡片即可在 App 中打开这句话。包含在 Tono Translate Pro 中。",
+    pr_w_eyebrow: "凭记忆说出来",
+    pr_w_btn: "看意思",
+    pr_widget_note: "小组件示意图。",
     lang_eyebrow: "十三种语言，任意方向",
     lang_h2: "用你最习惯的思维语言来学习。",
     lang_lead: "所有的解释都以你的母语呈现 —— 整个应用界面也是如此。虽然 Tono Translate 在韩语上的挖掘最为深厚，但它在任意两种语言之间都能完美运行。",
     how_eyebrow: "工作原理",
-    how_h2: "只需轻点三下，即可找到最得体的表达。",
-    how1_h3: "输入短语",
-    how1_p: "或者粘贴消息、拍摄照片，甚至直接说出来。支持你使用的任何语言，双向互译。",
-    how2_h3: "添加对象与场景",
-    how2_p: "“给我的老板。”“在市场里。”只需提供一行背景信息，就能让整个翻译结果大不相同。",
-    how3_h3: "掌握合适的等级，理解缘由",
-    how3_p: "不仅提供翻译，还会标明并解释其语体（Register），并提供适合其他对象的不同表达方式。",
+    how_h2: "查一查，弄明白，记得住。",
+    how1_h3: "查一查",
+    how1_p: "输入短语，或者粘贴消息、拍张照片、直接说出来，再加上对象和场景：“给我的老板。”“在市场里。”一行背景信息，就能改变整个答案。",
+    how2_h3: "弄懂为什么合适",
+    how2_p: "为这个人选出合适的敬语等级，标明并用你的语言解释，还附上对其他人的不同说法。",
+    how3_h3: "练一练",
+    how3_p: "你查过的话，会以小练习、每周一课和主屏幕上的每天一句回到你身边，直到你不必再查。",
     prem_eyebrow: "高级版",
     prem_h2: "试试 Tono Translate。准备就绪后，即可畅享无限体验。",
     prem_free_tier: "免费体验",
@@ -1252,14 +1319,14 @@
     prem_pro_tier: "Tono Translate Pro",
     prem_pro_price: "免费试用 7 天",
     prem_pro_per: "之后可按月或按年订阅 · 随时可取消",
-    prem_pro_yr: "价格以您所在地区的 App Store 显示为准",
+    prem_pro_yr: "价格以你所在地区的 App Store 显示为准",
     prem_pro_li1: "无限次翻译与剧本",
     prem_pro_li2: "照片识别",
     prem_pro_li3: "包含免费版的所有功能，且无任何限制",
-    prem_pro_li4: "练习题与每周一课",
+    prem_pro_li4: "练习题、每周一课和主屏幕小组件",
     get_eyebrow: "获取 Tono Translate",
-    get_h2: "不必再猜自己说得对不对。",
-    get_lead: "可在 App Store 免费试用。用合适的敬语等级说出你的本意——并明白它为什么合适。",
+    get_h2: "学会一次，每次都用对。",
+    get_lead: "可在 App Store 免费试用。翻译、弄懂为什么，再练到记住为止。",
     foot_tagline: "不只翻译，还教你。",
     foot_privacy: "隐私政策",
     foot_guides: "指南",
@@ -1274,82 +1341,86 @@
     mom2_p: "同事们不会直接指出你的韩语听起来生硬无礼，他们只会渐渐不再询问你的意见。",
     mom3_h3: "读不懂的字里行间",
     mom3_p: "是友好、正式，还是在示好？字面意思很容易翻译，但背后的微妙信号却难以捕捉 —— 直到今天，一切都改变了。",
-    prem_free_li4: "离线翻译——无限使用，完全在您的设备上运行"
+    prem_free_li4: "离线翻译——无限使用，完全在你的设备上运行"
   }
   ,
   "zh-Hant": {
     nav_registers: "為什麼這至關重要",
-    nav_features: "功能特色",
+    nav_practice: "練習",
     nav_how: "運作原理",
     nav_premium: "Premium 方案",
     nav_download: "下載",
     hero_eyebrow: "讀懂空氣的翻譯",
     hero_h1: "不只翻譯，<br>還教你。",
-    hero_lead: "其他翻譯工具只會丟給你一堆單字，然後祝你好運。Tono Translate 會依你的對話對象——老闆、朋友、摯愛——選出合適的敬語等級，並用你的語言解釋為什麼。",
+    hero_lead: "查一查，弄懂它為什麼適合對方，再練到脫口而出。Tono Translate 會依你的對話對象——老闆、朋友、摯愛——選出合適的敬語等級，並用你的語言解釋為什麼。",
     hero_cta2: "看看它是如何運作的",
     hero_note: "可在 App Store 免費試用 · 支援韓文、日文、中文等 13 種語言",
     appstore_small: "立即下載",
     sw_eyebrow: "為什麼這至關重要",
     sw_h2: "字用對了，<br>等級卻錯了。",
-    sw_body: "用錯單字，別人會糾正你；但用錯敬語等級，沒人會說什麼。其他翻譯工具給你一句話，卻不告訴你它屬於哪個等級——而在韓語、日語和西班牙語裡，等級本身就是訊息。",
+    sw_body: "用錯單字，別人會糾正你；但用錯敬語等級，沒人會說什麼——而在韓語、日語和西班牙語裡，等級本身就是訊息。",
     sw_c1_who: "給你的主管 · 恭敬",
     sw_c1_en: "令人安心且充滿敬意。正式的結尾恰到好處地保持了當下場合所需的距離感。",
     sw_c2_who: "給朋友，帶點不耐煩 · 隨性",
     sw_c2_en: "「算了啦。」同樣的三個英文單字——之後卻會帶來完全不同的關係走向。",
     sw_more: "進一步了解韓語的敬語等級 →",
-    feat2_h3: "真正聽懂對方的弦外之音",
+    feat2_h3: "看懂對方說了什麼，以及有多正式",
     feat2_p: "貼上你看不懂的訊息。Tono Translate 能解讀俚語、簡寫和錯字，並說明對方選用了怎樣的敬語等級，讓你知道彼此的關係到了哪裡。",
     show_eyebrow: "觀看實際運作",
-    show_h2: "專為您當下所處的真實情境而生。",
+    show_h2: "專為你當下所處的真實情境而生。",
     show_talk_tag: "對話",
-    show_talk_cap: "聽懂對方的弦外之音——輕點一下即可回覆。",
+    show_talk_cap: "看清對方說了什麼——輕點一下即可回覆。",
     show_scripts_tag: "劇本",
     show_scripts_cap: "在踏入現場前，先演練一遍完整的對話流程。",
     show_camera_tag: "相機",
     show_camera_cap: "對準菜單或招牌 —— 結合上下文輕鬆閱讀。",
     sm_eyebrow: "展示模式",
-    sm_h2: "遞出您的手機。<br>讓它為您發聲。",
+    sm_h2: "遞出你的手機。<br>讓它為你發聲。",
     sm_body: "全螢幕、全亮度，並附帶以對方語言撰寫的禮貌說明，讓陌生人一眼就能看懂——並樂意伸出援手。當對方回答時，系統會進行聆聽並顯示其說話內容，同時準備好可直接點擊的回覆。",
-    po_eyebrow: "潤飾",
-    po_h2: "同一個錯，<br>只犯一次。",
-    po_body: "你用正在學的語言寫了一段話，卻不確定對不對——或者對這個人合不合適。貼上來，說明要傳給誰，Tono Translate 會修正拼字、文法和敬語等級，並用你的語言為每處更動寫一句說明，同樣的錯誤不會再犯。在 App 裡、透過捷徑和 Siri、以及分享表單都能用。",
-    po_cap: "在任何 App 中選取你寫的內容，分享給 Tono Translate，再把改好的複製回去。",
     pr_eyebrow: "練習",
     pr_h2: "下次，不用再查了。",
-    pr_body: "不是單字表，而是用你自己說過的句子做成的小練習。幾分鐘就夠，離線也能用。每週一次，Tono Translate 會讀一讀你說過的話，為你正在掌握的敬語等級寫一篇小課。只存在你的手機裡，不留在我們的伺服器上。",
-    pr_practice_tag: "練習",
-    pr_practice_cap: "哪一句合適？用你自己的句子做練習，一次幾分鐘。",
+    pr_body: "你查過的每一句話都會回來——變成練習、每週一課和每天一句——下次需要時，合適的話已經在你腦海裡。",
     pr_lesson_tag: "每週一課",
-    pr_lesson_cap: "每週一篇短課，講你正在掌握的語氣——從你說過的話寫起。",
+    pr_drill_tag: "練習題",
+    pr_drill_h3: "用你查過的句子做練習",
+    pr_drill_p: "不是單字表，而是你真正需要過的句子。憑記憶說出來，弄懂一則訊息在說什麼，或選出哪種說法適合哪個人。每次幾分鐘，離線也能用。",
+    pr_lesson_h3: "用你這一週寫成的小課",
+    pr_lesson_p: "每週一次，Tono Translate 會讀一讀你查過的內容，為你正在掌握的敬語等級寫一篇小課。它會請你憑記憶說出句子，帶你複習以前的句子，還會針對你自己寫的一句話給予溫和的回饋。根據你自己的句子寫成，儲存在你的手機上，絕不會儲存在我們的伺服器上。",
+    pr_widget_tag: "主畫面小工具",
+    pr_widget_h3: "每天一句，就在主畫面上",
+    pr_widget_p: "加入 Tono Translate 小工具後，它每天會呈現一句你查過的話，並先把意思藏起來。先試著回想，再點一下「看意思」。點一下卡片，即可在 App 中開啟這句話。包含在 Tono Translate Pro 中。",
+    pr_w_eyebrow: "憑記憶說出來",
+    pr_w_btn: "看意思",
+    pr_widget_note: "小工具示意圖。",
     lang_eyebrow: "十三種語言，任意方向",
-    lang_h2: "用您最直覺的思考語言來學習。",
-    lang_lead: "所有的說明都以您的母語呈現 —— 應用程式介面也是如此。雖然 Tono Translate 在韓語的鑽研最為深厚，但所有功能在任意兩種語言之間皆能完美運作。",
+    lang_h2: "用你最直覺的思考語言來學習。",
+    lang_lead: "所有的說明都以你的母語呈現 —— 應用程式介面也是如此。雖然 Tono Translate 在韓語的鑽研最為深厚，但所有功能在任意兩種語言之間皆能完美運作。",
     how_eyebrow: "運作方式",
-    how_h2: "只需輕點三下，精準表達。",
-    how1_h3: "輸入字句",
-    how1_p: "或者貼上訊息、拍張照片，甚至直接說出來。支援您設定的任何語言，雙向皆通。",
-    how2_h3: "加入對象與情境",
-    how2_p: "「給我的老闆。」「在市場裡。」只需提供一行背景資訊，就能讓整個翻譯結果大不相同。",
-    how3_h3: "掌握合適的等級，理解背後原因",
-    how3_p: "提供翻譯結果、標明並解釋其語體特徵，同時提供適合其他對象的說法。",
+    how_h2: "查一查，弄明白，記得住。",
+    how1_h3: "查一查",
+    how1_p: "輸入字句，或者貼上訊息、拍張照片、直接說出來，再加上對象與情境：「給我的老闆。」「在市場裡。」一行背景資訊，就能改變整個答案。",
+    how2_h3: "弄懂為什麼合適",
+    how2_p: "為這個人選出合適的敬語等級，標明並用你的語言解釋，還附上對其他人的不同說法。",
+    how3_h3: "練一練",
+    how3_p: "你查過的字句，會以小練習、每週一課和主畫面上的每天一句回到你身邊，直到你不必再查。",
     prem_eyebrow: "Premium 方案",
     prem_h2: "試試 Tono Translate。準備就緒後，隨時升級無限版。",
     prem_free_tier: "免費體驗",
-    prem_free_per: "免費贈送的翻譯額度，邀您體驗",
+    prem_free_per: "免費贈送的翻譯額度，邀你體驗",
     prem_free_li1: "完全結合上下文的翻譯",
     prem_free_li2: "語體風格，詳細解析",
     prem_free_li3: "對話功能免費",
     prem_pro_tier: "Tono Translate Pro",
     prem_pro_price: "免費試用 7 天",
     prem_pro_per: "隨後可按月或按年訂閱 · 隨時可取消",
-    prem_pro_yr: "價格以您所在地區的 App Store 顯示為準",
+    prem_pro_yr: "價格以你所在地區的 App Store 顯示為準",
     prem_pro_li1: "無限制翻譯與劇本",
     prem_pro_li2: "照片辨識翻譯",
     prem_pro_li3: "包含免費版的所有功能，且無任何限制",
-    prem_pro_li4: "練習題與每週一課",
+    prem_pro_li4: "練習題、每週一課與主畫面小工具",
     get_eyebrow: "取得 Tono Translate",
-    get_h2: "不必再猜自己說得對不對。",
-    get_lead: "可在 App Store 免費試用。用合適的敬語等級說出你的本意——並明白它為什麼合適。",
+    get_h2: "學會一次，每次都用對。",
+    get_lead: "可在 App Store 免費試用。翻譯、弄懂為什麼，再練到記住為止。",
     foot_tagline: "不只翻譯，還教你。",
     foot_privacy: "隱私權政策",
     foot_guides: "指南",
@@ -1357,42 +1428,42 @@
     foot_top: "回到頁首",
     foot_copy: "© 2026 Tono Translate · 由 Howard Kim 製作",
     mom_eyebrow: "在關鍵時刻",
-    mom_h2: "那些一旦表達失誤，就會讓您付出真實代價的瞬間。",
+    mom_h2: "那些一旦表達失誤，就會讓你付出真實代價的瞬間。",
     mom1_h3: "拜訪對方家人",
     mom1_p: "只有一次機會的初次印象 —— 在這個場合，過於隨性的語氣會被視為失禮，而非親切。",
     mom2_h3: "進公司的第一週",
-    mom2_p: "同事不會當面告訴您，您的韓文聽起來很生硬。他們只會漸漸不再詢問您的意見。",
-    mom3_h3: "讀不懂的弦外之音",
+    mom2_p: "同事不會當面告訴你，你的韓文聽起來很生硬。他們只會漸漸不再詢問你的意見。",
+    mom3_h3: "看不懂的訊息",
     mom3_p: "是友善、正式，還是曖昧調情？字面意思很容易翻譯，但背後隱含的微妙訊號卻很難捉摸 —— 直到現在，一切迎刃而解。",
-    prem_free_li4: "離線翻譯——在您的裝置上無限使用"
+    prem_free_li4: "離線翻譯——在你的裝置上無限使用"
   }
   ,
   "zh-HK": {
     nav_registers: "為什麼這很重要",
-    nav_features: "功能特點",
+    nav_practice: "練習",
     nav_how: "運作原理",
     nav_premium: "Premium 計劃",
     nav_download: "下載",
     hero_eyebrow: "懂人情世故的翻譯",
     hero_h1: "不只翻譯，<br>還教你。",
-    hero_lead: "其他翻譯工具只會給你一堆字詞，然後祝你好運。Tono Translate 會依你的對話對象——上司、朋友、摯愛——選出合適的敬語程度，並用你的語言解釋為什麼。",
+    hero_lead: "查一查，弄懂它為什麼適合對方，再練到脫口而出。Tono Translate 會依你的對話對象——上司、朋友、摯愛——選出合適的敬語程度，並用你的語言解釋原因。",
     hero_cta2: "觀看運作原理",
     hero_note: "可在 App Store 免費試用 · 支援韓語、日語、中文等 13 種語言",
     appstore_small: "Download on the",
     sw_eyebrow: "為什麼這很重要",
     sw_h2: "字用對了，<br>程度卻錯了。",
-    sw_body: "用錯字詞，別人會糾正你。但用錯敬語程度，沒人會說什麼。其他翻譯工具給你一句話，卻不告訴你它屬於哪個程度——而在韓語、日語和西班牙語裡，程度本身就是訊息。",
+    sw_body: "用錯字詞，別人會糾正你。但用錯敬語程度，沒人會說什麼——而在韓語、日語和西班牙語裡，程度本身就是訊息。",
     sw_c1_who: "給經理 · 恭敬",
     sw_c1_en: "體貼而尊重。正式的結尾恰到好處地保持了當下所需的距離感。",
     sw_c2_who: "給朋友，帶點不耐煩 · 隨性",
     sw_c2_en: "「算了。」同樣的三個英文單字——帶來的卻是截然不同的關係走向。",
     sw_more: "進一步了解韓語的敬語程度 →",
-    feat2_h3: "讀懂對方的弦外之音",
+    feat2_h3: "看懂對方說了什麼，以及有多正式",
     feat2_p: "貼上看不懂的訊息。Tono Translate 能為你解讀俚語、縮寫和錯別字，並說明對方選用了怎樣的敬語程度，讓你明白彼此的關係定位。",
     show_eyebrow: "觀看實際操作",
     show_h2: "為你當下的真實情境而生。",
     show_talk_tag: "對話",
-    show_talk_cap: "讀懂對方的意思——輕按即可回覆。",
+    show_talk_cap: "看清對方說了什麼——輕按即可回覆。",
     show_scripts_tag: "劇本",
     show_scripts_cap: "在步入現場前，先預演整場對話。",
     show_camera_tag: "相機",
@@ -1400,28 +1471,32 @@
     sm_eyebrow: "出示模式",
     sm_h2: "遞出你的手機。<br>讓它為你發聲。",
     sm_body: "全螢幕、全亮度，並附上對方語言的禮貌提示，讓陌生人一看就懂並樂意幫忙。當對方回答時，系統會進行聆聽並顯示其說話內容，同時提供可即時點擊的回覆。",
-    po_eyebrow: "潤色",
-    po_h2: "同一個錯，<br>只犯一次。",
-    po_body: "你用正在學的語言寫了一段話，但不肯定對不對——或者對這個人合不合適。貼上來，說明傳給誰，Tono Translate 會修正串字、文法和敬語程度，並用你的語言為每處改動寫一句解釋，同樣的錯誤不會再犯。App 內、捷徑和 Siri，以及分享選單都用得到。",
-    po_cap: "在任何 App 內選取你寫的內容，分享給 Tono Translate，再將改好的複製回去。",
     pr_eyebrow: "練習",
     pr_h2: "下次，唔使再查喇。",
-    pr_body: "唔係生字表，而係用你自己講過嘅句子整成嘅小練習。幾分鐘就夠，離線都用得。每星期一次，Tono Translate 會睇返你講過嘅嘢，為你正在學緊嘅敬語程度寫一篇小課。只會留喺你部電話，唔會留喺我哋嘅伺服器。",
-    pr_practice_tag: "練習",
-    pr_practice_cap: "邊句啱？用你自己嘅句子練習，一次幾分鐘。",
+    pr_body: "你查過嘅每一句都會返嚟——變成練習、每週一課同每日一句——下次要用嘅時候，啱嘅說話已經喺你腦入面。",
     pr_lesson_tag: "每週一課",
-    pr_lesson_cap: "每星期一篇短課，講你正在學緊嘅語氣——由你講過嘅嘢寫起。",
+    pr_drill_tag: "練習題",
+    pr_drill_h3: "用你查過嘅句子做練習",
+    pr_drill_p: "唔係生字表，而係你真正用得著嘅句子。憑記憶講出嚟、睇明一個訊息講緊乜，或者揀邊個講法啱邊個人。每次幾分鐘，離線都用得。",
+    pr_lesson_h3: "用你呢個星期寫成嘅小課",
+    pr_lesson_p: "每星期一次，Tono Translate 會睇返你查過嘅嘢，為你學緊嘅敬語程度寫一篇小課。佢會叫你憑記憶講出句子、帶你溫返以前嘅句子，仲會就你自己寫嘅一句俾啲溫和嘅意見。根據你自己嘅句子寫成，儲存喺你部電話，絕對唔會儲存喺我哋嘅伺服器。",
+    pr_widget_tag: "主畫面小工具",
+    pr_widget_h3: "每天一句，就在主畫面上",
+    pr_widget_p: "加入 Tono Translate 小工具之後，佢每日會顯示一句你查過嘅說話，意思會先收埋。試下諗返先，然後撳「看意思」。撳張卡就可以喺 App 打開嗰句。包括喺 Tono Translate Pro 入面。",
+    pr_w_eyebrow: "憑記憶說出來",
+    pr_w_btn: "看意思",
+    pr_widget_note: "小工具示意圖。",
     lang_eyebrow: "十三種語言，任何方向",
     lang_h2: "用你最直覺的思維語言來學習。",
     lang_lead: "所有的解釋都以你的母語呈現 —— 應用程式介面也是如此。Tono Translate 在韓語方面的鑽研最為深厚，但所有功能在任意兩種語言之間皆能完美運作。",
     how_eyebrow: "運作原理",
-    how_h2: "只需輕點三下，得體對話隨手得。",
-    how1_h3: "輸入字句",
-    how1_p: "或者貼上訊息、拍照，甚至直接說出來。支援你使用的任何語言，雙向皆通。",
-    how2_h3: "加入對象與場景",
-    how2_p: "「對我的老闆。」「在市場。」只需提供一行上下文背景，整個譯文就會隨之調整。",
-    how3_h3: "掌握合適的程度與背後原因",
-    how3_p: "提供翻譯、標明並解釋其語體，以及針對不同對象的其他表達方式。",
+    how_h2: "查一查，弄明白，記得牢。",
+    how1_h3: "查一查",
+    how1_p: "輸入字句，或者貼上訊息、拍照，甚至直接說出來，再加上對象與場景：「對我的老闆。」「在市場。」一行上下文，整個答案就會不同。",
+    how2_h3: "明白為什麼合適",
+    how2_p: "為這個人選出合適的敬語程度，標明並用你的語言解釋，還附上對其他人的不同說法。",
+    how3_h3: "練一練",
+    how3_p: "你查過的字句，會以小練習、每週一課和主畫面上的每天一句回到你身邊，直到你不用再查。",
     prem_eyebrow: "Premium 專業版",
     prem_h2: "試試 Tono Translate。準備好後隨時升級，享受無限體驗。",
     prem_free_tier: "免費體驗",
@@ -1436,10 +1511,10 @@
     prem_pro_li1: "無限次翻譯及劇本",
     prem_pro_li2: "相片辨識",
     prem_pro_li3: "包含免費版的所有功能，且無任何限制",
-    prem_pro_li4: "練習題同每週一課",
+    prem_pro_li4: "練習題、每週一課同主畫面小工具",
     get_eyebrow: "獲取 Tono Translate",
-    get_h2: "不必再猜自己說得對不對。",
-    get_lead: "可在 App Store 免費試用。用合適的敬語程度說出心中所想——並明白它為什麼合適。",
+    get_h2: "學會一次，每次都用得啱。",
+    get_lead: "可在 App Store 免費試用。翻譯、明白原因，再練到記住為止。",
     foot_tagline: "不只翻譯，還教你。",
     foot_privacy: "私隱政策",
     foot_guides: "指南",
@@ -1452,37 +1527,37 @@
     mom1_p: "第一印象只有一次。在這種場合，語氣過於隨意會被視為無禮，而非親切。",
     mom2_h3: "入職首週",
     mom2_p: "同事不會直言你的韓文聽起來很生硬，他們只會漸漸不再詢問你的意見。",
-    mom3_h3: "讀不懂的弦外之音",
+    mom3_h3: "看不懂的訊息",
     mom3_p: "是友善、正式，還是曖昧？字面意思不難翻譯，但背後隱含的訊號卻難以捉摸 —— 直到現在，一切迎刃而解。",
-    prem_free_li4: "離線翻譯——在您的裝置上無限使用"
+    prem_free_li4: "離線翻譯——在你的裝置上無限使用"
   }
   ,
   es: {
     nav_registers: "Por qué es importante",
-    nav_features: "Características",
+    nav_practice: "Práctica",
     nav_how: "Cómo funciona",
     nav_premium: "Premium",
     nav_download: "Descargar",
     hero_eyebrow: "Traducción que sabe leer la situación",
     hero_h1: "El traductor<br>que además enseña.",
-    hero_lead: "Otros traductores te entregan palabras y te desean suerte. Tono Translate elige el nivel de formalidad según con quién hablas — tu jefe, un amigo, la persona que amas — y te explica por qué, en tu propio idioma.",
+    hero_lead: "Búscalo, entiende por qué encaja con la persona con la que hablas y practícalo hasta que se te quede. Tono Translate elige el nivel de formalidad para tu jefe, un amigo o la persona que amas — y te lo explica en tu propio idioma.",
     hero_cta2: "Ver cómo funciona",
     hero_note: "Prueba gratuita en el App Store · Coreano, japonés, chino y 10 más",
     appstore_small: "Consíguelo en el",
     sw_eyebrow: "Por qué es importante",
     sw_h2: "Las palabras correctas,<br>en el nivel equivocado.",
-    sw_body: "Si te equivocas en una palabra, alguien te corrige. Si te equivocas en el nivel de formalidad, nadie te dice nada. Los demás traductores te entregan una frase sin decirte en qué nivel está — y en coreano, japonés o español, el nivel es el mensaje.",
+    sw_body: "Si te equivocas en una palabra, alguien te corrige. Si te equivocas en el nivel de formalidad, nadie te dice nada — y en coreano, japonés o español, el nivel es el mensaje.",
     sw_c1_who: "A tu mánager · deferente",
     sw_c1_en: "Tranquilizador y respetuoso. La terminación formal mantiene exactamente la distancia que requiere el momento.",
     sw_c2_who: "A un amigo, algo molesto · informal",
     sw_c2_en: "“Olvídalo”. Las mismas dos palabras en español, pero una relación completamente diferente después.",
     sw_more: "Más sobre los niveles de formalidad en coreano →",
-    feat2_h3: "Entiende lo que realmente quisieron decir",
+    feat2_h3: "Entiende qué te dijeron y con qué nivel de formalidad",
     feat2_p: "Pega el mensaje que no logras descifrar. Tono Translate descodifica el argot, las abreviaturas y las erratas, y te explica el nivel de formalidad que eligieron, para que sepas en qué punto está la relación.",
     show_eyebrow: "Míralo en acción",
     show_h2: "Pensado para el momento exacto en el que te encuentras.",
     show_talk_tag: "Hablar",
-    show_talk_cap: "Escucha lo que querían decir y responde con un toque.",
+    show_talk_cap: "Mira lo que te dijeron y responde con un toque.",
     show_scripts_tag: "Guiones",
     show_scripts_cap: "Ensaya la conversación completa antes de entrar.",
     show_camera_tag: "Cámara",
@@ -1490,28 +1565,32 @@
     sm_eyebrow: "Modo Mostrar",
     sm_h2: "Presta tu teléfono.<br>Habla por ti.",
     sm_body: "Pantalla completa, brillo al máximo y una nota de cortesía en su idioma para que un extraño entienda lo que está viendo y quiera ayudarte. Cuando responda, la app escucha y te muestra lo que dijo, con respuestas listas para tocar.",
-    po_eyebrow: "Pulir",
-    po_h2: "Equivócate<br>solo una vez.",
-    po_body: "Lo escribiste en el idioma que aprendes y no estás seguro de que esté bien — o de que sea lo adecuado para esa persona. Pégalo, di a quién va y Tono Translate corrige la ortografía, la gramática y la formalidad, con una línea sobre cada cambio en tu propio idioma, para que el mismo error no se repita. En la app, desde Atajos y Siri, y desde la hoja de compartir.",
-    po_cap: "Selecciona lo que escribiste en cualquier app, compártelo con Tono Translate y copia la versión corregida.",
     pr_eyebrow: "Práctica",
     pr_h2: "La próxima vez, no tendrás<br>que buscarlo.",
-    pr_body: "Ejercicios cortos hechos con tus propias frases, no con una lista de palabras. Unos minutos, y funcionan sin conexión. Y una vez a la semana, Tono Translate lee lo que dijiste y escribe una breve lección sobre el registro que estás construyendo. Se guarda en tu teléfono, nunca en nuestros servidores.",
-    pr_practice_tag: "Práctica",
-    pr_practice_cap: "¿Cuál encaja? Ejercicios con tus propias frases, unos minutos cada vez.",
+    pr_body: "Todo lo que buscas vuelve a ti — en ejercicios, una lección semanal y una frase al día — para que la próxima vez ya tengas las palabras adecuadas.",
     pr_lesson_tag: "Lección semanal",
-    pr_lesson_cap: "Cada semana, una breve lección sobre el registro que estás construyendo — escrita a partir de lo que dijiste.",
+    pr_drill_tag: "Ejercicios",
+    pr_drill_h3: "Ejercicios con tus propias frases",
+    pr_drill_p: "Nada de listas de vocabulario: las frases que de verdad necesitaste. Dila de memoria, descifra qué dice un mensaje o elige qué versión encaja con cada persona. Unos minutos cada vez, y funciona sin conexión.",
+    pr_lesson_h3: "Una lección breve, escrita a partir de tu semana",
+    pr_lesson_p: "Una vez a la semana, Tono Translate lee lo que buscaste y escribe una lección breve sobre el nivel de formalidad que estás construyendo. Te pide frases de memoria, recupera otras anteriores y te da comentarios amables sobre una frase escrita por ti. La lección se escribe a partir de tus propias frases y se guarda en tu teléfono, nunca en nuestros servidores.",
+    pr_widget_tag: "Widget de pantalla de inicio",
+    pr_widget_h3: "Una frase al día en tu pantalla de inicio",
+    pr_widget_p: "Añade el widget de Tono Translate y cada día te mostrará una frase que buscaste, con el significado oculto. Intenta recordarla y luego toca «Ver el significado». Toca la tarjeta para abrir la frase en la app. Con Tono Translate Pro.",
+    pr_w_eyebrow: "Dilo de memoria",
+    pr_w_btn: "Ver el significado",
+    pr_widget_note: "Ilustración del widget.",
     lang_eyebrow: "Trece idiomas, en cualquier dirección",
     lang_h2: "Aprende en el idioma en el que realmente piensas.",
     lang_lead: "Cada explicación se presenta en tu propio idioma, al igual que la propia aplicación. El coreano es el idioma en el que Tono Translate profundiza más, pero todo funciona entre dos lenguas cualesquiera.",
     how_eyebrow: "Cómo funciona",
-    how_h2: "Tres toques para dar con la frase adecuada.",
-    how1_h3: "Escribe la frase",
-    how1_p: "O pega un mensaje, haz una foto o simplemente dilo en voz alta. En cualquiera de tus idiomas y en cualquier dirección.",
-    how2_h3: "Añade quién y dónde",
-    how2_p: "«A mi jefe». «En un mercado». Una sola línea de contexto es todo lo que hace falta para cambiar por completo la respuesta.",
-    how3_h3: "Capta el nivel adecuado y el porqué",
-    how3_p: "La traducción, con su registro identificado y explicado, y otras formas de decirlo para otras personas.",
+    how_h2: "Búscalo. Entiende por qué. Que se te quede.",
+    how1_h3: "Búscalo",
+    how1_p: "Escribe la frase — o pega un mensaje, haz una foto o simplemente dila — y añade a quién y dónde: «a mi jefe», «en un mercado». Una línea de contexto cambia toda la respuesta.",
+    how2_h3: "Entiende por qué encaja",
+    how2_p: "El nivel de formalidad adecuado para esa persona, identificado y explicado en tu idioma, y otras formas de decirlo a otras personas.",
+    how3_h3: "Practícalo",
+    how3_p: "Lo que buscas vuelve como ejercicios cortos, una lección semanal y una frase al día en tu pantalla de inicio, hasta que ya no necesites buscarlo.",
     prem_eyebrow: "Premium",
     prem_h2: "Prueba Tono Translate. Pásate al plan ilimitado cuando quieras.",
     prem_free_tier: "Prueba gratuita",
@@ -1526,10 +1605,10 @@
     prem_pro_li1: "Traducciones y guiones ilimitados",
     prem_pro_li2: "Lectura de fotos",
     prem_pro_li3: "Todo lo de la versión gratuita, sin límites",
-    prem_pro_li4: "Ejercicios de práctica y una lección semanal",
+    prem_pro_li4: "Ejercicios de práctica, la lección semanal y el widget de pantalla de inicio",
     get_eyebrow: "Consigue Tono Translate",
-    get_h2: "No vuelvas a dudar de si lo dijiste bien.",
-    get_lead: "Pruébalo gratis en el App Store. Di lo que quieres decir, en el nivel de formalidad adecuado — y sabiendo por qué funciona.",
+    get_h2: "Apréndelo una vez. Úsalo bien siempre.",
+    get_lead: "Pruébalo gratis en el App Store. Traduce, entiende por qué y practica hasta que se te quede.",
     foot_tagline: "El traductor que además enseña.",
     foot_privacy: "Privacidad",
     foot_guides: "Guías",
@@ -1549,30 +1628,30 @@
   ,
   fr: {
     nav_registers: "Pourquoi c'est essentiel",
-    nav_features: "Fonctionnalités",
+    nav_practice: "Entraînement",
     nav_how: "Comment ça marche",
     nav_premium: "Premium",
     nav_download: "Télécharger",
     hero_eyebrow: "La traduction qui sait lire entre les lignes",
     hero_h1: "Le traducteur<br>qui enseigne.",
-    hero_lead: "Là où les autres traducteurs vous donnent des mots en vous souhaitant bonne chance, Tono Translate choisit le niveau de politesse selon votre interlocuteur — votre patron, un ami, l'être aimé — et vous explique pourquoi, dans votre langue.",
+    hero_lead: "Cherchez une phrase, comprenez pourquoi elle convient à votre interlocuteur, puis entraînez-vous jusqu'à la retenir. Tono Translate choisit le niveau de politesse pour votre patron, un ami, l'être aimé — et vous l'explique dans votre langue.",
     hero_cta2: "Découvrir le fonctionnement",
     hero_note: "Essai gratuit sur l'App Store · Coréen, japonais, chinois &amp; 10 autres langues",
     appstore_small: "Télécharger dans l'",
     sw_eyebrow: "Pourquoi c'est essentiel",
     sw_h2: "Les bons mots,<br>au mauvais niveau.",
-    sw_body: "Si vous vous trompez de mot, on vous corrige. Si vous vous trompez de niveau de politesse, personne ne dit rien. Les autres traducteurs vous livrent une phrase sans vous dire à quel niveau elle se situe — et en coréen, en japonais ou en espagnol, le niveau, c'est le message.",
+    sw_body: "Si vous vous trompez de mot, on vous corrige. Si vous vous trompez de niveau de politesse, personne ne dit rien — et en coréen, en japonais ou en espagnol, le niveau, c'est le message.",
     sw_c1_who: "À votre responsable · déférent",
     sw_c1_en: "Rassurant et respectueux. La terminaison formelle maintient exactement la distance requise par la situation.",
     sw_c2_who: "À un ami, un peu agacé · informel",
     sw_c2_en: "« Laisse tomber. » Les trois mêmes mots en anglais — et une relation complètement différente par la suite.",
     sw_more: "En savoir plus sur les niveaux de politesse en coréen →",
-    feat2_h3: "Comprenez ce qu'ils ont vraiment voulu dire",
+    feat2_h3: "Comprenez ce qu'on vous dit, et avec quel degré de politesse",
     feat2_p: "Collez le message que vous n'arrivez pas à lire. Tono Translate décode l'argot, les abréviations et les fautes de frappe — et vous explique le niveau de politesse choisi, pour que vous sachiez où vous en êtes.",
     show_eyebrow: "Le voir en action",
     show_h2: "Conçu pour l'instant précis où vous vous trouvez.",
     show_talk_tag: "Parler",
-    show_talk_cap: "Saisissez toutes les nuances de leurs propos — et répondez en un geste.",
+    show_talk_cap: "Voyez ce qu'on vous dit — et répondez en un geste.",
     show_scripts_tag: "Scénarios",
     show_scripts_cap: "Répétez tout l'échange avant de vous lancer.",
     show_camera_tag: "Appareil photo",
@@ -1580,28 +1659,32 @@
     sm_eyebrow: "Mode Présentation",
     sm_h2: "Confiez votre téléphone.<br>Il parle pour vous.",
     sm_body: "Plein écran, luminosité maximale et un petit mot de courtoisie dans leur langue pour qu'un inconnu comprenne immédiatement ce qu'il regarde — et ait envie de vous aider. Lorsqu'il vous répond, l'application écoute et affiche ses propos, avec des suggestions de réponses prêtes à être touchées.",
-    po_eyebrow: "Peaufiner",
-    po_h2: "Faites l'erreur<br>une seule fois.",
-    po_body: "Vous l'avez écrit dans la langue que vous apprenez et vous n'êtes pas sûr que ce soit juste — ou juste pour cette personne. Collez-le, dites à qui il s'adresse, et Tono Translate corrige l'orthographe, la grammaire et la politesse, avec une ligne sur chaque changement dans votre langue, pour que la même erreur ne revienne pas. Dans l'app, depuis Raccourcis et Siri, et depuis la feuille de partage.",
-    po_cap: "Sélectionnez ce que vous avez écrit dans n'importe quelle app, partagez-le vers Tono Translate, recopiez la version corrigée.",
     pr_eyebrow: "Entraînement",
     pr_h2: "La prochaine fois, vous n'aurez<br>pas besoin de chercher.",
-    pr_body: "De courts exercices construits à partir de vos propres phrases, pas d'une liste de mots. Quelques minutes, et ça marche hors ligne. Et une fois par semaine, Tono Translate relit ce que vous avez dit et rédige une courte leçon sur le registre que vous êtes en train d'acquérir. Gardée sur votre téléphone, jamais sur nos serveurs.",
-    pr_practice_tag: "Entraînement",
-    pr_practice_cap: "Laquelle convient ? Des exercices à partir de vos phrases, quelques minutes à la fois.",
+    pr_body: "Tout ce que vous cherchez vous revient — en exercices, en leçon hebdomadaire et en phrase du jour — pour que la prochaine fois, les bons mots soient déjà là.",
     pr_lesson_tag: "Leçon hebdomadaire",
-    pr_lesson_cap: "Chaque semaine, une courte leçon sur le registre que vous construisez — rédigée à partir de ce que vous avez dit.",
+    pr_drill_tag: "Exercices",
+    pr_drill_h3: "Des exercices tirés de vos propres phrases",
+    pr_drill_p: "Pas une liste de mots : les phrases dont vous avez vraiment eu besoin. Dites-en une de mémoire, déchiffrez ce que dit un message, ou choisissez quelle version convient à quelle personne. Quelques minutes à la fois, et ça marche hors ligne.",
+    pr_lesson_h3: "Une courte leçon, tirée de votre semaine",
+    pr_lesson_p: "Une fois par semaine, Tono Translate relit ce que vous avez cherché et rédige une courte leçon sur le niveau de politesse que vous êtes en train d'acquérir. Elle vous demande des phrases de mémoire, en fait revenir d'anciennes et vous donne un retour bienveillant sur une phrase de votre cru. Rédigée à partir de vos propres phrases et enregistrée sur votre téléphone, jamais sur nos serveurs.",
+    pr_widget_tag: "Widget d'écran d'accueil",
+    pr_widget_h3: "Une phrase par jour sur votre écran d'accueil",
+    pr_widget_p: "Ajoutez le widget Tono Translate : chaque jour, il vous remontre une phrase que vous avez cherchée, sens masqué. Essayez de vous en souvenir, puis touchez « Voir le sens ». Touchez la carte pour ouvrir la phrase dans l'app. Avec Tono Translate Pro.",
+    pr_w_eyebrow: "Dites-le de mémoire",
+    pr_w_btn: "Voir le sens",
+    pr_widget_note: "Illustration du widget.",
     lang_eyebrow: "Treize langues, dans tous les sens",
     lang_h2: "Apprenez dans la langue dans laquelle vous pensez.",
     lang_lead: "Chaque explication s'affiche dans votre propre langue — tout comme l'application elle-même. C'est en coréen que Tono Translate va le plus loin, mais l'ensemble fonctionne parfaitement entre n'importe quelle paire de langues.",
     how_eyebrow: "Comment ça marche",
-    how_h2: "Trois pressions suffisent pour trouver la bonne formule.",
-    how1_h3: "Saisissez la phrase",
-    how1_p: "Ou collez un message, prenez une photo, ou parlez simplement. Dans n'importe laquelle de vos langues, dans un sens comme dans l'autre.",
-    how2_h3: "Précisez le destinataire et le lieu",
-    how2_p: "« À mon patron. » « Dans un marché. » Une seule ligne de contexte suffit pour transformer toute la réponse.",
-    how3_h3: "Le bon niveau, et le pourquoi",
-    how3_p: "La traduction, son niveau de langue nommé et expliqué, ainsi que d'autres manières de le dire pour d'autres interlocuteurs.",
+    how_h2: "Cherchez. Comprenez. Retenez.",
+    how1_h3: "Cherchez",
+    how1_p: "Saisissez la phrase — ou collez un message, prenez une photo, ou dites-la simplement — et précisez à qui et où : « à mon patron », « au marché ». Une ligne de contexte change toute la réponse.",
+    how2_h3: "Comprenez pourquoi",
+    how2_p: "Le bon niveau de politesse pour cette personne, nommé et expliqué dans votre langue — et d'autres façons de le dire à d'autres interlocuteurs.",
+    how3_h3: "Entraînez-vous",
+    how3_p: "Ce que vous cherchez revient sous forme de courts exercices, d'une leçon hebdomadaire et d'une phrase par jour sur votre écran d'accueil — jusqu'à ce que vous n'ayez plus besoin de chercher.",
     prem_eyebrow: "Premium",
     prem_h2: "Essayez Tono Translate. Passez à l'illimité quand vous le souhaitez.",
     prem_free_tier: "Aperçu gratuit",
@@ -1616,10 +1699,10 @@
     prem_pro_li1: "Traductions &amp; scénarios illimités",
     prem_pro_li2: "Lecture de photos",
     prem_pro_li3: "Tout ce qui est inclus dans l'offre gratuite, sans limites",
-    prem_pro_li4: "Exercices d'entraînement et une leçon hebdomadaire",
+    prem_pro_li4: "Exercices d'entraînement, la leçon hebdomadaire et le widget d'écran d'accueil",
     get_eyebrow: "Obtenir Tono Translate",
-    get_h2: "Ne vous demandez plus si vous l'avez bien dit.",
-    get_lead: "Essai gratuit sur l'App Store. Dites ce que vous pensez, au bon niveau de politesse — en sachant pourquoi ça marche.",
+    get_h2: "Apprenez-le une fois. Employez-le juste à chaque fois.",
+    get_lead: "Essai gratuit sur l'App Store. Traduisez, comprenez pourquoi, et entraînez-vous jusqu'à ce que ce soit acquis.",
     foot_tagline: "Le traducteur qui enseigne.",
     foot_privacy: "Confidentialité",
     foot_guides: "Guides",
@@ -1639,61 +1722,65 @@
   ,
   de: {
     nav_registers: "Warum es darauf ankommt",
-    nav_features: "Funktionen",
+    nav_practice: "Üben",
     nav_how: "So funktioniert's",
     nav_premium: "Premium",
     nav_download: "Download",
     hero_eyebrow: "Übersetzung mit Fingerspitzengefühl",
     hero_h1: "Der Übersetzer,<br>der dir etwas beibringt.",
-    hero_lead: "Andere Übersetzer werfen dir Wörter hin und wünschen dir viel Glück. Tono Translate wählt die Höflichkeitsstufe passend zu deinem Gegenüber – Chef, Freund, ein geliebter Mensch – und erklärt dir warum, in deiner Sprache.",
+    hero_lead: "Schlag es nach, versteh, warum es zu deinem Gegenüber passt, und übe es, bis es sitzt. Tono Translate wählt die Höflichkeitsstufe für deinen Chef, einen Freund, einen geliebten Menschen – und erklärt sie dir in deiner Sprache.",
     hero_cta2: "So funktioniert es",
     hero_note: "Kostenlos testen im App Store · Koreanisch, Japanisch, Chinesisch &amp; 10 weitere",
     appstore_small: "Laden im",
     sw_eyebrow: "Warum es darauf ankommt",
     sw_h2: "Die richtigen Worte,<br>die falsche Stufe.",
-    sw_body: "Übersetzt du ein Wort falsch, korrigiert man dich. Triffst du die falsche Höflichkeitsstufe, sagt niemand etwas. Jeder andere Übersetzer liefert dir einen Satz, ohne zu sagen, auf welcher Stufe er steht – und auf Koreanisch, Japanisch oder Spanisch ist die Stufe die Botschaft.",
-    sw_c1_who: "An Ihren Vorgesetzten · ehrerbietig",
+    sw_body: "Übersetzt du ein Wort falsch, korrigiert man dich. Triffst du die falsche Höflichkeitsstufe, sagt niemand etwas – und auf Koreanisch, Japanisch oder Spanisch ist die Stufe die Botschaft.",
+    sw_c1_who: "An deinen Vorgesetzten · ehrerbietig",
     sw_c1_en: "Beruhigend und respektvoll. Die formelle Endung wahrt genau die Distanz, die der Moment erfordert.",
     sw_c2_who: "An einen Freund, leicht verärgert · locker",
     sw_c2_en: "„Vergiss es.“ Dieselben drei Wörter — und eine völlig andere Beziehung danach.",
     sw_more: "Mehr über die Höflichkeitsstufen im Koreanischen →",
-    feat2_h3: "Verstehen, was wirklich gemeint war",
+    feat2_h3: "Verstehen, was gesagt wurde – und wie förmlich",
     feat2_p: "Füge die Nachricht ein, die du nicht entziffern kannst. Tono Translate entschlüsselt Slang, Abkürzungen und Tippfehler – und erklärt dir, welche Höflichkeitsstufe dein Gegenüber gewählt hat, damit du weißt, wo ihr steht.",
     show_eyebrow: "In Aktion erleben",
-    show_h2: "Gemacht für den Moment, in dem Sie sich gerade befinden.",
+    show_h2: "Gemacht für den Moment, in dem du gerade steckst.",
     show_talk_tag: "Sprechen",
-    show_talk_cap: "Verstehen, was gemeint war – und mit einem Fingertipp antworten.",
+    show_talk_cap: "Sehen, was gesagt wurde – und mit einem Fingertipp antworten.",
     show_scripts_tag: "Szenarien",
-    show_scripts_cap: "Spielen Sie das gesamte Gespräch durch, bevor Sie den Raum betreten.",
+    show_scripts_cap: "Spiel das ganze Gespräch durch, bevor du reingehst.",
     show_camera_tag: "Kamera",
-    show_camera_cap: "Richten Sie sie auf eine Speisekarte oder ein Schild — lesen Sie es direkt im Kontext.",
+    show_camera_cap: "Richte sie auf eine Speisekarte oder ein Schild — und lies es direkt im Kontext.",
     sm_eyebrow: "Präsentationsmodus",
-    sm_h2: "Geben Sie Ihr Telefon einfach weiter.<br>Es spricht für Sie.",
-    sm_body: "Vollbild, volle Helligkeit und ein höflicher Hinweis in ihrer Sprache, damit ein Fremder versteht, worauf er blickt — und gerne hilft. Wenn Ihr Gegenüber antwortet, hört die App zu, zeigt Ihnen das Gesagte und hält passende Antworten zum Antippen bereit.",
-    po_eyebrow: "Feinschliff",
-    po_h2: "Mach den Fehler<br>nur einmal.",
-    po_body: "Du hast es in deiner Lernsprache geschrieben und bist nicht sicher, ob es stimmt – oder ob es zu dieser Person passt. Einfügen, sagen, an wen es geht, und Tono Translate korrigiert Rechtschreibung, Grammatik und Höflichkeitsstufe, mit einer Zeile zu jeder Änderung in deiner Sprache, damit derselbe Fehler nicht wiederkommt. In der App, über Kurzbefehle und Siri und aus dem Teilen-Menü.",
-    po_cap: "Markiere in jeder App, was du geschrieben hast, teile es mit Tono Translate und kopiere die korrigierte Fassung zurück.",
+    sm_h2: "Gib dein Handy einfach weiter.<br>Es spricht für dich.",
+    sm_body: "Vollbild, volle Helligkeit und ein höflicher Hinweis in ihrer Sprache, damit eine fremde Person versteht, was sie da sieht — und gern hilft. Wenn dein Gegenüber antwortet, hört die App zu, zeigt dir das Gesagte und hält passende Antworten zum Antippen bereit.",
     pr_eyebrow: "Üben",
-    pr_h2: "Beim nächsten Mal müssen Sie<br>nicht mehr nachschlagen.",
-    pr_body: "Kurze Übungen aus Ihren eigenen Sätzen, nicht aus einer Vokabelliste. Ein paar Minuten, auch offline. Und einmal pro Woche liest Tono Translate, was Sie gesagt haben, und schreibt eine kurze Lektion zu der Höflichkeitsform, die Sie gerade aufbauen. Bleibt auf Ihrem Telefon, nie auf unseren Servern.",
-    pr_practice_tag: "Üben",
-    pr_practice_cap: "Welcher Satz passt? Übungen aus Ihren eigenen Sätzen, ein paar Minuten am Stück.",
+    pr_h2: "Beim nächsten Mal musst du<br>nicht mehr nachschlagen.",
+    pr_body: "Alles, was du nachschlägst, kommt zu dir zurück – als Übungen, Wochenlektion und Satz des Tages –, damit dir beim nächsten Mal die richtigen Worte schon einfallen.",
     pr_lesson_tag: "Wochenlektion",
-    pr_lesson_cap: "Jede Woche eine kurze Lektion zu der Höflichkeitsform, die Sie aufbauen — geschrieben aus dem, was Sie gesagt haben.",
+    pr_drill_tag: "Übungen",
+    pr_drill_h3: "Übungen aus deinen eigenen Sätzen",
+    pr_drill_p: "Keine Vokabelliste, sondern die Sätze, die du wirklich gebraucht hast. Sag einen aus dem Kopf, finde heraus, was eine Nachricht bedeutet, oder wähle, welche Version zu welcher Person passt. Ein paar Minuten am Stück, auch offline.",
+    pr_lesson_h3: "Eine kurze Lektion aus deiner Woche",
+    pr_lesson_p: "Einmal pro Woche liest Tono Translate, was du nachgeschlagen hast, und schreibt eine kurze Lektion zu der Höflichkeitsstufe, die du gerade aufbaust. Sie fragt Sätze aus dem Gedächtnis ab, holt frühere zurück und gibt dir behutsames Feedback zu einem Satz, den du selbst geschrieben hast. Geschrieben aus deinen eigenen Sätzen und auf deinem Telefon gespeichert, nie auf unseren Servern.",
+    pr_widget_tag: "Home-Bildschirm-Widget",
+    pr_widget_h3: "Jeden Tag ein Satz auf deinem Home-Bildschirm",
+    pr_widget_p: "Füg das Tono Translate-Widget hinzu, und es zeigt dir jeden Tag einen Satz, den du nachgeschlagen hast – die Bedeutung bleibt verdeckt. Versuch, dich zu erinnern, und tippe dann auf „Bedeutung zeigen“. Tippst du auf die Karte, öffnet sich der Satz in der App. Mit Tono Translate Pro.",
+    pr_w_eyebrow: "Sag es aus dem Kopf",
+    pr_w_btn: "Bedeutung zeigen",
+    pr_widget_note: "Illustration des Widgets.",
     lang_eyebrow: "Dreizehn Sprachen, in jede Richtung",
-    lang_h2: "Lernen Sie in der Sprache, in der Sie auch denken.",
-    lang_lead: "Jede Erklärung wird in Ihrer eigenen Sprache geliefert — genau wie die App selbst. Bei Koreanisch geht Tono Translate am meisten in die Tiefe, aber das Ganze funktioniert zwischen zwei beliebigen Sprachen.",
+    lang_h2: "Lern in der Sprache, in der du denkst.",
+    lang_lead: "Jede Erklärung kommt in deiner eigenen Sprache — genau wie die App selbst. Bei Koreanisch geht Tono Translate am meisten in die Tiefe, aber alles funktioniert zwischen zwei beliebigen Sprachen.",
     how_eyebrow: "So funktioniert es",
-    how_h2: "In drei Schritten zum passenden Satz.",
-    how1_h3: "Satz eingeben",
-    how1_p: "Oder fügen Sie eine Nachricht ein, machen Sie ein Foto oder sprechen Sie es einfach aus. In jeder Ihrer Sprachen, in beide Richtungen.",
-    how2_h3: "Wer & Wo hinzufügen",
-    how2_p: "„Zu meinem Chef.“ „Auf dem Markt.“ Eine einzige Zeile Kontext genügt, um die gesamte Übersetzung anzupassen.",
-    how3_h3: "Die richtige Stufe – und das Warum",
-    how3_p: "Die Übersetzung, die Stilebene benannt und erklärt, sowie alternative Formulierungen für andere Gesprächspartner.",
+    how_h2: "Nachschlagen. Verstehen. Behalten.",
+    how1_h3: "Nachschlagen",
+    how1_p: "Tipp den Satz ein – oder füg eine Nachricht ein, mach ein Foto oder sprich ihn einfach aus – und sag, für wen und wo: „an meinen Chef“, „auf dem Markt“. Eine Zeile Kontext verändert die ganze Antwort.",
+    how2_h3: "Verstehen, warum es passt",
+    how2_p: "Die passende Höflichkeitsstufe für diese Person, benannt und in deiner Sprache erklärt – dazu andere Formulierungen für andere Menschen.",
+    how3_h3: "Üben",
+    how3_p: "Was du nachschlägst, kommt als kurze Übungen, Wochenlektion und Satz des Tages auf deinem Home-Bildschirm zurück – bis du nicht mehr nachschlagen musst.",
     prem_eyebrow: "Premium",
-    prem_h2: "Tono Translate ausprobieren. Unbegrenzt nutzen, sobald Sie bereit sind.",
+    prem_h2: "Probier Tono Translate aus. Unbegrenzt, sobald du so weit bist.",
     prem_free_tier: "Kostenlose Kostprobe",
     prem_free_per: "Übersetzungen zum Ausprobieren, aufs Haus",
     prem_free_li1: "Vollständige, kontextsensitive Übersetzung",
@@ -1702,14 +1789,14 @@
     prem_pro_tier: "Tono Translate Pro",
     prem_pro_price: "7 Tage kostenlos",
     prem_pro_per: "danach monatlich oder jährlich · jederzeit kündbar",
-    prem_pro_yr: "Preise für Ihre Region werden im App Store angezeigt",
+    prem_pro_yr: "Preise für deine Region siehst du im App Store",
     prem_pro_li1: "Unbegrenzte Übersetzungen &amp; Szenarien",
     prem_pro_li2: "Foto-Erkennung",
     prem_pro_li3: "Alles aus der kostenlosen Version, ohne Einschränkungen",
-    prem_pro_li4: "Übungen und eine Wochenlektion",
+    prem_pro_li4: "Übungen, die Wochenlektion &amp; das Home-Bildschirm-Widget",
     get_eyebrow: "Tono Translate herunterladen",
-    get_h2: "Nie wieder fragen, ob es richtig war.",
-    get_lead: "Kostenlos testen im App Store. Sag, was du meinst, in der passenden Höflichkeitsstufe – und wisse, warum sie passt.",
+    get_h2: "Einmal lernen. Immer richtig anwenden.",
+    get_lead: "Kostenlos testen im App Store. Übersetzen, verstehen, warum, und üben, bis es sitzt.",
     foot_tagline: "Der Übersetzer, der dir etwas beibringt.",
     foot_privacy: "Datenschutz",
     foot_guides: "Ratgeber",
@@ -1721,38 +1808,38 @@
     mom1_h3: "Die Familie kennenlernen",
     mom1_p: "Der erste Eindruck, für den es keine zweite Chance gibt – und bei dem ein zu lockerer Ton schnell als respektlos statt herzlich wahrgenommen wird.",
     mom2_h3: "Die erste Woche im Team",
-    mom2_p: "Kollegen werden Ihnen nicht sagen, dass Ihr Koreanisch schroff wirkt. Sie werden einfach aufhören, Sie nach Ihrer Meinung zu fragen.",
+    mom2_p: "Kolleginnen und Kollegen sagen dir nicht, dass dein Koreanisch schroff klingt. Sie fragen dich einfach irgendwann nicht mehr nach deiner Meinung.",
     mom3_h3: "Die Nachricht, die man nicht deuten kann",
     mom3_p: "Freundschaftlich, formell oder Flirt? Die Worte lassen sich leicht übersetzen. Das feine Signal dazwischen nicht – bis jetzt.",
-    prem_free_li4: "Offline-Übersetzung — unbegrenzt, direkt auf Ihrem Gerät"
+    prem_free_li4: "Offline-Übersetzung — unbegrenzt, direkt auf deinem Gerät"
   }
   ,
   vi: {
     nav_registers: "Vì sao điều này quan trọng",
-    nav_features: "Tính năng",
+    nav_practice: "Luyện tập",
     nav_how: "Cách hoạt động",
     nav_premium: "Premium",
     nav_download: "Tải về",
     hero_eyebrow: "Bản dịch thấu hiểu ngữ cảnh",
     hero_h1: "Trình dịch<br>giúp bạn học.",
-    hero_lead: "Các công cụ dịch khác chỉ đưa cho bạn câu chữ rồi phó mặc bạn tự xoay xở. Tono Translate chọn mức lịch sự theo người bạn đang nói chuyện — sếp, bạn bè, người mình yêu thương — và giải thích vì sao, bằng ngôn ngữ của bạn.",
+    hero_lead: "Tra cứu, hiểu vì sao câu đó hợp với người bạn đang nói chuyện, rồi luyện tập cho đến khi thuộc. Tono Translate chọn mức lịch sự phù hợp với sếp, bạn bè hay người bạn thương — và giải thích bằng ngôn ngữ của bạn.",
     hero_cta2: "Xem cách hoạt động",
     hero_note: "Trải nghiệm miễn phí trên App Store · Tiếng Hàn, Nhật, Trung &amp; 10 ngôn ngữ khác",
     appstore_small: "Tải về trên",
     sw_eyebrow: "Vì sao điều này quan trọng",
     sw_h2: "Đúng từ,<br>sai mức lịch sự.",
-    sw_body: "Dịch sai một từ, người khác sẽ sửa cho bạn. Chọn sai mức lịch sự, sẽ không ai nói gì cả. Mọi công cụ dịch khác đưa cho bạn một câu mà không cho biết nó ở mức nào — trong khi với tiếng Hàn, tiếng Nhật hay tiếng Tây Ban Nha, mức lịch sự chính là thông điệp.",
+    sw_body: "Dịch sai một từ, người khác sẽ sửa cho bạn. Chọn sai mức lịch sự, sẽ không ai nói gì cả — trong khi với tiếng Hàn, tiếng Nhật hay tiếng Tây Ban Nha, mức lịch sự chính là thông điệp.",
     sw_c1_who: "Gửi quản lý · kính cẩn",
     sw_c1_en: "Đáng tin cậy và tôn kính. Đuôi câu trang trọng giữ đúng khoảng cách mà chuẩn mực yêu cầu.",
     sw_c2_who: "Nói với bạn bè, hơi bực bội · thân mật",
     sw_c2_en: "“Bỏ qua đi.” Vẫn là ba từ tiếng Anh đó — nhưng mối quan hệ sau đó sẽ hoàn toàn khác biệt.",
     sw_more: "Tìm hiểu thêm về các mức lịch sự trong tiếng Hàn →",
-    feat2_h3: "Hiểu đúng ý thực sự của họ",
+    feat2_h3: "Hiểu họ nói gì, và trang trọng đến mức nào",
     feat2_p: "Dán tin nhắn bạn không đọc được. Tono Translate giải mã tiếng lóng, từ viết tắt và lỗi gõ — và giải thích mức lịch sự họ đã chọn, để bạn biết mình đang ở đâu trong mối quan hệ.",
     show_eyebrow: "Xem cách ứng dụng hoạt động",
     show_h2: "Được thiết kế cho chính khoảnh khắc bạn đang trải qua.",
     show_talk_tag: "Trò chuyện",
-    show_talk_cap: "Hiểu ý họ muốn truyền đạt — và trả lời chỉ bằng một cú chạm.",
+    show_talk_cap: "Xem họ nói gì — và trả lời chỉ bằng một cú chạm.",
     show_scripts_tag: "Kịch bản",
     show_scripts_cap: "Tập dượt toàn bộ cuộc đối thoại trước khi bạn khi bạn khi bạn bước vào.",
     show_camera_tag: "Máy ảnh",
@@ -1760,28 +1847,32 @@
     sm_eyebrow: "Chế độ Hiển thị",
     sm_h2: "Đưa điện thoại của bạn cho họ.<br>Ứng dụng sẽ nói thay bạn.",
     sm_body: "Toàn màn hình, độ sáng tối đa, cùng một lời nhắn lịch sự bằng chính ngôn ngữ của họ để một người lạ có thể hiểu ngay họ đang nhìn vào cái gì — và sẵn lòng giúp đỡ. Khi họ trả lời, ứng dụng sẽ lắng nghe và hiển thị những gì họ nói, kèm theo các câu phản hồi có sẵn để bạn chỉ việc chạm.",
-    po_eyebrow: "Trau chuốt",
-    po_h2: "Chỉ sai<br>một lần.",
-    po_body: "Bạn viết bằng ngôn ngữ đang học và không chắc nó đúng — hay đúng với người này. Dán vào, cho biết gửi cho ai, Tono Translate sẽ sửa chính tả, ngữ pháp và mức lịch sự, kèm một dòng giải thích cho mỗi thay đổi bằng ngôn ngữ của bạn, để lỗi cũ không lặp lại. Trong ứng dụng, từ Phím tắt và Siri, và từ bảng chia sẻ.",
-    po_cap: "Chọn câu bạn viết trong bất kỳ ứng dụng nào, chia sẻ sang Tono Translate, rồi sao chép bản đã sửa về.",
     pr_eyebrow: "Luyện tập",
     pr_h2: "Lần sau, bạn sẽ không cần<br>tra lại nữa.",
-    pr_body: "Những bài luyện ngắn được tạo từ chính câu bạn đã dùng, không phải từ danh sách từ vựng. Chỉ vài phút, và dùng được cả khi ngoại tuyến. Mỗi tuần một lần, Tono Translate đọc lại những gì bạn đã nói và viết một bài học ngắn về cách xưng hô bạn đang xây dựng. Lưu trên điện thoại của bạn, không bao giờ trên máy chủ của chúng tôi.",
-    pr_practice_tag: "Luyện tập",
-    pr_practice_cap: "Câu nào phù hợp? Bài luyện từ chính câu của bạn, mỗi lần vài phút.",
+    pr_body: "Mọi thứ bạn tra đều quay lại với bạn — qua bài luyện, bài học hằng tuần và mỗi ngày một câu — để lần sau, bạn đã có sẵn lời phù hợp.",
     pr_lesson_tag: "Bài học hằng tuần",
-    pr_lesson_cap: "Mỗi tuần, một bài học ngắn về cách xưng hô bạn đang xây dựng — viết từ những gì bạn đã nói.",
+    pr_drill_tag: "Bài luyện",
+    pr_drill_h3: "Bài luyện từ chính câu bạn đã tra",
+    pr_drill_p: "Không phải danh sách từ vựng, mà là những câu bạn thật sự cần. Tự nhớ và nói ra, hiểu một tin nhắn đang nói gì, hoặc chọn cách nói nào hợp với người nào. Mỗi lần vài phút, dùng được cả khi ngoại tuyến.",
+    pr_lesson_h3: "Bài học ngắn từ tuần của bạn",
+    pr_lesson_p: "Mỗi tuần một lần, Tono Translate đọc lại những gì bạn đã tra và viết một bài học ngắn về mức lịch sự bạn đang xây dựng. Bài học yêu cầu bạn nhớ lại các câu, ôn lại những câu cũ và nhận xét nhẹ nhàng về một câu do chính bạn viết. Được viết từ chính những câu của bạn và lưu trên điện thoại của bạn, không bao giờ trên máy chủ của chúng tôi.",
+    pr_widget_tag: "Tiện ích Màn hình chính",
+    pr_widget_h3: "Mỗi ngày một câu trên Màn hình chính",
+    pr_widget_p: "Thêm tiện ích Tono Translate và mỗi ngày nó sẽ đưa lại một câu bạn đã tra, với phần nghĩa được ẩn đi. Hãy thử nhớ lại, rồi chạm “Xem nghĩa”. Chạm vào thẻ để mở câu đó trong ứng dụng. Có trong Tono Translate Pro.",
+    pr_w_eyebrow: "Tự nhớ và nói ra",
+    pr_w_btn: "Xem nghĩa",
+    pr_widget_note: "Hình minh họa tiện ích.",
     lang_eyebrow: "Mười ba ngôn ngữ, mọi chiều",
     lang_h2: "Học bằng chính ngôn ngữ mà bạn tư duy.",
     lang_lead: "Mọi lời giải thích đều hiển thị bằng ngôn ngữ của riêng bạn — và giao diện ứng dụng cũng vậy. Tiếng Hàn là nơi Tono Translate đi sâu nhất, nhưng toàn bộ ứng dụng hoạt động mượt mà giữa bất kỳ cặp ngôn ngữ nào.",
     how_eyebrow: "Cách hoạt động",
-    how_h2: "Ba lần chạm để có câu nói phù hợp nhất.",
-    how1_h3: "Nhập cụm từ",
-    how1_p: "Hoặc dán tin nhắn, chụp ảnh, hay chỉ cần nói ra. Bằng bất kỳ ngôn ngữ nào của bạn, theo cả hai chiều.",
-    how2_h3: "Thêm đối tượng & ngữ cảnh",
-    how2_p: "“Nói với sếp.” “Tại chợ.” Chỉ cần một dòng ngữ cảnh là đủ để thay đổi hoàn toàn câu dịch.",
-    how3_h3: "Nắm đúng mức lịch sự và lý do",
-    how3_p: "Bản dịch được gọi tên và giải thích rõ sắc thái biểu cảm, cùng các cách diễn đạt khác dành cho những đối tượng khác nhau.",
+    how_h2: "Tra cứu. Hiểu vì sao. Nhớ lâu.",
+    how1_h3: "Tra cứu",
+    how1_p: "Nhập câu cần nói — hoặc dán tin nhắn, chụp ảnh, hay chỉ cần nói ra — rồi thêm nói với ai và ở đâu: “nói với sếp”, “ở chợ”. Một dòng ngữ cảnh là đủ để thay đổi cả câu trả lời.",
+    how2_h3: "Hiểu vì sao hợp",
+    how2_p: "Mức lịch sự phù hợp với người đó, được gọi tên và giải thích bằng ngôn ngữ của bạn — kèm những cách nói khác dành cho người khác.",
+    how3_h3: "Luyện tập",
+    how3_p: "Những gì bạn tra sẽ quay lại dưới dạng bài luyện ngắn, bài học hằng tuần và mỗi ngày một câu trên Màn hình chính — cho đến khi bạn không cần tra nữa.",
     prem_eyebrow: "Gói Premium",
     prem_h2: "Dùng thử Tono Translate. Nâng cấp không giới hạn khi bạn đã sẵn sàng.",
     prem_free_tier: "Trải nghiệm miễn phí",
@@ -1796,10 +1887,10 @@
     prem_pro_li1: "Không giới hạn bản dịch & kịch bản",
     prem_pro_li2: "Đọc văn bản qua ảnh",
     prem_pro_li3: "Mọi tính năng của bản Miễn phí, không giới hạn",
-    prem_pro_li4: "Bài luyện tập và bài học hằng tuần",
+    prem_pro_li4: "Bài luyện tập, bài học hằng tuần &amp; tiện ích Màn hình chính",
     get_eyebrow: "Tải Tono Translate",
-    get_h2: "Không còn băn khoăn mình đã nói đúng chưa.",
-    get_lead: "Dùng thử miễn phí trên App Store. Nói đúng ý, ở đúng mức lịch sự — và hiểu vì sao câu đó hợp.",
+    get_h2: "Học một lần. Dùng đúng mọi lúc.",
+    get_lead: "Dùng thử miễn phí trên App Store. Dịch, hiểu vì sao, và luyện tập cho đến khi thuộc.",
     foot_tagline: "Trình dịch giúp bạn học.",
     foot_privacy: "Quyền riêng tư",
     foot_guides: "Hướng dẫn",
@@ -1819,30 +1910,30 @@
   ,
   id: {
     nav_registers: "Mengapa ini penting",
-    nav_features: "Fitur",
+    nav_practice: "Latihan",
     nav_how: "Cara kerja",
     nav_premium: "Premium",
     nav_download: "Unduh",
     hero_eyebrow: "Terjemahan yang memahami situasi",
     hero_h1: "Penerjemah yang<br>juga mengajar.",
-    hero_lead: "Penerjemah lain hanya memberi Anda kata-kata dan berharap Anda beruntung. Tono Translate memilih tingkat kesopanan sesuai lawan bicara Anda — atasan, teman, orang yang Anda cintai — dan menjelaskan alasannya, dalam bahasa Anda.",
+    hero_lead: "Cari, pahami mengapa itu cocok untuk lawan bicara Anda, lalu latih sampai melekat. Tono Translate memilih tingkat kesopanan untuk atasan, teman, atau orang yang Anda cintai — dan menjelaskannya dalam bahasa Anda.",
     hero_cta2: "Lihat cara kerjanya",
     hero_note: "Gratis dicoba di App Store · Bahasa Korea, Jepang, Mandarin &amp; 10 lainnya",
     appstore_small: "Unduh di",
     sw_eyebrow: "Mengapa ini penting",
     sw_h2: "Kata-katanya benar,<br>tingkatnya salah.",
-    sw_body: "Salah memilih kata, orang lain akan mengoreksi Anda. Salah tingkat kesopanan, tidak akan ada yang menegur. Penerjemah lain memberi Anda kalimat tanpa memberi tahu di tingkat mana kalimat itu berada — padahal dalam bahasa Korea, Jepang, atau Spanyol, tingkat itulah pesannya.",
+    sw_body: "Salah memilih kata, orang lain akan mengoreksi Anda. Salah tingkat kesopanan, tidak akan ada yang menegur — padahal dalam bahasa Korea, Jepang, atau Spanyol, tingkat itulah pesannya.",
     sw_c1_who: "Kepada manajer Anda · sangat hormat",
     sw_c1_en: "Menenangkan dan penuh rasa hormat. Akhiran formal menjaga jarak yang tepat sesuai dengan situasi yang dibutuhkan.",
     sw_c2_who: "Kepada teman, agak kesal · santai",
     sw_c2_en: "“Lupakan saja.” Dua kata bahasa Indonesia yang sama — namun menghasilkan hubungan yang sepenuhnya berbeda setelahnya.",
     sw_more: "Pelajari lebih lanjut tentang tingkat kesopanan dalam bahasa Korea →",
-    feat2_h3: "Pahami apa yang sebenarnya mereka maksud",
+    feat2_h3: "Pahami apa yang mereka katakan, dan seberapa formal",
     feat2_p: "Tempel pesan yang tidak bisa Anda baca. Tono Translate menguraikan bahasa gaul, singkatan, dan salah ketik — lalu menjelaskan tingkat kesopanan yang mereka pilih, agar Anda tahu posisi Anda di mata mereka.",
     show_eyebrow: "Lihat langsung cara kerjanya",
     show_h2: "Dibuat khusus untuk momen yang sedang Anda jalani.",
     show_talk_tag: "Bicara",
-    show_talk_cap: "Pahami maksud mereka — dan jawab dalam sekali ketuk.",
+    show_talk_cap: "Lihat apa yang mereka katakan — dan jawab dalam sekali ketuk.",
     show_scripts_tag: "Skenario",
     show_scripts_cap: "Latih seluruh percakapan sebelum Anda melangkah masuk.",
     show_camera_tag: "Kamera",
@@ -1850,28 +1941,32 @@
     sm_eyebrow: "Mode Tunjuk",
     sm_h2: "Serahkan ponsel Anda.<br>Aplikasi ini akan bicara untuk Anda.",
     sm_body: "Layar penuh, kecerahan penuh, dan catatan sopan dalam bahasa mereka agar orang asing memahami apa yang mereka lihat — dan bersedia membantu. Saat mereka menjawab, aplikasi ini mendengarkan dan menunjukkan apa yang mereka katakan, lengkap dengan balasan yang siap diketuk.",
-    po_eyebrow: "Rapikan",
-    po_h2: "Salah cukup<br>sekali saja.",
-    po_body: "Anda menulisnya dalam bahasa yang sedang dipelajari dan tidak yakin sudah benar — atau pas untuk orang itu. Tempel, sebutkan untuk siapa, dan Tono Translate memperbaiki ejaan, tata bahasa, dan tingkat kesopanannya, dengan satu baris penjelasan untuk tiap perubahan dalam bahasa Anda, agar kesalahan yang sama tidak terulang. Di aplikasi, dari Pintasan dan Siri, serta dari lembar berbagi.",
-    po_cap: "Pilih yang Anda tulis di aplikasi mana pun, bagikan ke Tono Translate, salin kembali versi yang sudah diperbaiki.",
     pr_eyebrow: "Latihan",
     pr_h2: "Lain kali, Anda tidak perlu<br>mencarinya lagi.",
-    pr_body: "Latihan singkat yang dibuat dari kalimat Anda sendiri, bukan dari daftar kata. Beberapa menit saja, dan bisa dipakai offline. Dan seminggu sekali, Tono Translate membaca apa yang Anda ucapkan lalu menulis pelajaran singkat tentang tingkat kesopanan yang sedang Anda bangun. Tersimpan di ponsel Anda, tidak pernah di server kami.",
-    pr_practice_tag: "Latihan",
-    pr_practice_cap: "Mana yang pas? Latihan dari kalimat Anda sendiri, beberapa menit setiap kali.",
+    pr_body: "Semua yang Anda cari akan kembali kepada Anda — sebagai latihan, pelajaran mingguan, dan satu kalimat sehari — sehingga lain kali kata-kata yang tepat sudah Anda kuasai.",
     pr_lesson_tag: "Pelajaran mingguan",
-    pr_lesson_cap: "Setiap minggu, pelajaran singkat tentang tingkat kesopanan yang sedang Anda bangun — ditulis dari apa yang Anda ucapkan.",
+    pr_drill_tag: "Latihan singkat",
+    pr_drill_h3: "Latihan dari kalimat Anda sendiri",
+    pr_drill_p: "Bukan daftar kosakata, melainkan kalimat yang benar-benar Anda butuhkan. Ucapkan dari ingatan, pahami isi sebuah pesan, atau pilih versi mana yang cocok untuk siapa. Beberapa menit sekali latihan, dan bisa dipakai offline.",
+    pr_lesson_h3: "Pelajaran singkat dari minggu Anda",
+    pr_lesson_p: "Seminggu sekali, Tono Translate membaca apa yang Anda cari lalu menulis pelajaran singkat tentang tingkat kesopanan yang sedang Anda bangun. Pelajaran ini meminta Anda mengucapkan kalimat dari ingatan, memunculkan kembali kalimat sebelumnya, dan memberi masukan yang ramah untuk satu kalimat buatan Anda sendiri. Ditulis dari kalimat Anda sendiri dan disimpan di ponsel Anda, tidak pernah di server kami.",
+    pr_widget_tag: "Widget Layar Utama",
+    pr_widget_h3: "Satu kalimat sehari di Layar Utama Anda",
+    pr_widget_p: "Tambahkan widget Tono Translate, dan setiap hari widget ini menampilkan satu kalimat yang pernah Anda cari, dengan artinya disembunyikan. Coba ingat dulu, lalu ketuk “Lihat artinya”. Ketuk kartunya untuk membuka kalimat itu di aplikasi. Dengan Tono Translate Pro.",
+    pr_w_eyebrow: "Ucapkan dari ingatan",
+    pr_w_btn: "Lihat artinya",
+    pr_widget_note: "Ilustrasi widget.",
     lang_eyebrow: "Tiga belas bahasa, ke segala arah",
     lang_h2: "Belajar dalam bahasa yang biasa Anda gunakan untuk berpikir.",
     lang_lead: "Setiap penjelasan disajikan dalam bahasa Anda sendiri — begitu pula dengan aplikasinya. Bahasa Korea adalah keunggulan terdalam Tono Translate, tetapi seluruh fitur berfungsi penuh di antara dua bahasa apa pun.",
     how_eyebrow: "Cara kerja",
-    how_h2: "Tiga ketukan untuk menemukan kalimat yang tepat.",
-    how1_h3: "Ketik frasa",
-    how1_p: "Atau tempel pesan, ambil foto, atau cukup ucapkan langsung. Dalam bahasa apa pun yang Anda kuasai, ke arah mana pun.",
-    how2_h3: "Tambahkan siapa &amp; di mana",
-    how2_p: "“Kepada bos saya.” “Di pasar.” Satu baris konteks saja sudah cukup untuk mengubah seluruh hasil terjemahan.",
-    how3_h3: "Pahami tingkat yang tepat, dan alasannya",
-    how3_p: "Hasil terjemahan, penjelasan lengkap tentang ragam bahasanya, serta alternatif cara penyampaian untuk orang yang berbeda.",
+    how_h2: "Cari. Pahami. Ingat.",
+    how1_h3: "Cari",
+    how1_p: "Ketik frasanya — atau tempel pesan, ambil foto, atau cukup ucapkan — lalu tambahkan untuk siapa dan di mana: “kepada bos saya”, “di pasar”. Satu baris konteks mengubah seluruh jawabannya.",
+    how2_h3: "Pahami mengapa cocok",
+    how2_p: "Tingkat kesopanan yang tepat untuk orang itu, disebutkan dan dijelaskan dalam bahasa Anda — plus cara lain untuk mengatakannya kepada orang lain.",
+    how3_h3: "Latih",
+    how3_p: "Apa yang Anda cari kembali sebagai latihan singkat, pelajaran mingguan, dan satu kalimat sehari di Layar Utama — sampai Anda tidak perlu mencarinya lagi.",
     prem_eyebrow: "Premium",
     prem_h2: "Coba Tono Translate. Nikmati tanpa batas saat Anda siap.",
     prem_free_tier: "Uji coba gratis",
@@ -1886,10 +1981,10 @@
     prem_pro_li1: "Terjemahan &amp; skenario tanpa batas",
     prem_pro_li2: "Pembacaan foto",
     prem_pro_li3: "Semua yang ada di versi Gratis, tanpa batasan",
-    prem_pro_li4: "Latihan dan pelajaran mingguan",
+    prem_pro_li4: "Latihan, pelajaran mingguan &amp; widget Layar Utama",
     get_eyebrow: "Dapatkan Tono Translate",
-    get_h2: "Tak perlu lagi ragu apakah Anda sudah mengatakannya dengan benar.",
-    get_lead: "Gratis dicoba di App Store. Katakan maksud Anda pada tingkat kesopanan yang tepat — dan tahu mengapa itu berhasil.",
+    get_h2: "Pelajari sekali. Gunakan dengan tepat setiap saat.",
+    get_lead: "Gratis dicoba di App Store. Terjemahkan, pahami alasannya, dan berlatih sampai melekat.",
     foot_tagline: "Penerjemah yang juga mengajar.",
     foot_privacy: "Privasi",
     foot_guides: "Panduan",
@@ -1909,30 +2004,30 @@
   ,
   th: {
     nav_registers: "ทำไมเรื่องนี้ถึงสำคัญ",
-    nav_features: "ฟีเจอร์",
+    nav_practice: "ฝึกฝน",
     nav_how: "หลักการทำงาน",
     nav_premium: "พรีเมียม",
     nav_download: "ดาวน์โหลด",
     hero_eyebrow: "แปลภาษาแบบเข้าใจบริบทและผู้ฟัง",
     hero_h1: "แปลไปด้วย<br>เรียนรู้ไปด้วย",
-    hero_lead: "เครื่องมือแปลภาษาอื่น ๆ แค่ส่งคำแปลให้แล้วปล่อยให้คุณเสี่ยงดวงเอาเอง Tono Translate เลือกระดับความสุภาพให้เหมาะกับคู่สนทนาของคุณ — เจ้านาย เพื่อน หรือคนที่คุณรัก — และอธิบายเหตุผลในภาษาของคุณ",
+    hero_lead: "ค้นหา เข้าใจว่าทำไมจึงเหมาะกับคนที่คุณคุยด้วย แล้วฝึกจนจำได้ขึ้นใจ Tono Translate เลือกระดับความสุภาพให้เหมาะกับเจ้านาย เพื่อน หรือคนที่คุณรัก — และอธิบายเหตุผลในภาษาของคุณ",
     hero_cta2: "ดูหลักการทำงาน",
     hero_note: "ทดลองใช้ฟรีบน App Store · ภาษาเกาหลี, ญี่ปุ่น, จีน และอีก 10 ภาษา",
     appstore_small: "ดาวน์โหลดได้ที่",
     sw_eyebrow: "ทำไมเรื่องนี้ถึงสำคัญ",
     sw_h2: "คำถูก<br>แต่ระดับผิด",
-    sw_body: "หากคุณใช้คำผิด จะมีคนคอยแก้ให้ แต่ถ้าคุณใช้ระดับความสุภาพผิด จะไม่มีใครบอก เครื่องมือแปลภาษาอื่น ๆ ให้ประโยคมาโดยไม่บอกว่าอยู่ในระดับไหน — ทั้งที่ในภาษาเกาหลี ญี่ปุ่น หรือสเปน ระดับนั้นแหละคือสาร",
+    sw_body: "หากคุณใช้คำผิด จะมีคนคอยแก้ให้ แต่ถ้าคุณใช้ระดับความสุภาพผิด จะไม่มีใครบอก — ทั้งที่ในภาษาเกาหลี ญี่ปุ่น หรือสเปน ระดับนั้นแหละคือสาร",
     sw_c1_who: "ส่งถึงผู้จัดการของคุณ · นอบน้อม",
     sw_c1_en: "สร้างความมั่นใจและแสดงความเคารพ คำลงท้ายที่เป็นทางการช่วยรักษาระยะห่างที่เหมาะสมกับสถานการณ์ได้อย่างพอดี",
     sw_c2_who: "ส่งถึงเพื่อนในอารมณ์หงุดหงิดเล็กน้อย · เป็นกันเอง",
     sw_c2_en: "“ช่างมันเถอะ” แม้ภาษาอังกฤษจะพูดเหมือนกันว่า “Forget it.” แต่น้ำเสียงที่คุณเลือกใช้ อาจเปลี่ยนความสัมพันธ์หลังจากนั้นไปคนละเรื่องเลย",
     sw_more: "เรียนรู้เพิ่มเติมเกี่ยวกับระดับความสุภาพในภาษาเกาหลี →",
-    feat2_h3: "เข้าใจความหมายที่แท้จริงที่พวกเขาต้องการสื่อ",
+    feat2_h3: "เข้าใจว่าเขาพูดอะไร และเป็นทางการแค่ไหน",
     feat2_p: "วางข้อความที่คุณอ่านไม่ออก Tono Translate จะถอดความสแลง ตัวย่อ และคำที่พิมพ์ผิด — พร้อมอธิบายว่าอีกฝ่ายเลือกใช้ระดับความสุภาพแบบไหน เพื่อให้คุณรู้ว่าความสัมพันธ์อยู่ตรงไหน",
     show_eyebrow: "ดูการทำงานจริง",
     show_h2: "สร้างสรรค์มาเพื่อช่วงเวลาที่คุณกำลังเผชิญอยู่จริงๆ",
     show_talk_tag: "พูดคุย",
-    show_talk_cap: "เข้าใจความหมายที่แท้จริง — แล้วตอบกลับได้ในแตะเดียว",
+    show_talk_cap: "ดูว่าเขาพูดอะไร — แล้วตอบกลับได้ในแตะเดียว",
     show_scripts_tag: "บทสนทนา",
     show_scripts_cap: "ซ้อมบทสนทนาทั้งหมดก่อนที่คุณจะก้าวเข้าไป",
     show_camera_tag: "กล้อง",
@@ -1940,28 +2035,32 @@
     sm_eyebrow: "โหมดแสดงหน้าจอ",
     sm_h2: "ยื่นโทรศัพท์ของคุณให้คู่สนทนา<br>แล้วให้แอปพูดแทนคุณ",
     sm_body: "แสดงผลเต็มจอ เปิดความสว่างสุด พร้อมข้อความสุภาพในภาษาของพวกเขา เพื่อให้คนแปลกหน้าเข้าใจทันทีว่าพวกเขากำลังดูอะไรอยู่ — และยินดีที่จะช่วยเหลือคุณ เมื่อพวกเขาตอบกลับมา แอปจะฟังและแสดงสิ่งที่พวกเขาพูด พร้อมเตรียมคำตอบกลับให้คุณแตะส่งได้ทันที",
-    po_eyebrow: "ขัดเกลา",
-    po_h2: "ผิดครั้งเดียว<br>ก็พอ",
-    po_body: "คุณเขียนด้วยภาษาที่กำลังเรียน แต่ไม่แน่ใจว่าถูกไหม — หรือเหมาะกับคนนี้ไหม วางข้อความ บอกว่าจะส่งถึงใคร แล้ว Tono Translate จะแก้การสะกด ไวยากรณ์ และระดับความสุภาพ พร้อมคำอธิบายสั้น ๆ ในภาษาของคุณสำหรับทุกจุดที่แก้ เพื่อไม่ให้ผิดซ้ำที่เดิม ใช้ได้ทั้งในแอป จากคำสั่งลัดและ Siri และจากแผ่นแชร์",
-    po_cap: "เลือกข้อความที่คุณเขียนในแอปไหนก็ได้ แชร์ไปที่ Tono Translate แล้วคัดลอกฉบับที่แก้แล้วกลับมา",
     pr_eyebrow: "ฝึกฝน",
     pr_h2: "ครั้งหน้า ไม่ต้องเปิดหาอีกแล้ว",
-    pr_body: "แบบฝึกสั้น ๆ ที่สร้างจากประโยคของคุณเอง ไม่ใช่รายการคำศัพท์ ใช้เวลาไม่กี่นาที และใช้ได้แม้ออฟไลน์ และสัปดาห์ละครั้ง Tono Translate จะอ่านสิ่งที่คุณพูดแล้วเขียนบทเรียนสั้น ๆ เกี่ยวกับระดับความสุภาพที่คุณกำลังฝึกอยู่ เก็บไว้ในโทรศัพท์ของคุณเท่านั้น ไม่เคยอยู่บนเซิร์ฟเวอร์ของเรา",
-    pr_practice_tag: "ฝึกฝน",
-    pr_practice_cap: "ประโยคไหนเหมาะ? แบบฝึกจากประโยคของคุณเอง ครั้งละไม่กี่นาที",
+    pr_body: "ทุกสิ่งที่คุณค้นหาจะกลับมาหาคุณ — เป็นแบบฝึก บทเรียนประจำสัปดาห์ และวันละหนึ่งประโยค — เพื่อให้ครั้งหน้าคุณมีคำที่เหมาะสมอยู่ในหัวแล้ว",
     pr_lesson_tag: "บทเรียนประจำสัปดาห์",
-    pr_lesson_cap: "ทุกสัปดาห์ บทเรียนสั้น ๆ เกี่ยวกับระดับความสุภาพที่คุณกำลังฝึก — เขียนจากสิ่งที่คุณพูด",
+    pr_drill_tag: "แบบฝึก",
+    pr_drill_h3: "แบบฝึกจากประโยคของคุณเอง",
+    pr_drill_p: "ไม่ใช่รายการคำศัพท์ แต่เป็นประโยคที่คุณต้องใช้จริง ๆ พูดจากความจำ ทำความเข้าใจว่าข้อความหนึ่งพูดถึงอะไร หรือเลือกว่าแบบไหนเหมาะกับใคร ครั้งละไม่กี่นาที และใช้ได้แม้ออฟไลน์",
+    pr_lesson_h3: "บทเรียนสั้น ๆ จากสัปดาห์ของคุณ",
+    pr_lesson_p: "สัปดาห์ละครั้ง Tono Translate จะอ่านสิ่งที่คุณค้นหาแล้วเขียนบทเรียนสั้น ๆ เกี่ยวกับระดับความสุภาพที่คุณกำลังฝึกอยู่ บทเรียนจะให้คุณพูดประโยคจากความจำ ทบทวนประโยคที่เคยเรียน และให้คำแนะนำอย่างนุ่มนวลกับประโยคที่คุณเขียนเอง เขียนจากประโยคของคุณเอง และบันทึกไว้ในโทรศัพท์ของคุณ ไม่เคยเก็บไว้บนเซิร์ฟเวอร์ของเรา",
+    pr_widget_tag: "วิดเจ็ตหน้าจอโฮม",
+    pr_widget_h3: "วันละหนึ่งประโยคบนหน้าจอโฮม",
+    pr_widget_p: "เพิ่มวิดเจ็ต Tono Translate แล้วทุกวันวิดเจ็ตจะนำประโยคที่คุณเคยค้นกลับมาหนึ่งประโยค โดยซ่อนความหมายไว้ ลองนึกให้ออกก่อน แล้วแตะ “ดูความหมาย” แตะการ์ดเพื่อเปิดประโยคนั้นในแอป ใช้ได้กับ Tono Translate Pro",
+    pr_w_eyebrow: "พูดจากความจำ",
+    pr_w_btn: "ดูความหมาย",
+    pr_widget_note: "ภาพประกอบของวิดเจ็ต",
     lang_eyebrow: "สิบสามภาษา ทุกทิศทาง",
     lang_h2: "เรียนรู้ผ่านภาษาที่คุณใช้คิดจริง ๆ",
     lang_lead: "ทุกคำอธิบายจะแสดงในภาษาของคุณเอง รวมถึงตัวแอปด้วย แม้ว่า Tono Translate จะเน้นภาษาเกาหลีลึกซึ้งที่สุด แต่ฟังก์ชันทั้งหมดก็ใช้งานสลับกันได้อย่างราบรื่นระหว่างสองภาษาใด ๆ",
     how_eyebrow: "หลักการทำงาน",
-    how_h2: "เพียง 3 แตะ ก็ได้ประโยคที่ถูกต้องสำหรับพูดทันที",
-    how1_h3: "พิมพ์วลีที่ต้องการ",
-    how1_p: "หรือจะวางข้อความ ถ่ายภาพ หรือแค่พูดออกมาก็ได้ รองรับทุกภาษาของคุณ แปลสลับไปมาได้ทั้งสองทิศทาง",
-    how2_h3: "ระบุคู่สนทนาและสถานที่",
-    how2_p: "“คุยกับเจ้านาย” “ที่ตลาด” เพียงระบุบริบทสั้น ๆ แค่บรรทัดเดียว ผลลัพธ์การแปลทั้งหมดก็เปลี่ยนไปอย่างเหมาะสม",
-    how3_h3: "เข้าใจระดับที่เหมาะสมและเหตุผลเบื้องหลัง",
-    how3_p: "ผลแปลที่ระบุระดับภาษาและคำอธิบายอย่างชัดเจน พร้อมทางเลือกในการพูดแบบอื่น ๆ สำหรับคู่สนทนาที่ต่างกัน",
+    how_h2: "ค้นหา เข้าใจ แล้วจำให้ขึ้นใจ",
+    how1_h3: "ค้นหา",
+    how1_p: "พิมพ์วลี — หรือวางข้อความ ถ่ายภาพ หรือแค่พูดออกมา — แล้วระบุว่าพูดกับใครและที่ไหน: “คุยกับเจ้านาย” “ที่ตลาด” บริบทเพียงบรรทัดเดียวก็เปลี่ยนคำตอบได้ทั้งหมด",
+    how2_h3: "เข้าใจว่าทำไมจึงเหมาะ",
+    how2_p: "ระดับความสุภาพที่เหมาะกับคนนั้น พร้อมชื่อเรียกและคำอธิบายในภาษาของคุณ — รวมถึงวิธีพูดแบบอื่นสำหรับคนอื่น ๆ",
+    how3_h3: "ฝึกฝน",
+    how3_p: "สิ่งที่คุณค้นหาจะกลับมาเป็นแบบฝึกสั้น ๆ บทเรียนประจำสัปดาห์ และวันละหนึ่งประโยคบนหน้าจอโฮม — จนคุณไม่ต้องค้นหาอีก",
     prem_eyebrow: "พรีเมียม",
     prem_h2: "ลองใช้ Tono Translate แล้วค่อยอัปเกรดเป็นแบบไม่จำกัดเมื่อคุณพร้อม",
     prem_free_tier: "ทดลองใช้ฟรี",
@@ -1976,10 +2075,10 @@
     prem_pro_li1: "แปลภาษาและบทสนทนาได้ไม่จำกัด",
     prem_pro_li2: "อ่านข้อความจากภาพถ่าย",
     prem_pro_li3: "ครบทุกฟีเจอร์ในเวอร์ชันฟรี แบบไม่มีข้อจำกัด",
-    prem_pro_li4: "แบบฝึกหัดและบทเรียนประจำสัปดาห์",
+    prem_pro_li4: "แบบฝึกหัด บทเรียนประจำสัปดาห์ และวิดเจ็ตหน้าจอโฮม",
     get_eyebrow: "ดาวน์โหลด Tono Translate",
-    get_h2: "หมดกังวลว่าพูดถูกหรือเปล่า",
-    get_lead: "ทดลองใช้ฟรีบน App Store พูดสิ่งที่คุณต้องการสื่อในระดับความสุภาพที่เหมาะสม — และรู้ว่าทำไมถึงเหมาะ",
+    get_h2: "เรียนครั้งเดียว ใช้ถูกทุกครั้ง",
+    get_lead: "ทดลองใช้ฟรีบน App Store แปล เข้าใจเหตุผล และฝึกจนจำได้ขึ้นใจ",
     foot_tagline: "แปลไปด้วย เรียนรู้ไปด้วย",
     foot_privacy: "ความเป็นส่วนตัว",
     foot_guides: "คู่มือ",
@@ -1998,30 +2097,30 @@
   },
   "pt-BR": {
     nav_registers: "Por que importa",
-    nav_features: "Recursos",
+    nav_practice: "Pratique",
     nav_how: "Como funciona",
     nav_premium: "Premium",
     nav_download: "Baixar",
     hero_eyebrow: "A tradução que lê o ambiente",
     hero_h1: "O tradutor<br>que ensina.",
-    hero_lead: "Outros tradutores entregam palavras e torcem pelo melhor. O Tono Translate escolhe o nível de formalidade conforme com quem você fala — o chefe, um amigo, quem você ama — e explica por quê, no seu idioma.",
+    hero_lead: "Pesquise, entenda por que combina com a pessoa com quem você fala e pratique até fixar. O Tono Translate escolhe o nível de formalidade para o chefe, um amigo, quem você ama — e explica no seu idioma.",
     hero_cta2: "Veja como funciona",
     hero_note: "Grátis para testar na App Store · Coreano, japonês, chinês &amp; mais 10",
     appstore_small: "Baixar na",
     sw_eyebrow: "Por que importa",
     sw_h2: "As palavras certas,<br>no nível errado.",
-    sw_body: "Erre uma palavra e alguém te corrige. Erre o nível de formalidade e ninguém diz nada. Qualquer outro tradutor entrega uma frase sem dizer em que nível ela está — e em coreano, japonês ou espanhol, o nível é a mensagem.",
+    sw_body: "Erre uma palavra e alguém te corrige. Erre o nível de formalidade e ninguém diz nada — e em coreano, japonês ou espanhol, o nível é a mensagem.",
     sw_c1_who: "Para seu gestor · deferente",
     sw_c1_en: "Tranquilizador e respeitoso. A terminação formal mantém exatamente a distância que a situação exige.",
     sw_c2_who: "Para um amigo, um pouco irritado · casual",
     sw_c2_en: "“Esquece.” As mesmas duas palavras em português — e uma relação completamente diferente depois.",
     sw_more: "Saiba mais sobre os níveis de formalidade do coreano →",
-    feat2_h3: "Entenda o que realmente quiseram dizer",
+    feat2_h3: "Entenda o que disseram, e com que nível de formalidade",
     feat2_p: "Cole a mensagem que você não consegue ler. O Tono Translate decifra gírias, abreviações e erros de digitação — e explica o nível de formalidade que a pessoa escolheu, para você saber onde está a relação.",
     show_eyebrow: "Veja em ação",
     show_h2: "Feito para o momento exato em que você está.",
     show_talk_tag: "Conversa",
-    show_talk_cap: "Ouça o que quiseram dizer — e responda com um toque.",
+    show_talk_cap: "Veja o que disseram — e responda com um toque.",
     show_scripts_tag: "Roteiros",
     show_scripts_cap: "Treine toda a conversa antes mesmo de entrar.",
     show_camera_tag: "Câmera",
@@ -2029,28 +2128,32 @@
     sm_eyebrow: "Modo Exibição",
     sm_h2: "Passe o celular.<br>Ele fala por você.",
     sm_body: "Tela cheia, brilho máximo e um aviso de cortesia no idioma da pessoa para que ela entenda o que está lendo — e queira ajudar. Quando ela responder, o app ouve e mostra o que ela disse, com respostas prontas para tocar.",
-    po_eyebrow: "Aprimorar",
-    po_h2: "Erre só<br>uma vez.",
-    po_body: "Você escreveu no idioma que está aprendendo e não tem certeza se está certo — ou se está certo para essa pessoa. Cole, diga para quem é, e o Tono Translate corrige a ortografia, a gramática e a formalidade, com uma linha sobre cada mudança no seu idioma, para o mesmo erro não voltar. No app, pelos Atalhos e pela Siri, e pela folha de compartilhamento.",
-    po_cap: "Selecione o que você escreveu em qualquer app, compartilhe com o Tono Translate e copie de volta a versão corrigida.",
     pr_eyebrow: "Pratique",
     pr_h2: "Na próxima vez, você<br>não vai precisar buscar.",
-    pr_body: "Treinos rápidos criados a partir das suas próprias frases, não de uma lista pronta. Poucos minutos, e funcionam offline. E uma vez por semana, o Tono Translate analisa o que você disse e cria uma lição rápida sobre a formalidade que você está desenvolvendo — tudo salvo no seu celular, nunca em nossos servidores.",
-    pr_practice_tag: "Praticar",
-    pr_practice_cap: "Qual combina mais? Exercícios com as suas frases, poucos minutos por dia.",
+    pr_body: "Tudo o que você pesquisa volta para você — em treinos, uma lição semanal e uma frase por dia — para que, da próxima vez, as palavras certas já estejam na ponta da língua.",
     pr_lesson_tag: "Lição semanal",
-    pr_lesson_cap: "Toda semana, uma lição rápida sobre o tom que você está construindo — baseada no que você disse.",
+    pr_drill_tag: "Treinos",
+    pr_drill_h3: "Treinos com as suas próprias frases",
+    pr_drill_p: "Nada de lista de vocabulário: são as frases de que você realmente precisou. Fale uma de cabeça, descubra o que uma mensagem diz ou escolha qual versão combina com qual pessoa. Poucos minutos por vez, e funciona offline.",
+    pr_lesson_h3: "Uma lição rápida, feita a partir da sua semana",
+    pr_lesson_p: "Uma vez por semana, o Tono Translate analisa o que você pesquisou e cria uma lição rápida sobre o nível de formalidade que você está desenvolvendo. Ela pede frases de cabeça, traz de volta frases anteriores e dá um retorno gentil sobre uma frase escrita por você. Feita a partir das suas próprias frases e salva no seu celular, nunca em nossos servidores.",
+    pr_widget_tag: "Widget da Tela de Início",
+    pr_widget_h3: "Uma frase por dia na sua Tela de Início",
+    pr_widget_p: "Adicione o widget do Tono Translate e, a cada dia, ele traz de volta uma frase que você pesquisou, com o significado escondido. Tente lembrar e depois toque em “Ver o significado”. Toque no card para abrir a frase no app. Com o Tono Translate Pro.",
+    pr_w_eyebrow: "Fale de cabeça",
+    pr_w_btn: "Ver o significado",
+    pr_widget_note: "Ilustração do widget.",
     lang_eyebrow: "Treze idiomas, em qualquer direção",
     lang_h2: "Aprenda no idioma em que você realmente pensa.",
     lang_lead: "Cada explicação chega no seu idioma — assim como o próprio app. É no coreano que o Tono Translate vai mais a fundo, mas tudo funciona perfeitamente entre quaisquer dois idiomas.",
     how_eyebrow: "Como funciona",
-    how_h2: "Três toques até a frase certa.",
-    how1_h3: "Digite a frase",
-    how1_p: "Ou cole uma mensagem, tire uma foto ou apenas fale. Em qualquer um dos seus idiomas, em qualquer direção.",
-    how2_h3: "Adicione quem &amp; onde",
-    how2_p: "“Para o meu chefe.” “Em uma feira.” Uma linha de contexto é tudo o que basta para mudar a resposta inteira.",
-    how3_h3: "Entenda o nível certo e o porquê",
-    how3_p: "A tradução, o nível de formalidade explicado e outras formas de dizer a mesma coisa para outras pessoas.",
+    how_h2: "Pesquise. Entenda. Fixe.",
+    how1_h3: "Pesquise",
+    how1_p: "Digite a frase — ou cole uma mensagem, tire uma foto ou apenas fale — e diga para quem e onde: “para o meu chefe”, “em uma feira”. Uma linha de contexto muda a resposta inteira.",
+    how2_h3: "Entenda por que combina",
+    how2_p: "O nível de formalidade certo para aquela pessoa, nomeado e explicado no seu idioma — e outras formas de dizer para outras pessoas.",
+    how3_h3: "Pratique",
+    how3_p: "O que você pesquisa volta como treinos rápidos, uma lição semanal e uma frase por dia na sua Tela de Início — até você não precisar mais pesquisar.",
     prem_eyebrow: "Premium",
     prem_h2: "Experimente o Tono Translate. Tenha acesso ilimitado quando quiser.",
     prem_free_tier: "Amostra grátis",
@@ -2065,10 +2168,10 @@
     prem_pro_li1: "Traduções e roteiros ilimitados",
     prem_pro_li2: "Leitura por foto",
     prem_pro_li3: "Tudo do plano Grátis, sem limitações",
-    prem_pro_li4: "Exercícios práticos &amp; uma lição semanal",
+    prem_pro_li4: "Treinos práticos, a lição semanal &amp; o widget da Tela de Início",
     get_eyebrow: "Baixar o Tono Translate",
-    get_h2: "Nunca mais fique na dúvida se disse certo.",
-    get_lead: "Grátis para testar na App Store. Diga o que quer dizer, no nível de formalidade certo — e saiba por que funciona.",
+    get_h2: "Aprenda uma vez. Use certo sempre.",
+    get_lead: "Grátis para testar na App Store. Traduza, entenda o porquê e pratique até fixar.",
     foot_tagline: "O tradutor que ensina.",
     foot_privacy: "Privacidade",
     foot_guides: "Guias",
@@ -2114,19 +2217,19 @@
      missing falls back to the English shot at the old flat path, so a gap
      degrades instead of leaving a hole in the page. */
   var SHOT_ALT = {
-    en: {register:"A Tono Translate answer, with its politeness level named and explained", talk:"A live conversation in Tono Translate, with ready replies to tap", scripts:"A pharmacy conversation, rehearsed line by line", camera:"A photographed menu sign, read and translated", show:"Show Mode — a full-screen phrase to show someone", practice:"A Practice card — which phrase fits this person?", lesson:"This week's lesson, written from the user's own phrases", polish:"A message polished by Tono Translate, with each change explained"},
-    ko: {register:"Tono Translate의 답변 — 말투 단계를 짚어주고 이유까지 설명합니다", talk:"실시간 대화 — 바로 누를 수 있는 답변까지", scripts:"약국에서 나눌 대화를 한 줄씩 연습", camera:"메뉴판 사진을 찍어 번역", show:"보여주기 모드 — 전체 화면으로 보여주는 문장", practice:"연습 카드 — 이 상대에게 맞는 말은?", lesson:"이번 주 레슨 — 내가 쓴 문장으로 만든", polish:"Tono Translate가 다듬은 메시지 — 바뀐 부분마다 설명이 붙어 있습니다"},
-    ja: {register:"Tono Translateの回答 — 敬語のレベルを示し、理由まで説明", talk:"リアルタイム会話と、タップで送れる返答", scripts:"薬局での会話を一行ずつ練習", camera:"メニューの写真を読み取って翻訳", show:"提示モード — 全画面で見せる一文", practice:"練習カード — この相手に合う言い方は？", lesson:"今週のレッスン — 自分のフレーズから", polish:"Tono Translateが整えたメッセージ。変更点ごとに説明つき"},
-    zh: {register:"Tono Translate 的答案，标注敬语级别并解释原因", talk:"实时对话，还有可一键发送的回复", scripts:"药店对话，逐句排练", camera:"拍下菜单，直接读懂", show:"展示模式 — 全屏显示给对方看的句子", practice:"练习卡片——哪一句适合这个人？", lesson:"本周课程——由你自己的句子写成", polish:"经 Tono Translate 润色的消息，每处改动都有说明"},
-    "zh-Hant": {register:"Tono Translate 的答案，標註敬語程度並解釋原因", talk:"即時對話，還有可一鍵送出的回覆", scripts:"藥局對話，逐句排練", camera:"拍下菜單，直接讀懂", show:"展示模式 — 全螢幕顯示給對方看的句子", practice:"練習卡片——哪一句適合這個人？", lesson:"本週課程——由你自己的句子寫成", polish:"經 Tono Translate 潤飾的訊息，每處更動都有說明"},
-    "zh-HK": {register:"Tono Translate 嘅答案，標明敬語程度同解釋原因", talk:"即時對話，仲有撳一下就送出嘅回覆", scripts:"藥房對話，一句句練習", camera:"影低餐牌，即刻睇得明", show:"展示模式 — 全螢幕俾對方睇嘅句子", practice:"練習卡——邊句啱呢個人？", lesson:"今個星期嘅課——由你自己嘅句子寫成", polish:"經 Tono Translate 潤色嘅訊息，每處改動都有解釋"},
-    es: {register:"Una respuesta de Tono Translate, con su nivel de formalidad explicado", talk:"Una conversación en directo, con respuestas listas para tocar", scripts:"Una conversación de farmacia, ensayada línea a línea", camera:"Un cartel de menú fotografiado y traducido", show:"Modo Mostrar — una frase a pantalla completa", practice:"Una tarjeta de práctica: ¿qué frase encaja con esta persona?", lesson:"La lección de esta semana, escrita a partir de tus propias frases", polish:"Un mensaje pulido por Tono Translate, con cada cambio explicado"},
-    fr: {register:"Une réponse de Tono Translate, avec son niveau de politesse expliqué", talk:"Une conversation en direct, avec des réponses prêtes à toucher", scripts:"Une conversation à la pharmacie, répétée ligne par ligne", camera:"Une pancarte de menu photographiée et traduite", show:"Mode Montrer — une phrase en plein écran", practice:"Une carte d'entraînement : quelle phrase convient à cette personne ?", lesson:"La leçon de la semaine, rédigée à partir de vos propres phrases", polish:"Un message peaufiné par Tono Translate, chaque changement expliqué"},
-    de: {register:"Eine Tono Translate-Antwort, mit erklärter Höflichkeitsform", talk:"Ein Gespräch in Echtzeit, mit Antworten zum Antippen", scripts:"Ein Apothekengespräch, Zeile für Zeile geprobt", camera:"Ein fotografiertes Menüschild, übersetzt", show:"Zeigen-Modus — ein Satz im Vollbild", practice:"Eine Übungskarte – welcher Satz passt zu dieser Person?", lesson:"Die Lektion der Woche, aus Ihren eigenen Sätzen geschrieben", polish:"Eine von Tono Translate überarbeitete Nachricht, jede Änderung erklärt"},
-    vi: {register:"Một câu trả lời của Tono Translate, kèm mức độ lịch sự được giải thích", talk:"Cuộc trò chuyện trực tiếp, có sẵn câu trả lời để chạm", scripts:"Hội thoại ở hiệu thuốc, tập từng câu", camera:"Ảnh chụp bảng thực đơn, đã được dịch", show:"Chế độ Hiển thị — một câu toàn màn hình", practice:"Một thẻ luyện tập — câu nào phù hợp với người này?", lesson:"Bài học tuần này, viết từ chính câu của bạn", polish:"Một tin nhắn được Tono Translate trau chuốt, từng thay đổi được giải thích"},
-    id: {register:"Jawaban Tono Translate, dengan tingkat kesopanannya dijelaskan", talk:"Percakapan langsung, dengan balasan siap disentuh", scripts:"Percakapan di apotek, dilatih baris per baris", camera:"Papan menu yang difoto dan diterjemahkan", show:"Mode Tampilkan — satu kalimat layar penuh", practice:"Kartu latihan — kalimat mana yang pas untuk orang ini?", lesson:"Pelajaran minggu ini, ditulis dari kalimat Anda sendiri", polish:"Pesan yang dirapikan Tono Translate, tiap perubahan dijelaskan"},
-    th: {register:"คำตอบของ Tono Translate พร้อมระบุระดับความสุภาพและเหตุผล", talk:"บทสนทนาสด พร้อมคำตอบให้แตะส่งได้ทันที", scripts:"บทสนทนาที่ร้านขายยา ซ้อมทีละบรรทัด", camera:"ป้ายเมนูที่ถ่ายไว้ แปลให้อ่านออก", show:"โหมดแสดง — ประโยคเต็มจอ", practice:"การ์ดฝึก — ประโยคไหนเหมาะกับคนนี้?", lesson:"บทเรียนสัปดาห์นี้ เขียนจากประโยคของคุณเอง", polish:"ข้อความที่ Tono Translate ขัดเกลาแล้ว พร้อมคำอธิบายทุกจุดที่แก้"},
-    "pt-BR": {register:"Uma resposta no Tono Translate, com o nível de formalidade indicado e explicado", talk:"Uma conversa ao vivo no Tono Translate, com respostas prontas para tocar", scripts:"Uma conversa na farmácia, praticada linha por linha", camera:"A foto de um cardápio, lida e traduzida", show:"Modo Exibição — uma frase em tela cheia para mostrar a alguém", practice:"Um card de Prática — qual frase combina com esta pessoa?", lesson:"A lição desta semana, criada a partir das próprias frases do usuário", polish:"Uma mensagem aprimorada pelo Tono Translate, com cada mudança explicada"},
+    en: {register:"A Tono Translate answer, with its politeness level named and explained", talk:"A live conversation in Tono Translate, with ready replies to tap", scripts:"A pharmacy conversation, rehearsed line by line", camera:"A photographed menu sign, read and translated", show:"Show Mode — a full-screen phrase to show someone", practice:"A Practice card — which phrase fits this person?", lesson:"This week's lesson, written from the user's own phrases"},
+    ko: {register:"Tono Translate의 답변 — 말투 단계를 짚어주고 이유까지 설명합니다", talk:"실시간 대화 — 바로 누를 수 있는 답변까지", scripts:"약국에서 나눌 대화를 한 줄씩 연습", camera:"메뉴판 사진을 찍어 번역", show:"보여주기 모드 — 전체 화면으로 보여주는 문장", practice:"연습 카드 — 이 상대에게 맞는 말은?", lesson:"이번 주 레슨 — 내가 쓴 문장으로 만든"},
+    ja: {register:"Tono Translateの回答 — 敬語のレベルを示し、理由まで説明", talk:"リアルタイム会話と、タップで送れる返答", scripts:"薬局での会話を一行ずつ練習", camera:"メニューの写真を読み取って翻訳", show:"提示モード — 全画面で見せる一文", practice:"練習カード — この相手に合う言い方は？", lesson:"今週のレッスン — 自分のフレーズから"},
+    zh: {register:"Tono Translate 的答案，标注敬语级别并解释原因", talk:"实时对话，还有可一键发送的回复", scripts:"药店对话，逐句排练", camera:"拍下菜单，直接读懂", show:"展示模式 — 全屏显示给对方看的句子", practice:"练习卡片——哪一句适合这个人？", lesson:"本周课程——由你自己的句子写成"},
+    "zh-Hant": {register:"Tono Translate 的答案，標註敬語程度並解釋原因", talk:"即時對話，還有可一鍵送出的回覆", scripts:"藥局對話，逐句排練", camera:"拍下菜單，直接讀懂", show:"展示模式 — 全螢幕顯示給對方看的句子", practice:"練習卡片——哪一句適合這個人？", lesson:"本週課程——由你自己的句子寫成"},
+    "zh-HK": {register:"Tono Translate 嘅答案，標明敬語程度同解釋原因", talk:"即時對話，仲有撳一下就送出嘅回覆", scripts:"藥房對話，一句句練習", camera:"影低餐牌，即刻睇得明", show:"展示模式 — 全螢幕俾對方睇嘅句子", practice:"練習卡——邊句啱呢個人？", lesson:"今個星期嘅課——由你自己嘅句子寫成"},
+    es: {register:"Una respuesta de Tono Translate, con su nivel de formalidad explicado", talk:"Una conversación en directo, con respuestas listas para tocar", scripts:"Una conversación de farmacia, ensayada línea a línea", camera:"Un cartel de menú fotografiado y traducido", show:"Modo Mostrar — una frase a pantalla completa", practice:"Una tarjeta de práctica: ¿qué frase encaja con esta persona?", lesson:"La lección de esta semana, escrita a partir de tus propias frases"},
+    fr: {register:"Une réponse de Tono Translate, avec son niveau de politesse expliqué", talk:"Une conversation en direct, avec des réponses prêtes à toucher", scripts:"Une conversation à la pharmacie, répétée ligne par ligne", camera:"Une pancarte de menu photographiée et traduite", show:"Mode Montrer — une phrase en plein écran", practice:"Une carte d'entraînement : quelle phrase convient à cette personne ?", lesson:"La leçon de la semaine, rédigée à partir de vos propres phrases"},
+    de: {register:"Eine Tono Translate-Antwort, mit erklärter Höflichkeitsform", talk:"Ein Gespräch in Echtzeit, mit Antworten zum Antippen", scripts:"Ein Apothekengespräch, Zeile für Zeile geprobt", camera:"Ein fotografiertes Menüschild, übersetzt", show:"Zeigen-Modus — ein Satz im Vollbild", practice:"Eine Übungskarte – welcher Satz passt zu dieser Person?", lesson:"Die Lektion der Woche, aus deinen eigenen Sätzen geschrieben"},
+    vi: {register:"Một câu trả lời của Tono Translate, kèm mức độ lịch sự được giải thích", talk:"Cuộc trò chuyện trực tiếp, có sẵn câu trả lời để chạm", scripts:"Hội thoại ở hiệu thuốc, tập từng câu", camera:"Ảnh chụp bảng thực đơn, đã được dịch", show:"Chế độ Hiển thị — một câu toàn màn hình", practice:"Một thẻ luyện tập — câu nào phù hợp với người này?", lesson:"Bài học tuần này, viết từ chính câu của bạn"},
+    id: {register:"Jawaban Tono Translate, dengan tingkat kesopanannya dijelaskan", talk:"Percakapan langsung, dengan balasan siap disentuh", scripts:"Percakapan di apotek, dilatih baris per baris", camera:"Papan menu yang difoto dan diterjemahkan", show:"Mode Tampilkan — satu kalimat layar penuh", practice:"Kartu latihan — kalimat mana yang pas untuk orang ini?", lesson:"Pelajaran minggu ini, ditulis dari kalimat Anda sendiri"},
+    th: {register:"คำตอบของ Tono Translate พร้อมระบุระดับความสุภาพและเหตุผล", talk:"บทสนทนาสด พร้อมคำตอบให้แตะส่งได้ทันที", scripts:"บทสนทนาที่ร้านขายยา ซ้อมทีละบรรทัด", camera:"ป้ายเมนูที่ถ่ายไว้ แปลให้อ่านออก", show:"โหมดแสดง — ประโยคเต็มจอ", practice:"การ์ดฝึก — ประโยคไหนเหมาะกับคนนี้?", lesson:"บทเรียนสัปดาห์นี้ เขียนจากประโยคของคุณเอง"},
+    "pt-BR": {register:"Uma resposta no Tono Translate, com o nível de formalidade indicado e explicado", talk:"Uma conversa ao vivo no Tono Translate, com respostas prontas para tocar", scripts:"Uma conversa na farmácia, praticada linha por linha", camera:"A foto de um cardápio, lida e traduzida", show:"Modo Exibição — uma frase em tela cheia para mostrar a alguém", practice:"Um card de Prática — qual frase combina com esta pessoa?", lesson:"A lição desta semana, criada a partir das próprias frases do usuário"},
   };
   function applyShots(lang){
     document.querySelectorAll("[data-shot]").forEach(function(img){
